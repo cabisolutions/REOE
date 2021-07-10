@@ -1,0 +1,22 @@
+.navbar {
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+}
+.navbar-toggler-icon {
+    height:15px;
+    width: 19px;
+}
+
+.navbar-brand {
+    font-size: 1.11rem;
+}
+
+.bg-nav{
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-caption {
+    top: 52%;
+    transform: translateY(-48%);
+    bottom: initial;
+}
