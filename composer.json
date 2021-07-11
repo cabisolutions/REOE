@@ -1,0 +1,13 @@
+{
+    "name": "angelfc/reoe",
+    "authors": [
+        {
+            "name": "2021 DSM31 Angel Flores Carlos",
+            "email": "angelfc.contact@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.3",
+        "rakit/validation": "^1.4"
+    }
+}

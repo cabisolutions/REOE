@@ -1,1 +1,6 @@
 docs/Renta de espacios para oficinas y eventos.mwb.bak
+/vendor/
+.env
+crear_usuario.sql
+consultas.sql
+.DS_Store
