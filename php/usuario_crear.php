@@ -1,5 +1,4 @@
 <?php
-require_once './conexion.php';
 $sql = <<<fin
     insert into direcciones(
     estado_id, 
