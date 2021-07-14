@@ -10,26 +10,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
-<body> 
+<body>
     <div class="container pt-3">
         <h1 class="mb-0">Usuarios</h1>
         <div class="table-responsive">
-        <table class="table table-striped table-hover table-sm">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Perfil</th>
-                    <th>Estatus</th>
-                    <th>
-                        <a href="usuario.php" class="btn btn-primary btn-hover btn-sm w-100" alt='crear'>
-                            <i class="bi-plus-circle-fill"></i> 
-                        </a>                        
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+            <table class="table table-striped table-hover table bg-ligth">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Perfil</th>
+                        <th>Estatus</th>
+                        <th>
+                            <a target="_blank" href="usuario.php" class="btn btn-primary btn-hover btn-sm w-100" alt='crear'>
+                                <i class="bi-plus-circle-fill"></i>
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                 require_once './conexion.php';
                 $sql = <<<fin
                             select
@@ -55,7 +55,7 @@
                                 echo 'light';
                             }
                         ?>">
-                        <?php echo htmlentities($row['perfil']) ?></span></td>
+                                <?php echo htmlentities($row['perfil']) ?></span></td>
                         <td><span class="badge bg-<?php if('Activo' == $row['estatus'])
                             { 
                                 echo 'success';
@@ -63,21 +63,23 @@
                                 echo 'light';
                             }
                         ?>">
-                        <?php echo htmlentities($row['estatus']) ?></span></td>
+                                <?php echo htmlentities($row['estatus']) ?></span></td>
                         <td>
-                            <a href="usuario.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-sm">
+                            <a target="_blank" href="usuario.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-sm">
                                 <i class="bi-pencil-square"></i>
                             </a>
                         </td>
                     </tr>
-                <?php
+                    <?php
                 }
                 ?>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

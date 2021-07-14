@@ -157,6 +157,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-sm btn-primary">Enviar</button>
+                        </div>
                     </div>
                 </form>    
             </div>   

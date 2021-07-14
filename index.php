@@ -34,7 +34,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="./sesion.php" class="btn btn-secondary btn-sm">Iniciar sesión</a>
+            <a href="./sesion.php" class="btn btn-primary btn-sm">Iniciar sesión</a>
         </div>
     </nav>
     <div id="carrsel" class="carousel slide" data-bs-ride="carousel">
@@ -44,21 +44,21 @@
                 <img src="img/espacio1.jpg" class="d-block w-100 indexCarousel" alt="Espacio para eventos con pista de baile">
                 <div class="carousel-caption">
                     <h1 class="display-2 text-white mt-5 mb-3">Espacios para eventos y oficinas</h1>
-                    <button class="btn btn-secondary mb-5">Renta ahora</button>
+                    <button class="btn btn-primary mb-5">Renta ahora</button>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="img/oficina1.jpg" class="d-block w-100 indexCarousel" alt="...">
                 <div class="carousel-caption">
                     <h1 class="display-2 text-white mt-5 mb-3">Revisa nuestro catálogo virtual</h1>
-                    <button class="btn btn-secondary mb-5">Ir a catálogo</button>
+                    <button class="btn btn-primary mb-5">Ir a catálogo</button>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="img/oficina2.jpg" class="d-block w-100 indexCarousel" alt="...">
                 <div class="carousel-caption">
                     <h1 class="display-2 text-white mt-5 mb-3">¿Más información o dudas?</h1>
-                    <button class="btn btn-secondary mb-5">Contáctanos</button>
+                    <button class="btn btn-primary mb-5">Contáctanos</button>
                 </div>
             </div>
         </div>
