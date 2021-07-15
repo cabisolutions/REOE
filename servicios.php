@@ -1,3 +1,6 @@
+<?php
+//require_once './checa-sesion.php';
+?>
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
@@ -7,35 +10,57 @@
     <title>Servicios</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/estilosGlobales.css">
 </head>
 <body>
-   
+    <?php
+    require_once './menu.php';
+    ?>
     <div class="container mt-3">
-    <div class="row justify-content-center">
+    <div class="row">
+        <div class="col-3"></div>
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
-                <i class="bi bi-tools"></i></i> Servicios 
+                    <i class="bi-ui-checks"></i> Servicios
                 </div>
                 <div class="card-body">
-                <form action="servicios.php" method="post" class="needs-validation" novalidate>
-                                <div class="mb-3">
-
-                                <label for="servicios" class="form-label">Servicios</label>
-                                <input type="text" required class="form-control form-control-sm" name="servicios" id="servicios" required>
-                                <div class="invalid-feedback">
-                                    Agrega un servicio
-                                </div>
-                            </div>
-                            <div class="container">
-                            <div class="mb-3">
-                            <button type="submit" class="btn btn-outline-primary btn-sm"> <i class="bi bi-plus-lg"></i> Enviar</button>
-                    </form>     
+                    <a class="float-end btn btn-primary btn-sm" href="servicio.php" title="Crear servicio">
+                        <i class="bi-plus-circle-fill"></i> crear
+                    </a>
+                    <table class="table-striped table table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th style="width:80%;">servicio</th>
+                                <th style="width:20%;">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            require_once './conexion.php';
+                            $sql = 'select id, servicio from servicios order by servicio asc';
+                            $sentencia = $conexion->prepare($sql);
+                            $sentencia->execute();
+                            foreach($sentencia->fetchAll(PDO::FETCH_ASSOC) as $servicio) {
+                                $servicio['servicio'] = htmlentities($servicio['servicio']);
+                                echo <<<fin
+                            <tr>
+                                <td>{$servicio['servicio']}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" href="servicio.php?id={$servicio['id']}" title="Clic para editar servicio">
+                                        <i class="bi-pencil-square"></i>
+                                    </a>
+                                </td>
+                            </tr>
+fin;
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/validacion_bootstrap.js"></script>
 </body>
 </html>
