@@ -1,10 +1,10 @@
 $(function() {
-    $('#estado_id').change(function() {
+    $('#estado_id_usuario').change(function() {
         $.getJSON('municipios.php', {
             estado_id: $(this).val()
         }, function(data, textStatus, jqXHR) {
             // console.log(data.data);
-            var municipios = $('#municipio_id');
+            var municipios = $('#municipio_id_usuario');
             municipios.html('<option value="">Selecciona</option>')
             data.data.forEach(function(v, i) {
                 // console.log(v);
@@ -13,6 +13,7 @@ $(function() {
         });
     });
 });
+
 
 
 function mostrarImagen(evt, id) {

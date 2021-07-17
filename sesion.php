@@ -11,33 +11,25 @@
 
 <body>
     <div class="container mt-3">
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                        Inicio de sesión
-                    </div>
-                    <div class="card-body">
-                        <form action="sesion.php" method="post" class="needs-validation" novalidate>
-                            <div class="mb-3">
-                                <label for="correo_electronico" class="form-label">Correo electrónico</label>
-                                <input type="email" required class="form-control form-control-sm" name="correo_electronico" id="correo_electronico" required>
-                                <div class="invalid-feedback">
-                                    Ingresa tu correo electrónico
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="contrasena" class="form-label">Contraseña</label>
-                                <input type="password" required class="form-control form-control-sm" name="contrasena" id="contrasena" required>
-                                <div class="invalid-feedback">
-                                    Ingresa tu contraseña
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
-                        </form>
+        <h1>Inicio de sesión</h1>
+        <div class="card-body">
+            <form action="sesion.php" method="post" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="correo_electronico" class="form-label">Correo electrónico</label>
+                    <input type="email" required class="form-control form-control-sm" name="correo_electronico" id="correo_electronico" required>
+                    <div class="invalid-feedback">
+                        Ingresa tu correo electrónico
                     </div>
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <input type="password" required class="form-control form-control-sm" name="contrasena" id="contrasena" required>
+                    <div class="invalid-feedback">
+                        Ingresa tu contraseña
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
         </div>
     </div>
     <script src="js/validacion_bootstrap.js"></script>

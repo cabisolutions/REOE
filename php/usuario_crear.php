@@ -21,13 +21,13 @@ $sql = <<<fin
 
 //$contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT, $opciones);
 $sentencia = $conexion->prepare($sql);
-$sentencia->bindValue(':estado_id', $_POST['estado_id'], PDO::PARAM_INT);
-$sentencia->bindValue(':municipio_id', $_POST['municipio_id'], PDO::PARAM_INT);
-$sentencia->bindValue(':calle', $_POST['calle'], PDO::PARAM_STR);
-$sentencia->bindValue(':colonia', $_POST['colonia'], PDO::PARAM_STR);
-$sentencia->bindValue(':numero_exterior', $_POST['numero_exterior'], PDO::PARAM_STR);
-$sentencia->bindValue(':numero_interior', $_POST['numero_interior'], PDO::PARAM_STR);
-$sentencia->bindValue(':codigo_postal', $_POST['codigo_postal'], PDO::PARAM_STR);
+$sentencia->bindValue(':estado_id', $_POST['estado_id_usuario'], PDO::PARAM_INT);
+$sentencia->bindValue(':municipio_id', $_POST['municipio_id_usuario'], PDO::PARAM_INT);
+$sentencia->bindValue(':calle', $_POST['calle_usuario'], PDO::PARAM_STR);
+$sentencia->bindValue(':colonia', $_POST['colonia_usuario'], PDO::PARAM_STR);
+$sentencia->bindValue(':numero_exterior', $_POST['numero_exterior_usuario'], PDO::PARAM_STR);
+$sentencia->bindValue(':numero_interior', $_POST['numero_interior_usuario'], PDO::PARAM_STR);
+$sentencia->bindValue(':codigo_postal', $_POST['codigo_postal_usuario'], PDO::PARAM_STR);
 $sentencia->execute();
 
 $direccion_id = $conexion->lastInsertId();
@@ -95,5 +95,7 @@ $sentencia->bindValue(':estatus', $_POST['estatus'], PDO::PARAM_STR);
 $sentencia->bindValue(':identificacion', $nombre_identificacion, PDO::PARAM_STR);
 $sentencia->bindValue(':comprobante_domicilio', $nombre_comprobante_domicilio, PDO::PARAM_STR);
 $sentencia->execute();
-echo '<h6>Usuario creado</h6>';
-echo '<div><a href="usuario.php" class="btn btn-secondary btn-sm">usuarios</a></div>';
+
+$respuesta = array('estatus' => 'Ok', 'mensaje' => 'Usuario creado');
+echo json_encode($respuesta);
+?>
