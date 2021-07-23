@@ -10,16 +10,19 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="catalogo" id="navbarScrollingDropdown" role="button"  aria-expanded="false">
                             Catálogo
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="#">Eventos</a></li>
+                            <li><a class="dropdown-item" href="catalogo">Ver todo</a></li>
+                            <li><a class="dropdown-item" href="catalogo">Eventos</a></li>
                             <li><a class="dropdown-item" href="#">Oficinas</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
             <a href="./sesion.php" class="btn btn-secondary btn-sm">Iniciar sesión</a>
+            <script src="./js/jquery-3.6.0.min.js"></script>
+            <script src="./js/menu.js"></script>
         </div>
     </nav>
