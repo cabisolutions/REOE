@@ -4,11 +4,8 @@ require('vendor/autoload.php');
 use Rakit\Validation\Validator;
 
 require_once './conexion.php';
-$accion = 'Crear usuario';
-$requerido = 'required';
+
 if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $accion = 'Editar usuario';
-    $requerido = '';
     $sql = 'select 
     u.id, u.direccion_id, u.nombre, u.primer_apellido,
     u.segundo_apellido, u.sexo, u.fecha_nacimiento, u.numero_celular, 
@@ -17,18 +14,27 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     d.numero_interior, d.codigo_postal
     from 
     usuarios u
-    inner join direcciones d on u.direccion_id = d.id 
+    inner join direcciones d on u.id= d.id 
     where 
     u.id = :id';
     $sentencia = $conexion->prepare($sql);
-    $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+    $sentencia->bindParam(':id', $_REQUEST['id'], PDO::PARAM_INT);
     $sentencia->execute();
-    $usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
+    //$usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
+    
+    echo json_encode([
+        'estatus' => true
+        , 'data' => $sentencia->fetchAll(PDO::FETCH_ASSOC)
+    ]);
+    
+    /*
     if (null == $usuario) {
         require_once './error-no-encontrado.php';
         exit;
     }
-    $_POST = array_merge($_POST, $usuario);
+    
+    */
+    //$_POST = array_merge($_POST, $usuario);
 }
 
         if ('POST' == $_SERVER['REQUEST_METHOD']) {
@@ -60,14 +66,15 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
             // then validate
             $validation->validate();
             $errors = $validation->errors();
-        }
+
             // es post y todo está bien
             if (isset($_POST['id_usuario']) && is_numeric($_POST['id_usuario'])) {
-                
                 //actualizamos
-                include_once('./php/usuario_actualizar.php');
+                include_once('src/models/usuario_actualizar.php');
             } else {
                 //creamos
-                include_once('./php/usuario_crear.php');
+                include_once('src/models/usuario_crear.php');
             }
+        }
+            
 

@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel administrativo</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="./css/panel_administrador.css">
+    <link rel="stylesheet" href="./resources/css/panel_administrador.css">
 </head>
 
 <body>
@@ -37,7 +37,7 @@
             <div class="tab-pane fade show active" id="v-pills-resumen" role="tabpanel" aria-labelledby="v-pills-resumen-tab">
                 <div class="container">
                     <?php
-                    include_once('./resumen_panel_administrativo.php');
+                    include_once('resumen_panel_administracion.php');
                     ?>
                 </div>
             </div>
@@ -53,7 +53,7 @@
             <div class="tab-pane fade" id="v-pills-usuarios" role="tabpanel" aria-labelledby="v-pills-usuarios-tab">
                 <div class="container">
                     <?php
-                    include_once('./usuarios.php');
+                    include_once('usuarios.php');
                     ?>
                 </div>
             </div>

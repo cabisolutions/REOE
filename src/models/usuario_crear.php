@@ -71,12 +71,12 @@ $opciones = [
 if (is_uploaded_file($_FILES['identificacion']['tmp_name'])) {
     $nombre_identificacion = uniqid('id-', true) . '.jpg'; // se supone sólo se admiten .jpg
     // mover archivo a su ubicación final
-    move_uploaded_file($_FILES['identificacion']['tmp_name'], './usuarios/identificaciones/' . $nombre_identificacion);
+    move_uploaded_file($_FILES['identificacion']['tmp_name'], "./usuarios/identificaciones/" . $nombre_identificacion);
 }
 if (is_uploaded_file($_FILES['comprobante_domicilio']['tmp_name'])) {
     $nombre_comprobante_domicilio = uniqid('cd-', true) . '.jpg'; // se supone sólo se admiten .jpg
     // mover archivo a su ubicación final
-    move_uploaded_file($_FILES['comprobante_domicilio']['tmp_name'], './usuarios/comprobantes_domicilio/' . $nombre_comprobante_domicilio);
+    move_uploaded_file($_FILES['comprobante_domicilio']['tmp_name'], "./usuarios/comprobantes_domicilio/" . $nombre_comprobante_domicilio);
 }
 
 $contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT, $opciones);

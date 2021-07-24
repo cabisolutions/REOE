@@ -68,8 +68,8 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resumen</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/resumen_administrativo.css">
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./resources/css/resumen_administrativo.css">
 </head>
 
 <body>
@@ -85,7 +85,7 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
                 $color = 'secondary';
                 $ancho ='18rem';
                 $extra = '';
-                include('./php/tarjetaInformacion.php');
+                include('./src/componentes/tarjetaInformacion.php');
 
                 // tarjeta de información con total de usuarios activos
                 $conteo = $numero_usuarios_activos;
@@ -94,7 +94,7 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
                 $accion = 'Ver usuarios activos';
                 $color = 'success';
                 $ancho ='18rem';
-                include('./php/tarjetaInformacion.php');
+                include('./src/componentes/tarjetaInformacion.php');
 
                 // tarjeta de información con total de usuarios inactivos
                 $conteo = $numero_usuarios_inactivos;
@@ -103,7 +103,7 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
                 $accion = 'Ver usuarios inactivos';
                 $color = 'danger';
                 $ancho ='18rem';
-                include('./php/tarjetaInformacion.php');
+                include('./src/componentes/tarjetaInformacion.php');
             ?>
         </div>
         <div class="row">
@@ -133,7 +133,7 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
                         <span class='h5 pt-2'>Rentas canceladas</span>
                     </div>
                 </div>";
-                include('./php/tarjetaInformacion.php');
+                include('./src/componentes/tarjetaInformacion.php');
             ?>
             <?php
                 // tarjeta de infoamción con total de espacios
@@ -161,7 +161,7 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
                         <span class='h5 pt-2'>Espacios disponibles</span>
                     </div>
                 </div>";
-                include('./php/tarjetaInformacion.php');
+                include('./src/componentes/tarjetaInformacion.php');
             ?>
         </div>
         

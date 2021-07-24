@@ -1,5 +1,5 @@
 function obtenerDatos(id) {
-    fetch(`http://localhost/reoe/consulta_usuario.php?id=${id}`)
+    fetch(`http://localhost/reoe/usuario?id=${id}`)
         .then(response => response.json())
         //.then(json => console.log(json))
         .then(json => asignarDatos(json))
@@ -122,7 +122,7 @@ function enviarPost(){
     }
     //console.log(data.get('id_usuario'))
 
-    fetch(`http://localhost/reoe/usuario.php`, {
+    fetch(`http://localhost/reoe/usuario`, {
         method: 'POST',
         body: data
     })
