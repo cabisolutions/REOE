@@ -31,6 +31,8 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
 <?php
 require_once './menu.php';
 ?>
+<br>
+<br>
 <div class="container mt-3">
     <div class="row">
         <div class="col-3"></div>
