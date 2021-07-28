@@ -6,12 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios</title>
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
 <body>
-    <div class="d-flex">
+    <?php
+    include_once('menu.php');
+    ?>
+    <div class="d-flex mt-5">
         <?php
         $opcion = 'usuarios';
         include_once('menu_admin.php');
@@ -27,7 +30,7 @@
                             <th>Perfil</th>
                             <th>Estatus</th>
                             <th>
-                                <a href="usuario" class="btn btn-primary btn-hover btn-sm w-100" alt='crear'>
+                                <a href="<?=BASEPATH.'usuario'?>" class="btn btn-primary btn-hover btn-sm w-100" alt='crear'>
                                     <i class="bi-plus-circle-fill"></i>
                                 </a>
                             </th>
@@ -68,7 +71,7 @@
                                                             ?>">
                                         <?php echo htmlentities($row['estatus']) ?></span></td>
                                 <td>
-                                    <a href="usuario?id=<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-sm">
+                                    <a href="<?=BASEPATH.'usuario?id='.$row['id'] ?>" class="btn btn-outline-primary btn-sm">
                                         <i class="bi-pencil-square"></i>
                                     </a>
                                 </td>

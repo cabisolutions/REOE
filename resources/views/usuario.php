@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="es-MX">
 
@@ -6,13 +9,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlentities($accion) ?></title>
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="resources/css/usuario.css">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/usuario.css'?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
 <body>
-    <div class="d-flex">
+    <?php
+    include_once('menu.php');
+    ?>
+    <div class="d-flex mt-5">
         <?php
         $opcion = 'usuarios';
         include_once('menu_admin.php');
@@ -173,7 +179,7 @@
                                     <img id="imagen_identificacion" src="
                                             <?php
                                             if (isset($_POST['identificacion']))
-                                                echo 'uploads/usuarios/identificaciones/' . $_POST['identificacion']
+                                                echo BASEPATH.'uploads/usuarios/identificaciones/' . $_POST['identificacion']
                                             ?>" alt="" class="img-fluid rounded mx-auto <?php
                                                                                         if (isset($_POST['identificacion']))
                                                                                             echo "d-block";
@@ -194,7 +200,7 @@
                                     <img id="imagen_comprobante_domicilio" src="
                                             <?php
                                             if (isset($_POST['comprobante_domicilio']))
-                                                echo 'usuarios/comprobantes_domicilio/' . $_POST['comprobante_domicilio']
+                                                echo BASEPATH.'uploads/usuarios/comprobantes_domicilio/' . $_POST['comprobante_domicilio']
                                             ?>" alt="" class="img-fluid rounded mx-auto <?php
                                                                                         if (isset($_POST['comprobante_domicilio']))
                                                                                             echo "d-block";
@@ -311,10 +317,10 @@
             </form>
         </div>
     </div>
-    <script src="resources/js/validacion_bootstrap.js"></script>
-    <script src="resources/js/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="resources/js/usuario.js"></script>
+    <script src="<?=BASEPATH.'resources/js/bootstrap.min.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/validacion_bootstrap.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/jquery-3.6.0.min.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/usuario.js'?>"></script>
 </body>
 
 </html>

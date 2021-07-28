@@ -68,53 +68,63 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resumen</title>
-    <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./resources/css/resumen_administrativo.css">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/resumen_administrativo.css'?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
 </head>
 
 <body>
-    <div class="container pt-3">
-        <h1>Resumen</h1>
-        <div class="row">
-            <?php
+    <?php
+    include_once('menu.php');
+    ?>
+    <div class="d-flex mt-5">
+        <?php
+        $opcion = 'resumen';
+        include_once('menu_admin.php');
+        ?>
+        <div class="container pt-3">
+            <h1>Resumen</h1>
+            <div class="row">
+                <?php
                 // tarjeta de infoamción con total de usuarios
                 $conteo = $numero_usuarios;
                 $texto = 'Total usuarios';
-                $direccion = './usuarios.php';
+                $direccion = BASEPATH.'usuarios';
                 $accion = 'Ver usuarios';
                 $color = 'secondary';
-                $ancho ='18rem';
+                $ancho = '18rem';
                 $extra = '';
                 include('resources/components/tarjetaInformacion.php');
 
                 // tarjeta de información con total de usuarios activos
                 $conteo = $numero_usuarios_activos;
                 $texto = 'Usuarios activos';
-                $direccion = './usuarios.php';
+                $direccion = BASEPATH.'usuarios';
                 $accion = 'Ver usuarios activos';
                 $color = 'success';
-                $ancho ='18rem';
+                $ancho = '18rem';
                 include('resources/components/tarjetaInformacion.php');
 
                 // tarjeta de información con total de usuarios inactivos
                 $conteo = $numero_usuarios_inactivos;
                 $texto = 'Usuarios inactivos';
-                $direccion = './usuarios.php';
+                $direccion = BASEPATH.'usuarios';
                 $accion = 'Ver usuarios inactivos';
                 $color = 'danger';
-                $ancho ='18rem';
+                $ancho = '18rem';
                 include('resources/components/tarjetaInformacion.php');
-            ?>
-        </div>
-        <div class="row">
-            <?php
+                ?>
+            </div>
+            <div class="row">
+                <?php
                 // tarjeta de infoamción con total de rentas
                 $conteo = $numero_rentas;
                 $texto = 'Total rentas';
-                $direccion = './rentas.php';
+                $direccion = BASEPATH.'rentas';
                 $accion = 'Ver total rentas';
                 $color = 'primary';
-                $ancho ='28rem';
+                $ancho = '28rem';
                 $extra = "
                 <div class='br'></div>
                 <div class='row mt-1 mb-1'>
@@ -134,15 +144,15 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
                     </div>
                 </div>";
                 include('resources/components/tarjetaInformacion.php');
-            ?>
-            <?php
+                ?>
+                <?php
                 // tarjeta de infoamción con total de espacios
                 $conteo = $numero_espacios;
                 $texto = 'Total espacios';
-                $direccion = './espacios.php';
+                $direccion = BASEPATH.'espacios';
                 $accion = 'Ver total espacios';
                 $color = 'info';
-                $ancho ='28rem';
+                $ancho = '28rem';
                 $extra = "
                 <div class='br'></div>
                 <div class='row mt-1 mb-1'>
@@ -162,9 +172,10 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
                     </div>
                 </div>";
                 include('resources/components/tarjetaInformacion.php');
-            ?>
+                ?>
+            </div>
+
         </div>
-        
     </div>
 </body>
 
