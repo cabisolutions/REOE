@@ -11,31 +11,55 @@ Route::add('/', function() {
 });
 
 Route::add('/catalogo', function() {
-    include('resources/views/catalogo.php');
+    include('src/controllers/catalogo.php');
 }, ['get','post']);
 
-Route::add('/usuario', function() {
-    include('src/controllers/usuario.php');
+Route::add('/sesion', function() {
+    include('sesion.php');
 }, ['get','post']);
 
-Route::add('/administracion', function() {
-    include('resources/views/administracion.php');
+Route::add('/resumen', function() {
+    include('resources/views/resumen_panel_administracion.php');
 });
 
-Route::add('/admin-usuarios', function() {
-    include('src/vistas/usuarios.php');
+Route::add('/rentas', function() {
+    include('rentas.php');
 });
 
-Route::add('/admin-espacios', function() {
-    include('./espacios.php');
+Route::add('/renta', function() {
+    include('renta.php');
+}, ['get','post']);
+
+Route::add('/espacios', function() {
+    include('espacios.php');
 });
 
 Route::add('/espacio', function() {
-    include('./espacio.php');
+    include('espacio.php');
 }, ['get','post']);
 
+Route::add('/tipo_espacios', function() {
+    include('tipos_espacios.php');
+});
+
+Route::add('/tipo_espacio', function() {
+    include('agregar_tipo_espacio.php');
+}, ['get','post']);
+
+Route::add('/servicios', function() {
+    include('servicios.php');
+});
+
 Route::add('/servicio', function() {
-    include('./servicio.php');
+    include('servicio.php');
+}, ['get','post']);
+
+Route::add('/usuarios', function() {
+    include('resources/views/usuarios.php');
+});
+
+Route::add('/usuario', function() {
+    include('src/controllers/usuario.php');
 }, ['get','post']);
 
 // Add a 404 not found route

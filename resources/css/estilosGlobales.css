@@ -14,9 +14,3 @@
 .bg-nav{
     background-color: rgba(0, 0, 0, 0.8);
 }
-
-.carousel-caption {
-    top: 49%;
-    transform: translateY(-51%);
-    bottom: initial;
-}

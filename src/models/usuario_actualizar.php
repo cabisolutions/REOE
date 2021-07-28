@@ -13,14 +13,14 @@ $sql = <<<fin
     fin;
 
 $sentencia = $conexion->prepare($sql);
-$sentencia->bindValue(':estado_id', $_POST['estado_id_usuario'], PDO::PARAM_INT);
-$sentencia->bindValue(':municipio_id', $_POST['municipio_id_usuario'], PDO::PARAM_INT);
-$sentencia->bindValue(':calle', $_POST['calle_usuario'], PDO::PARAM_STR);
-$sentencia->bindValue(':colonia', $_POST['colonia_usuario'], PDO::PARAM_STR);
-$sentencia->bindValue(':numero_exterior', $_POST['numero_exterior_usuario'], PDO::PARAM_STR);
-$sentencia->bindValue(':numero_interior', $_POST['numero_interior_usuario'], PDO::PARAM_STR);
-$sentencia->bindValue(':codigo_postal', $_POST['codigo_postal_usuario'], PDO::PARAM_STR);
-$sentencia->bindValue(':id', $_POST['direccion_id_usuario'], PDO::PARAM_INT);
+$sentencia->bindValue(':estado_id', $_POST['estado_id'], PDO::PARAM_INT);
+$sentencia->bindValue(':municipio_id', $_POST['municipio_id'], PDO::PARAM_INT);
+$sentencia->bindValue(':calle', $_POST['calle'], PDO::PARAM_STR);
+$sentencia->bindValue(':colonia', $_POST['colonia'], PDO::PARAM_STR);
+$sentencia->bindValue(':numero_exterior', $_POST['numero_exterior'], PDO::PARAM_STR);
+$sentencia->bindValue(':numero_interior', $_POST['numero_interior'], PDO::PARAM_STR);
+$sentencia->bindValue(':codigo_postal', $_POST['codigo_postal'], PDO::PARAM_STR);
+$sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 $sentencia->execute();
 
 
@@ -52,7 +52,7 @@ if (!$errors->has('contrasena') && !$errors->has('contrasena_confirma') && !empt
 } else {
     // dejamos la misma contraseña
     $sentencia = $conexion->prepare('select contrasena from usuarios where id = :id');
-    $sentencia->bindValue(':id', $_POST['id_usuario'], PDO::PARAM_INT);
+    $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $sentencia->execute();
     $contrasena = $sentencia->fetchColumn(0);
 }
@@ -61,22 +61,22 @@ if (!$errors->has('contrasena') && !$errors->has('contrasena_confirma') && !empt
 if (is_uploaded_file($_FILES['identificacion']['tmp_name'])) {
     $nombre_identificacion = uniqid('id-', true) . '.jpg'; // se supone sólo se admiten .jpg
     // mover archivo a su ubicación final
-    move_uploaded_file($_FILES['identificacion']['tmp_name'], './usuarios/identificaciones/' . $nombre_identificacion);
+    move_uploaded_file($_FILES['identificacion']['tmp_name'], 'uploads/usuarios/identificaciones/' . $nombre_identificacion);
 }
 else {
     // dejamos los mismos documentos 
     $sentencia = $conexion->prepare('select identificacion from usuarios where id = :id');
-    $sentencia->bindValue(':id', $_POST['id_usuario'], PDO::PARAM_INT);
+    $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $sentencia->execute();
     $nombre_identificacion= $sentencia->fetchColumn(0);
 }
 if (is_uploaded_file($_FILES['comprobante_domicilio']['tmp_name'])) {
     $nombre_comprobante_domicilio = uniqid('cd-', true) . '.jpg'; 
-    move_uploaded_file($_FILES['comprobante_domicilio']['tmp_name'], './usuarios/comprobantes_domicilio/' . $nombre_comprobante_domicilio);
+    move_uploaded_file($_FILES['comprobante_domicilio']['tmp_name'], 'uploads/usuarios/comprobantes_domicilio/' . $nombre_comprobante_domicilio);
 }
 else {
     $sentencia = $conexion->prepare('select comprobante_domicilio from usuarios where id = :id');
-    $sentencia->bindValue(':id', $_POST['id_usuario'], PDO::PARAM_INT);
+    $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $sentencia->execute();
     $nombre_comprobante_domicilio = $sentencia->fetchColumn(0);
 }
@@ -84,7 +84,7 @@ else {
 
 
 $sentencia = $conexion->prepare($sql);
-$sentencia->bindValue(':direccion_id', $_POST['direccion_id_usuario'], PDO::PARAM_STR);
+$sentencia->bindValue(':direccion_id', $_GET['id'], PDO::PARAM_STR);
 $sentencia->bindValue(':nombre', $_POST['nombre'], PDO::PARAM_STR);
 $sentencia->bindValue(':primer_apellido', $_POST['primer_apellido'], PDO::PARAM_STR);
 $sentencia->bindValue(':segundo_apellido', $_POST['segundo_apellido'], PDO::PARAM_STR);
@@ -97,7 +97,7 @@ $sentencia->bindValue(':perfil', $_POST['perfil'], PDO::PARAM_STR);
 $sentencia->bindValue(':estatus', $_POST['estatus'], PDO::PARAM_STR);
 $sentencia->bindValue(':identificacion', $nombre_identificacion, PDO::PARAM_STR);
 $sentencia->bindValue(':comprobante_domicilio', $nombre_comprobante_domicilio, PDO::PARAM_STR);
-$sentencia->bindValue(':id', $_POST['id_usuario'], PDO::PARAM_INT);
+$sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 $sentencia->execute();
 echo '<h6>Usuario actualizado</h6>';
 echo '<div><a href="usuarios.php" class="btn btn-secondary btn-sm">usuarios</a></div>';

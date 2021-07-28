@@ -31,3 +31,9 @@
     border: none;
     border-radius: 0 10px 10px 0;
 }
+
+.carousel-caption {
+    top: 49%;
+    transform: translateY(-51%);
+    bottom: initial;
+}
