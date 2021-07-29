@@ -28,6 +28,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
 </head>
 
 <body>
+
     <div class="container pt-4">
         <div class="card">
             <div class="card-header">
@@ -230,6 +231,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
             </div>   
         </div>
     </div>
+
     <script src="js/validacion_bootstrap.js"></script>  
 </body>
 </html>
