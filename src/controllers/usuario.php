@@ -14,9 +14,9 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     u.segundo_apellido, u.sexo, u.fecha_nacimiento, u.numero_celular, 
     u.correo_electronico, u.contrasena, u.perfil, u.estatus, u.identificacion,
     u.comprobante_domicilio, d.id, d.estado_id, d.municipio_id, d.calle, d.colonia, d.numero_exterior,
-    d.numero_interior, d.codigo_postal
+    d.numero_interior, d.codigo_postal 
     from 
-    usuarios u
+    usuarios u 
     inner join direcciones d on u.direccion_id = d.id 
     where 
     u.id = :id';

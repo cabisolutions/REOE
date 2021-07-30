@@ -68,7 +68,7 @@ Route::add('/espacios', function() {
 });
 
 Route::add('/espacio', function() {
-    include('espacio.php');
+    include('src/controllers/espacio.php');
 }, ['get','post']);
 
 Route::add('/tipo_espacios', function() {
