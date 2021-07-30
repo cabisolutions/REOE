@@ -26,7 +26,7 @@
             <h1>Espacios</h1>
             <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
                <!-- <form action="espacios_guarda.php" method="POST" class="needs-validation" novalidate> -->
-                    <div class="row">
+                        <div class="row">
                         <div class="col-lg-6">
                             <div class="mb-3"> 
                                 <label for="descripcion" class="form-label">Nombre del espacio</label>
@@ -34,14 +34,14 @@
                                 <div class="invalid-feedback">
                                     Ingresa el nombre del espacio
                                 </div>
-                            </div>
-                            <div class="mb-3"> 
-                                <label for="descripcion" class="form-label">Descripción</label>
-                                <input type="text" name="descripcion" required class="form-control form-control-sm" id="descripción">
-                                <div class="invalid-feedback">
-                                    Ingresa la descripción
                                 </div>
-                            </div>
+                                <div class="mb-3"> 
+                                    <label for="descripcion" class="form-label">Descripción</label>
+                                    <input type="text" name="descripcion" required class="form-control form-control-sm" id="descripción">
+                                    <div class="invalid-feedback">
+                                        Ingresa la descripción
+                                    </div>
+                                </div>
                             <div class="mb-3">
                                 <label for="metros" class="form-label">Metros (cuadrados)</label>
                                 <input type="text" name="metros" required class="form-control form-control-sm" id="metros">
