@@ -57,7 +57,7 @@ $sentencia = $conexion->prepare($sql);
 $sentencia->bindValue(':direccion_id', $direccion_id, PDO::PARAM_STR);
 $sentencia->bindValue(':nombre', $_POST['nombre'], PDO::PARAM_STR);
 $sentencia->bindValue(':descripcion', $_POST['descripcion'], PDO::PARAM_STR);
-$sentencia->bindValue(':metros_cuadrados', $_POST['colonia'], PDO::PARAM_INT);
+$sentencia->bindValue(':metros_cuadrados', $_POST['metros_cuadrados'], PDO::PARAM_INT);
 $sentencia->bindValue(':disponible_para', $_POST['disponible_para'], PDO::PARAM_STR);
 $sentencia->bindValue(':estatus', $_POST['estatus'], PDO::PARAM_STR);
 $sentencia->bindValue(':costo', $_POST['costo'], PDO::PARAM_STR);

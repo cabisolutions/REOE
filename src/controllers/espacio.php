@@ -12,7 +12,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     $sql = 'select 
     e.id, e.direccion_id, e.nombre, e.descripcion,
     e.metros_cuadrados, e.disponible_para, e.estatus, e.costo, 
-    u.costo_renta_dia, d.id, d.estado_id, d.municipio_id, d.calle, d.colonia, d.numero_exterior,
+    e.costo_renta_dia, d.id, d.estado_id, d.municipio_id, d.calle, d.colonia, d.numero_exterior,
     d.numero_interior, d.codigo_postal
     from 
     espacios e
@@ -22,8 +22,8 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     $sentencia = $conexion->prepare($sql);
     $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $sentencia->execute();
-    $usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
-    if (null == $usuario) {
+    $espacio = $sentencia->fetch(PDO::FETCH_ASSOC);
+    if (null == $espacio) {
         require_once './error-no-encontrado.php';
         exit;
     }

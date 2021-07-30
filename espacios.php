@@ -8,6 +8,7 @@
     <title>Espacios</title>
     <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body> 
@@ -30,7 +31,7 @@
                         <th>Disponible para</th>
                         <th>Estatus</th>
                         <th>
-                            <a href="espacio.php" class="btn btn-primary btn-hover btn-sm w-100" alt='crear'>
+                        <a href="<?=BASEPATH.'espacio'?>" class="btn btn-primary btn-hover btn-sm w-100" alt='crear'>
                                 <i class="bi-plus-circle-fill"></i> 
                             </a>                        
                         </th>
@@ -59,7 +60,7 @@
                             <td><?php echo htmlentities($row['disponible_para']) ?></td>
                             <td><?php echo htmlentities($row['estatus']) ?></td>
                             <td>
-                                <a href="espacio.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-sm">
+                            <a href="<?=BASEPATH.'espacio?id='.$row['id'] ?>" class="btn btn-outline-primary btn-sm">
                                     <i class="bi-pencil-square"></i>
                                 </a>
                             </td>
@@ -72,7 +73,9 @@
             </div>
         </div>
     </div>
-
+    <?php
+    include_once('footer.php');
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 

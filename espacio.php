@@ -43,8 +43,8 @@
                                     </div>
                                 </div>
                             <div class="mb-3">
-                                <label for="metros" class="form-label">Metros (cuadrados)</label>
-                                <input type="text" name="metros" required class="form-control form-control-sm" id="metros">
+                                <label for="metros_cuadrados" class="form-label">Metros (cuadrados)</label>
+                                <input type="text" name="metros_cuadrados" required class="form-control form-control-sm" id="metros_cuadrados">
                                 <div class="invalid-feedback">
                                     Ingresa los metros
                                 </div>
@@ -228,6 +228,9 @@
             </div> 
         </div>
     </div>
+    <?php
+    include_once('footer.php');
+    ?>
     <script src="<?=BASEPATH.'resources/js/bootstrap.min.js'?>"></script>
     <script src="<?=BASEPATH.'resources/js/validacion_bootstrap.js'?>"></script>
     <script src="<?=BASEPATH.'resources/js/jquery-3.6.0.min.js'?>"></script> 
