@@ -1,4 +1,23 @@
-
+<?php
+//require_once './checa-sesion.php';
+require('vendor/autoload.php');
+use Rakit\Validation\Validator;
+if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GET['id'])) {
+    require_once './conexion.php';
+    $sql = 'select id, espacio_id from rentas where id = :id';
+    $sentencia = $conexion->prepare($sql);
+    $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+    $sentencia->execute();
+    $espacio_id = $sentencia->fetch(PDO::FETCH_ASSOC);
+    if (null == $espacio_id) {
+        require_once './error-no-encontrado.php';
+        exit;
+    }
+    $_POST = array_merge($_POST, $espacio_id);
+}
+?>
+<!DOCTYPE html>
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +39,30 @@ require_once './menu.php';
 <h4> Titulo espacio</h4>
             </div>
                 <div class="card-body">
+
+                <?php
+                    if ('POST' == $_SERVER['REQUEST_METHOD']) {
+                      
+                        $validator = new Validator;
+                        $validation = $validator->make($_POST, [
+                            'renta' => 'required|min:4|max:25'
+                        ]);
+                        $validation->setMessages([
+                            'required' => ':attribute es requerido'
+                            , 'min' => ':attribute longitud mínima no se cumple'
+                            , 'max' => ':attribute longitud máxima no se cumple'
+                        ]);
+                       
+                        $validation->validate();
+                        $errors = $validation->errors();
+                    }
+                    if ('GET' == $_SERVER['REQUEST_METHOD'] || $validation->fails()) {
+                    ?>
+                    <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST">
+                        <div class="mb-3">
+                            <name="espacio_id" <?php echo isset($errors) && $errors->has('espacio_id') ? ' is-invalid' : 'is-valid' ?> id="espacio_id" aria-describedby="espacio_idHelp" value="<?php echo $_POST['espacio_id'] ?? '' ?>">
+                            <div id="espacio_idHelp" class="invalid-feedback"><?php echo isset($errors) && $errors->first('espacio_id') ?></div>
+                        </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div>
@@ -86,12 +129,36 @@ require_once './menu.php';
                                     </div>
                                 </div>
                             </div>                
-<button type="submit" class="btn btn btn-primary">Reservar</button>
+                    <button type="submit" class="btn btn btn-primary">Reservar</button>
+                    <a href="renta.php" class="btn btn-secondary btn-sm">cancelar</a>
+                    </form>
+                    <?php
+                    } else {
+                        require_once './conexion.php';
+                        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+
+                            $sql = 'update rentas set espacio_id = :espacio_id where id = :id';
+                            $sentencia = $conexion->prepare($sql);
+                            $sentencia->bindValue(':espacio_id', $_POST['espacio_id'], PDO::PARAM_STR);
+                            $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+                            $sentencia->execute();
+                            echo '<h6>Renta actualizada</h6>';
+                            echo '<div><a href="renta.php" class="btn btn-secondary btn-sm">Rentas</a></div>';
+                        } else {
+
+                            $sql = 'insert into rentas (espacio_id) values (:espacio_id)';
+                            $sentencia = $conexion->prepare($sql);
+                            $sentencia->bindValue(':espacio_id', $_POST['espacio_id'], PDO::PARAM_STR);
+                            $sentencia->execute();
+                            echo '<h6>Renta creada</h6>';
+                            echo '<div><a href="rentas.php" class="btn btn-secondary btn-sm">Rentas</a></div>';
+                        }
+                    }
+                    ?>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </body>
-
 </html>
