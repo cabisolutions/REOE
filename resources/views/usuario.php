@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="<?=BASEPATH.'resources/css/usuario.css'?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -317,6 +318,9 @@
             </form>
         </div>
     </div>
+    <?php
+    include_once('footer.php');
+    ?>
     <script src="<?=BASEPATH.'resources/js/bootstrap.min.js'?>"></script>
     <script src="<?=BASEPATH.'resources/js/validacion_bootstrap.js'?>"></script>
     <script src="<?=BASEPATH.'resources/js/jquery-3.6.0.min.js'?>"></script>
