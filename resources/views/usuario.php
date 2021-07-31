@@ -9,9 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlentities($accion) ?></title>
-    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
-    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/usuario.css'?>">
+    <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/bootstrap.min.css' ?>">
+    <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/usuario.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -20,11 +21,13 @@
     ?>
     <div class="d-flex mt-5">
         <?php
-        $opcion = 'usuarios';
-        include_once('menu_admin.php');
+        if (isset($segment) && !empty($segment->get('id')) && 'Administrador' == $segment->get('perfil')) {
+            $opcion = 'usuarios';
+            include_once('menu_admin.php');
+        }
         ?>
         <div class="container mt-3 mb-4">
-            <h1>Usuario</h1>
+            <h1><?=$accion?></h1>
             <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
                 <!-- <form action="valores_recibidos.php" method="POST" class="needs-validation" novalidate> -->
                 <div class="row">
@@ -130,48 +133,54 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label for="perfil1" class="form-label">Perfil</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="perfil" id="perfil1" required value="Administrador" <?php echo 'Administrador' == ($_POST['perfil'] ?? '') ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="perfil1">
-                                            Administrador
-                                        </label>
+                        <?php
+                        if (isset($segment) && !empty($segment->get('id')) && 'Administrador' == $segment->get('perfil')) {
+                        ?>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="perfil1" class="form-label">Perfil</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="perfil" id="perfil1" required value="Administrador" <?php echo 'Administrador' == ($_POST['perfil'] ?? '') ? 'checked' : '' ?>>
+                                            <label class="form-check-label" for="perfil1">
+                                                Administrador
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="perfil" id="perfil2" required value="Cliente" <?php echo 'Cliente' == ($_POST['perfil'] ?? '') ? 'checked' : '' ?>>
+                                            <label class="form-check-label" for="perfil2">
+                                                Cliente
+                                            </label>
+                                            <div class="invalid-feedback">
+                                                Selecciona tu perfil
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="perfil" id="perfil2" required value="Cliente" <?php echo 'Cliente' == ($_POST['perfil'] ?? '') ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="perfil2">
-                                            Cliente
-                                        </label>
-                                        <div class="invalid-feedback">
-                                            Selecciona tu perfil
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="estatus1" class="form-label">Estatus</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="estatus" id="estatus1" required value="Activo" <?php echo 'Activo' == ($_POST['estatus'] ?? '') ? 'checked' : '' ?>>
+                                            <label class="form-check-label" for="estatus1">
+                                                Activo
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="estatus" id="estatus2" required value="Inactivo" <?php echo 'Inactivo' == ($_POST['estatus'] ?? '') ? 'checked' : '' ?>>
+                                            <label class="form-check-label" for="estatus2">
+                                                Inactivo
+                                            </label>
+                                            <div class="invalid-feedback">
+                                                Selecciona tu estatus
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label for="estatus1" class="form-label">Estatus</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="estatus" id="estatus1" required value="Activo" <?php echo 'Activo' == ($_POST['estatus'] ?? '') ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="estatus1">
-                                            Activo
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="estatus" id="estatus2" required value="Inactivo" <?php echo 'Inactivo' == ($_POST['estatus'] ?? '') ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="estatus2">
-                                            Inactivo
-                                        </label>
-                                        <div class="invalid-feedback">
-                                            Selecciona tu estatus
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                        }
+                        ?>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -179,7 +188,7 @@
                                     <img id="imagen_identificacion" src="
                                             <?php
                                             if (isset($_POST['identificacion']))
-                                                echo BASEPATH.'uploads/usuarios/identificaciones/' . $_POST['identificacion']
+                                                echo BASEPATH . 'uploads/usuarios/identificaciones/' . $_POST['identificacion']
                                             ?>" alt="" class="img-fluid rounded mx-auto <?php
                                                                                         if (isset($_POST['identificacion']))
                                                                                             echo "d-block";
@@ -200,7 +209,7 @@
                                     <img id="imagen_comprobante_domicilio" src="
                                             <?php
                                             if (isset($_POST['comprobante_domicilio']))
-                                                echo BASEPATH.'uploads/usuarios/comprobantes_domicilio/' . $_POST['comprobante_domicilio']
+                                                echo BASEPATH . 'uploads/usuarios/comprobantes_domicilio/' . $_POST['comprobante_domicilio']
                                             ?>" alt="" class="img-fluid rounded mx-auto <?php
                                                                                         if (isset($_POST['comprobante_domicilio']))
                                                                                             echo "d-block";
@@ -317,10 +326,13 @@
             </form>
         </div>
     </div>
-    <script src="<?=BASEPATH.'resources/js/bootstrap.min.js'?>"></script>
-    <script src="<?=BASEPATH.'resources/js/validacion_bootstrap.js'?>"></script>
-    <script src="<?=BASEPATH.'resources/js/jquery-3.6.0.min.js'?>"></script>
-    <script src="<?=BASEPATH.'resources/js/usuario.js'?>"></script>
+    <?php
+    include_once('footer.php');
+    ?>
+    <script src="<?= BASEPATH . 'resources/js/bootstrap.min.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/validacion_bootstrap.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/jquery-3.6.0.min.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/usuario.js' ?>"></script>
 </body>
 
 </html>

@@ -36,22 +36,34 @@ function navi() {
     </ul>
     ';
   }
-
 // Add your first route
 Route::add('/', function() {
     //navi();
+    include('checa_sesion.php');
     include('resources/views/inicio.php');
 });
 
 Route::add('/catalogo', function() {
+    include('checa_sesion.php');
     include('src/controllers/catalogo.php');
 }, ['get','post']);
 
 Route::add('/sesion', function() {
-    include('sesion.php');
+    include('checa_sesion.php');
+    include('src/models/sesion.php');
 }, ['get','post']);
 
+Route::add('/cuenta', function() {
+    include('checa_sesion.php');
+    include('resources/views/cuenta.php');
+});
+
+Route::add('/salir', function() {
+    include('salir.php');
+});
+
 Route::add('/resumen', function() {
+    include('checa_sesion.php');
     include('resources/views/resumen.php');
 });
 
@@ -64,11 +76,13 @@ Route::add('/renta', function() {
 }, ['get','post']);
 
 Route::add('/espacios', function() {
+    include('checa_sesion.php');
     include('espacios.php');
 });
 
 Route::add('/espacio', function() {
-    include('espacio.php');
+    include('checa_sesion.php');
+    include('src/controllers/espacio.php');
 }, ['get','post']);
 
 Route::add('/tipo_espacios', function() {
@@ -88,10 +102,12 @@ Route::add('/servicio', function() {
 }, ['get','post']);
 
 Route::add('/usuarios', function() {
+    include('checa_sesion.php');
     include('resources/views/usuarios.php');
 });
 
 Route::add('/usuario', function() {
+    include('checa_sesion.php');
     include('src/controllers/usuario.php');
 }, ['get','post']);
 

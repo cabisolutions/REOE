@@ -71,7 +71,7 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
     <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="<?=BASEPATH.'resources/css/resumen_administrativo.css'?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -177,6 +177,9 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
 
         </div>
     </div>
+    <?php
+    include_once('footer.php');
+    ?>
 </body>
 
 </html>

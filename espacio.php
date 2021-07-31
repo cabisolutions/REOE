@@ -1,21 +1,5 @@
 <?php
-require('vendor/autoload.php');
-
-use Rakit\Validation\Validator;
-
-if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GET['id'])) {
-    require_once './conexion.php';
-    $sql = 'select id, nombre from espacios where id = :id';
-    $sentencia = $conexion->prepare($sql);
-    $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
-    $sentencia->execute();
-    $servicio = $sentencia->fetch(PDO::FETCH_ASSOC);
-    if (null == $servicio) {
-        require_once './error-no-encontrado.php';
-        exit;
-    }
-    $_POST = array_merge($_POST, $servicio);
-}
+//require_once ('./conexion.php');
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">
@@ -24,76 +8,58 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar espacio</title>
-    <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
 <body>
-
-    <div class="container pt-4">
-        <div class="card">
-            <div class="card-header">
-                Espacios
-            </div>
-            <div class="card-body">
-            <?php
-                    if ('POST' == $_SERVER['REQUEST_METHOD']) {
-                      
-                        $validator = new Validator;
-                        $validation = $validator->make($_POST, [
-                            'nombre' => 'required|min:4|max:45',
-                            'descripcion' => 'required|min:4|max:45',
-                            'metros_cuadrados' => 'required|min:4|max:10',
-                            'disponible_para' => 'required|in:Renta,Intercambio',
-                            'costo' => 'required|min:4|max:10',
-                            'costo_renta_dia' => 'required|min:4|max:10'
-                            
-                        ]);
-                        $validation->setMessages([
-                            'required' => ':attribute es requerido'
-                            , 'min' => ':attribute longitud mínima no se cumple'
-                            , 'max' => ':attribute longitud máxima no se cumple'
-                        ]);
-                       
-                        $validation->validate();
-                        $errors = $validation->errors();
-                    }
-                    if ('GET' == $_SERVER['REQUEST_METHOD'] || $validation->fails()) {
-                    ?>
-                <form action="espacios_guarda.php" method="POST" class="needs-validation" novalidate>
-                    <div class="row">
-                        <div class="col-md-6">
+    <?php
+    include_once('menu.php');
+    ?>
+    <div class="d-flex mt-5">
+        <?php
+        $opcion = 'espacios';
+        include_once('menu_admin.php');
+        ?>
+        <div class="container mt-3 mb-4">
+            <h1>Espacios</h1>
+            <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+               <!-- <form action="espacios_guarda.php" method="POST" class="needs-validation" novalidate> -->
+                        <div class="row">
+                        <div class="col-lg-6">
                             <div class="mb-3"> 
                                 <label for="descripcion" class="form-label">Nombre del espacio</label>
-                                <input type="text" name="nombre-del-espacio" required class="form-control form-control-sm" id="nombre-del-espacio" >
+                                <input type="text" name="nombre" required class="form-control form-control-sm" id="nombre" >
                                 <div class="invalid-feedback">
                                     Ingresa el nombre del espacio
                                 </div>
-                            </div>
-                            <div class="mb-3"> 
-                                <label for="descripcion" class="form-label">Descripción</label>
-                                <input type="text" name="descripcion" required class="form-control form-control-sm" id="descripción">
-                                <div class="invalid-feedback">
-                                    Ingresa la descripción
                                 </div>
-                            </div>
+                                <div class="mb-3"> 
+                                    <label for="descripcion" class="form-label">Descripción</label>
+                                    <input type="text" name="descripcion" required class="form-control form-control-sm" id="descripción">
+                                    <div class="invalid-feedback">
+                                        Ingresa la descripción
+                                    </div>
+                                </div>
                             <div class="mb-3">
-                                <label for="metros" class="form-label">Metros (cuadrados)</label>
-                                <input type="text" name="metros" required class="form-control form-control-sm" id="metros">
+                                <label for="metros_cuadrados" class="form-label">Metros (cuadrados)</label>
+                                <input type="text" name="metros_cuadrados" required class="form-control form-control-sm" id="metros_cuadrados">
                                 <div class="invalid-feedback">
                                     Ingresa los metros
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="disponible1" class="form-label">Disponible para</label>
+                                <label for="disponible_para" class="form-label">Disponible para</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="disponible" id="disponible1" required value="renta">
-                                    <label class="form-check-label" for="disponible1">
+                                    <input class="form-check-input" type="checkbox" name="disponible_para" id="disponible_para" >
+                                    <label class="form-check-label" for="disponible_para">
                                         Renta
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="disponible" id="disponible2" required value="intercambio">
-                                    <label class="form-check-label" for="disponible2">
+                                    <input class="form-check-input" type="checkbox" name="disponible_para" id="disponible_para" >
+                                    <label class="form-check-label" for="disponible_para">
                                         Intercambio
                                     </label>
                                     <div class="invalid-feedback">
@@ -102,15 +68,15 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="estado-del-espacio">Estado del espacio</label>
-                                <select class="form-select" id="estado-del-espacio" required class="form-control form-control-sm">
+                                <label class="form-label" for="estatus">Estatus del espacio</label>
+                                <select class="form-select" name="estatus" id="estatus" required class="form-control form-control-sm">
                                     <option selected value="">...</option>
                                     <option value="1">Disponible</option>
                                     <option value="2">Rentado</option>
                                     <option value="3">Fuera de servicio</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Selecciona el estado del espacio
+                                    Selecciona el status del espacio
                                 </div>
                             </div>
                             <div class="row">
@@ -136,19 +102,74 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                         </div>
                         <div class="col-md-6">
                             <div class="row">
+                            <div class="col-sm-6">
+                                    <label for="fotografia" class="form-label">Seleccione las fotografías del espacio</label>
+                                    <div class="mb-3">
+                                        <input type="file" name="fotografia" class="form-control form-control-sm" id="fotografia">
+                                        <div class="invalid-feedback">
+                                        Selecciona una fotografía del espacio 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                    <label for="fotografia" class="form-label">(.jpg)</label>
+                                        <input type="file" name="fotografia" class="form-control form-control-sm" id="fotografia">
+                                        <div class="invalid-feedback">
+                                        Selecciona una fotografía del espacio 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <input type="file" name="fotografia" class="form-control form-control-sm" id="fotografia">
+                                        <div class="invalid-feedback">
+                                        Selecciona una fotografía del espacio 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <input type="file" name="fotografia" class="form-control form-control-sm" id="fotografia">
+                                        <div class="invalid-feedback">
+                                        Selecciona una fotografía del espacio 
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="estado_id">Estado</label>
-                                    <select class="form-select" id="estado_id" required class="form-control form-control-sm">
+                                    <select name="estado_id" id="estado_id" required class="form-select form-select-sm">
                                         <option selected value="">Estado...</option>
+                                        <?php
+                                        $sql = 'select id, estado from estados order by estado asc';
+                                        foreach ($conexion->query($sql, PDO::FETCH_ASSOC) as $row) {
+                                            $selected = $_POST['estado_id'] == $row['id'] ? 'selected' : '';
+                                            echo <<<fin
+                                                    <option value="{$row['id']}" {$selected}>{$row['estado']}</option>
+                                                    fin;
+                                        }
+                                        ?>
                                     </select>
                                     <div class="invalid-feedback">
                                         Selecciona un estado
                                     </div>
                                 </div> 
                                 <div class="mb-3">
-                                    <label class="form-label" for="municipio_id">Municipio</label>
-                                    <select class="form-select" id="municipio_id" required class="form-control form-control-sm">
-                                        <option selected value="">Municipio...</option>
+                                    <label for="municipio_id" class="form-label">Municipio</label>
+                                    <select name="municipio_id" id="municipio_id" required class="form-select form-select-sm">
+                                        <option selected value="">Selecciona</option>
+                                        <?php
+                                        $sql = 'select id, municipio from municipios where estado_id = :estado_id order by municipio asc';
+                                        $sentencia = $conexion->prepare($sql);
+                                        $sentencia->bindValue(':estado_id', $_POST['estado_id'], PDO::PARAM_INT);
+                                        $sentencia->execute();
+                                        foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $row) {
+                                            $selected = $_POST['municipio_id'] == $row['id'] ? 'selected' : '';
+                                            echo <<<fin
+                                                <option value="{$row['id']}" {$selected}>{$row['municipio']}</option>
+                                                fin;
+                                        }
+                                        ?>
                                     </select>
                                     <div class="invalid-feedback">
                                         Selecciona un municipio
@@ -201,37 +222,18 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-sm btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
                     </div>
-                </form>  
-                <?php
-                } else {
-                    // es post y todo está bien
-                    require_once './conexion.php';
-                    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-                        //actualizamos
-                        $sql = 'update espacios set espacio = :espacio where id = :id';
-                        $sentencia = $conexion->prepare($sql);
-                        $sentencia->bindValue(':espacio', $_POST['espacio'], PDO::PARAM_STR);
-                        $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
-                        $sentencia->execute();
-                        echo '<h6>Espacio actualizado</h6>';
-                        echo '<div><a href="espacios.php" class="btn btn-secondary btn-sm">Espacios</a></div>';
-                    } else {
-                        //creamos
-                        $sql = 'insert into espacios (espacio) values (:espacio)';
-                        $sentencia = $conexion->prepare($sql);
-                        $sentencia->bindValue(':espacio', $_POST['espacio'], PDO::PARAM_STR);
-                        $sentencia->execute();
-                        echo '<h6>Espacio creado</h6>';
-                        echo '<div><a href="espacios.php" class="btn btn-secondary btn-sm">espacios</a></div>';
-                    }
-                }
-                ?>  
-            </div>   
+                </form>   
+            </div> 
         </div>
     </div>
-
-    <script src="js/validacion_bootstrap.js"></script>  
+    <?php
+    include_once('footer.php');
+    ?>
+    <script src="<?=BASEPATH.'resources/js/bootstrap.min.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/validacion_bootstrap.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/jquery-3.6.0.min.js'?>"></script> 
+    <script src="<?=BASEPATH.'resources/js/espacio.js'?>"></script> 
 </body>
 </html>
