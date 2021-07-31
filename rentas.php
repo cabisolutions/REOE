@@ -29,7 +29,7 @@
                         <i class="bi bi-cash-coin"></i> Rentas
                     </div>
                     <div class="card-body">
-                        <a class="float-end btn btn-primary btn-sm" href="servicio.php" title="Crear servicio">
+                        <a class="float-end btn btn-primary btn-sm" href="renta.php" title="Crear servicio">
                             <i class="bi-plus-circle-fill"></i> Añadir renta
                         </a>
                         <table class="table-striped table table-hover table-sm">
@@ -56,7 +56,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            fin;
+fin;
                                 }
                                 ?>
                             </tbody>

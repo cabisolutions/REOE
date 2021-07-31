@@ -56,7 +56,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            fin;
+fin;
                                 }
                                 ?>
                             </tbody>
