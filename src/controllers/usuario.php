@@ -32,6 +32,10 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
 }
 
 if ('POST' == $_SERVER['REQUEST_METHOD']) {
+    if (!isset($segment) || empty($segment->get('id')) || 'Cliente' == $segment->get('perfil') ) {
+        $_POST['perfil'] = 'Cliente';
+        $_POST['estatus'] = 'Activo';
+    }
     // validamos los datos
     $validator = new Validator;
     $validation = $validator->make($_POST, [

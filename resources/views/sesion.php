@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión</title>
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/sesion.css' ?>">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
@@ -39,6 +39,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Enviar</button>
                 </form>
+                <a class="btn btn-secondary w-100 mt-1" href="<?=BASEPATH . 'usuario'?>">Deseo registrarme</a>
             </div>
         </div>
     </div>
