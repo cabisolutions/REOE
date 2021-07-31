@@ -23,9 +23,9 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear servicio</title>
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="resources/css/estilosGlobales.css">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/estilosGlobales.css'?>">
 </head>
 <body>
 <?php
@@ -33,6 +33,12 @@ require_once './menu.php';
 ?>
 <br>
 <br>
+
+<div class="d-flex">
+        <?php
+        $opcion = 'usuarios';
+        include_once('menu_admin.php');
+        ?>
 <div class="container mt-3">
     <div class="row">
         <div class="col-3"></div>
@@ -67,7 +73,7 @@ require_once './menu.php';
                             <div id="servicioHelp" class="invalid-feedback"><?php echo isset($errors) && $errors->first('servicio') ?></div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm">enviar</button>
-                        <a href="servicios.php" class="btn btn-secondary btn-sm">cancelar</a>
+                        <a href="servicios" class="btn btn-secondary btn-sm">cancelar</a>
                     </form>
                     <?php
                     } else {
@@ -99,6 +105,11 @@ require_once './menu.php';
         <div class="col-3"></div>
     </div>
 </div>
-<script src="js/bootstrap.min.js"></script>
+
+</div>
+    <script src="<?=BASEPATH.'resources/js/bootstrap.min.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/validacion_bootstrap.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/jquery-3.6.0.min.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/estilosGlobales.js'?>"></script>
 </body>
 </html>
