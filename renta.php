@@ -23,8 +23,9 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renta</title>
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="resources/css/estilosGlobales.css">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/estilosGlobales.css'?>">
 </head>
 
 <body>
@@ -33,6 +34,12 @@ require_once './menu.php';
 ?>
 <br>
 <br>
+
+<div class="d-flex">
+        <?php
+        $opcion = 'usuarios';
+        include_once('menu_admin.php');
+        ?>
 <div class="container pt-4">
     <div class="card">
         <div class="card-header">
@@ -160,5 +167,10 @@ require_once './menu.php';
             </div>
         </div>
     </div>
+</div> 
+    <script src="<?=BASEPATH.'resources/js/bootstrap.min.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/validacion_bootstrap.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/jquery-3.6.0.min.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/estilosGlobales.js'?>"></script>   
 </body>
 </html>

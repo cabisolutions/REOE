@@ -9,9 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rentas</title>
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="resources/css/estilosGlobales.css">
+    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/estilosGlobales.css'?>">
 </head>
 
 <body>
@@ -20,6 +20,12 @@
     ?>
     <br>
     <br>
+
+    <div class="d-flex">
+        <?php
+        $opcion = 'usuarios';
+        include_once('menu_admin.php');
+        ?>
     <div class="container mt-3">
         <div class="row">
             <div class="col-3"></div>
@@ -29,7 +35,7 @@
                         <i class="bi bi-cash-coin"></i> Rentas
                     </div>
                     <div class="card-body">
-                        <a class="float-end btn btn-primary btn-sm" href="servicio.php" title="Crear servicio">
+                        <a class="float-end btn btn-primary btn-sm" href="renta.php" title="Crear servicio">
                             <i class="bi-plus-circle-fill"></i> Añadir renta
                         </a>
                         <table class="table-striped table table-hover table-sm">
@@ -56,7 +62,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            fin;
+fin;
                                 }
                                 ?>
                             </tbody>
@@ -66,7 +72,11 @@
             </div>
         </div>
     </div>
-    <script src="js/bootstrap.min.js"></script>
+</div>    
+    <script src="<?=BASEPATH.'resources/js/bootstrap.min.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/validacion_bootstrap.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/jquery-3.6.0.min.js'?>"></script>
+    <script src="<?=BASEPATH.'resources/js/estilosGlobales.js'?>"></script>
 </body>
 
 </html>
