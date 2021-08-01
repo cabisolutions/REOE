@@ -55,9 +55,9 @@
         </button>
     </div>
 
-    <section id="catalogo_mini" class="container px-5 mt-5 mb-4">
+    <section id="catalogo_mini" class="container px-5 mt-5 mb-1">
         <div class="container px-4 w-100">
-            <h2 class="h1 mb-3">Espacios interesantes</h2>
+            <h2 class="h1 mb-4">Destacados</h2>
             <div class="row align-items-start">
                 <?php
                 $pagina_inicio = true;
@@ -67,8 +67,21 @@
             </div>
         </div>
     </section>
-    <section id="contacto" class="container px-5 mt-5 mb-4">
-        <form class="container px-5 w-100">
+    <section id="servicios" class="container px-5 mt-3 mb-4">
+        <div class="container px-4 w-100">
+            <h2 class="h1 mb-4">Servicios</h2>
+            <div class="row align-items-start">
+                <?php
+                include('src/controllers/servicios.php');
+                foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $row) {
+                    include('resources/components/tarjeta_servicio.php');
+                }
+                ?>
+            </div>
+        </div>
+    </section>
+    <section id="contacto" class="container px-5 mt-1 mb-4">
+        <form class="container px-4 w-100">
             <h2 class="h1">Contactános</h2>
             <div class="row">
                 <div class="col-md-6">

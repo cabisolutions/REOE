@@ -9,74 +9,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios</title>
-    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
+    <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/bootstrap.min.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/estilosGlobales.css'?>">
+    <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/estilosGlobales.css' ?>">
 </head>
 
 <body>
     <?php
     require_once './menu.php';
     ?>
-    <br>
-    <br>
-
-<div class="d-flex">
+    <div class="d-flex mt-5">
         <?php
-        $opcion = 'usuarios';
+        $opcion = 'servicios';
         include_once('menu_admin.php');
         ?>
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="bi-ui-checks"></i> Servicios
-                    </div>
-                    <div class="card-body">
-                        <a class="float-end btn btn-primary btn-sm" href="servicio.php" title="Crear servicio">
-                            <i class="bi-plus-circle-fill"></i> crear
-                        </a>
-                        <table class="table-striped table table-hover table-sm">
-                            <thead>
-                                <tr>
-                                    <th style="width:80%;">servicio</th>
-                                    <th style="width:20%;">&nbsp;</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                require_once './conexion.php';
-                                $sql = 'select id, servicio from servicios order by servicio asc';
-                                $sentencia = $conexion->prepare($sql);
-                                $sentencia->execute();
-                                foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $servicio) {
-                                    $servicio['servicio'] = htmlentities($servicio['servicio']);
-                                    echo <<<fin
+        <div class="container pt-3">
+            <h1 class="mb-0">Servicios</h1>
+            <div class="table-responsive">
+                <table class="table-striped table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>
+                                <a class="float-end btn btn-primary btn-sm" href="<?= BASEPATH . 'servicio' ?>" title="Crear servicio">
+                                    <i class="bi-plus-circle-fill"></i>
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        require_once './conexion.php';
+                        require_once('src/controllers/servicios.php');
+                        foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $servicio) {
+                            $servicio['servicio'] = htmlentities($servicio['servicio']);
+                        ?>
                             <tr>
-                                <td>{$servicio['servicio']}</td>
+                                <td><?= $servicio['servicio']; ?></td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="<?=BASEPATH . 'servicio'?>" title="Clic para editar servicio">
+                                    <a class="float-end btn btn-primary btn-sm" href="<?= BASEPATH . 'servicio?id=' . $servicio['id'] ?>" title="Clic para editar servicio">
                                         <i class="bi-pencil-square"></i>
                                     </a>
                                 </td>
                             </tr>
-fin;
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</div>    
-    <script src="<?=BASEPATH.'resources/js/bootstrap.min.js'?>"></script>
-    <script src="<?=BASEPATH.'resources/js/validacion_bootstrap.js'?>"></script>
-    <script src="<?=BASEPATH.'resources/js/jquery-3.6.0.min.js'?>"></script>
-    <script src="<?=BASEPATH.'resources/js/estilosGlobales.js'?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/bootstrap.min.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/validacion_bootstrap.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/jquery-3.6.0.min.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/estilosGlobales.js' ?>"></script>
 </body>
 
 </html>
