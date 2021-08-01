@@ -20,6 +20,9 @@
                         <li><a class="dropdown-item" href="#">Oficinas</a></li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="<?= BASEPATH . '#contacto'?>">Contacto</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
 

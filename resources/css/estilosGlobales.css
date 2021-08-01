@@ -1,6 +1,6 @@
 .navbar {
-    padding-top: .4rem;
-    padding-bottom: .4rem;
+    padding-top: .6rem;
+    padding-bottom: .5rem;
 }
 .navbar-toggler-icon {
     height:15px;
@@ -12,5 +12,5 @@
 }
 
 .bg-nav{
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
 }

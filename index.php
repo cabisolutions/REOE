@@ -111,6 +111,12 @@ Route::add('/usuario', function() {
     include('src/controllers/usuario.php');
 }, ['get','post']);
 
+Route::add('/contacto', function() {
+    include('checa_sesion.php');
+    include('resources/views/contacto.php');
+});
+
+
 // Add a 404 not found route
 Route::pathNotFound(function($path) {
     // Do not forget to send a status header back to the client
