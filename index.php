@@ -7,38 +7,8 @@ use Steampixel\Route;
 
 define('BASEPATH',"/reoe/");
 
-function navi() {
-    echo '
-    Navigation:
-    <ul>
-        <li><a href="'.BASEPATH.'">home</a></li>
-        <li><a href="'.BASEPATH.'index.php">index.php</a></li>
-        <li><a href="'.BASEPATH.'user/3/edit">edit user 3</a></li>
-        <li><a href="'.BASEPATH.'foo/5/bar">foo 5 bar</a></li>
-        <li><a href="'.BASEPATH.'foo/bar/foo/bar">long route example</a></li>
-        <li><a href="'.BASEPATH.'contact-form">contact form</a></li>
-        <li><a href="'.BASEPATH.'get-post-sample">get+post example</a></li>
-        <li><a href="'.BASEPATH.'test.html">test.html</a></li>
-        <li><a href="'.BASEPATH.'blog/how-to-use-include-example">How to push data to included files</a></li>
-        <li><a href="'.BASEPATH.'phpinfo">PHP Info</a></li>
-        <li><a href="'.BASEPATH.'äöü">Non english route: german</a></li>
-        <li><a href="'.BASEPATH.'الرقص-العربي">Non english route: arabic</a></li>
-        <li><a href="'.BASEPATH.'global/test123">Inject variables to local scope</a></li>
-        <li><a href="'.BASEPATH.'return">Return instead of echo test</a></li>
-        <li><a href="'.BASEPATH.'arrow/test123">Arrow function test (please enable this route first)</a></li>
-        <li><a href="'.BASEPATH.'aTrailingSlashDoesNotMatter">aTrailingSlashDoesNotMatter</a></li>
-        <li><a href="'.BASEPATH.'aTrailingSlashDoesNotMatter/">aTrailingSlashDoesNotMatter/</a></li>
-        <li><a href="'.BASEPATH.'theCaseDoesNotMatter">theCaseDoesNotMatter</a></li>
-        <li><a href="'.BASEPATH.'thecasedoesnotmatter">thecasedoesnotmatter</a></li>
-        <li><a href="'.BASEPATH.'this-route-is-not-defined">404 Test</a></li>
-        <li><a href="'.BASEPATH.'this-route-is-defined">405 Test</a></li>
-        <li><a href="'.BASEPATH.'known-routes">known routes</a></li>
-    </ul>
-    ';
-  }
 // Add your first route
 Route::add('/', function() {
-    //navi();
     include('checa_sesion.php');
     include('resources/views/inicio.php');
 });
@@ -63,46 +33,72 @@ Route::add('/salir', function() {
 });
 
 Route::add('/resumen', function() {
+    $usuario = 'Administrador';
     include('checa_sesion.php');
+    $usuario = '';
     include('resources/views/resumen.php');
 });
 
 Route::add('/rentas', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
     include('rentas.php');
+    $usuario = '';
 });
 
 Route::add('/renta', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
     include('renta.php');
+    $usuario = '';
 }, ['get','post']);
 
 Route::add('/espacios', function() {
+    $usuario = 'Administrador';
     include('checa_sesion.php');
+    $usuario = '';
     include('espacios.php');
 });
 
 Route::add('/espacio', function() {
+    $usuario = 'Administrador';
     include('checa_sesion.php');
+    $usuario = '';
     include('src/controllers/espacio.php');
 }, ['get','post']);
 
 Route::add('/tipo_espacios', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
+    $usuario = 'Administrador';
     include('tipos_espacios.php');
 });
 
 Route::add('/tipo_espacio', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
     include('agregar_tipo_espacio.php');
+    $usuario = '';
 }, ['get','post']);
 
 Route::add('/servicios', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
     include('servicios.php');
+    $usuario = '';
 });
 
 Route::add('/servicio', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
     include('servicio.php');
+    $usuario = '';
 }, ['get','post']);
 
 Route::add('/usuarios', function() {
+    $usuario = 'Administrador';
     include('checa_sesion.php');
+    $usuario = '';
     include('resources/views/usuarios.php');
 });
 
@@ -110,11 +106,6 @@ Route::add('/usuario', function() {
     include('checa_sesion.php');
     include('src/controllers/usuario.php');
 }, ['get','post']);
-
-Route::add('/contacto', function() {
-    include('checa_sesion.php');
-    include('resources/views/contacto.php');
-});
 
 
 // Add a 404 not found route
