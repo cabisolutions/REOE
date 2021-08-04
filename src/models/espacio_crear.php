@@ -64,5 +64,35 @@ $sentencia->bindValue(':costo', $_POST['costo'], PDO::PARAM_STR);
 $sentencia->bindValue(':costo_renta_dia', $_POST['costo'], PDO::PARAM_STR);
 $sentencia->execute();
 
+$espacio_id = $conexion->lastInsertId();
+
+$sql = <<<fin
+    insert into fotografias (
+    espacio_id,
+    fotografia
+    ) values (
+    :espacio_id,
+    :fotografia
+    )
+    fin;
+
+$sentencia = $conexion->prepare($sql);
+// print_r($_FILES);
+for ($numero = 0; $numero < 4; $numero ++){
+    // ¿se ha cargado el archivo?
+    if (is_uploaded_file($_FILES['fotografia']['tmp_name'][$numero])){
+        $nombre_fotografia = uniqid ('ei-', true) . '.jpg'; //se supone sólo admite .jpg
+        //mover el archivo a su ubicación final 
+        move_uploaded_file($_FILES['fotografia']['tmp_name'][$numero], 'uploads/espacios/fotografias' . $nombre_fotografia);
+        $sentencia->bindValue(':espacio_id', $espacio_id, PDO::PARAM_INT);
+        $sentencia->bindValue(':fotografia', $nombre_fotografia, PDO::PARAM_STR);
+        $sentencia->execute();
+    }
+}
+
+//$fotografia_id = $conexion->lastInsertId();
+//$espacio_id = $conexion->lastInsertId();
+
+
 echo '<h6>Espacio creado</h6>';
 echo '<div><a href="espacio.php" class="btn btn-secondary btn-sm">espacios</a></div>';

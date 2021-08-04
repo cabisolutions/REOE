@@ -14,9 +14,13 @@
 </head>
 
 <body>
-    <?php
-    //require_once './menu.php';
+<?php
+    include_once './menu.php';
     ?>
+    <div class="d-flex mt-5">
+        <?php
+        include_once('menu_admin.php');
+        ?>
     <div class="container mt-3">
         <div class="row">
             <div class="col-3"></div>
