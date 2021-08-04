@@ -42,7 +42,7 @@
                         <a href="<?= BASEPATH . 'cuenta' ?>" class="nav-link">Mi cuenta</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="salir.php">Cerrar sesión</a>
+                        <a class="nav-link" aria-current="page" href="<?= BASEPATH . 'salir'?>">Cerrar sesión</a>
                     </li>
                     <?php
                 }
