@@ -107,6 +107,16 @@ Route::add('/usuario', function() {
     include('src/controllers/usuario.php');
 }, ['get','post']);
 
+Route::add('/olvidé_contraseña', function() {
+    include('checa_sesion.php');
+    include('src/controllers/contrasena_olvidada.php');
+}, ['get','post']);
+
+Route::add('/restaurar_contraseña', function() {
+    include('checa_sesion.php');
+    include('src/controllers/restaurar_contrasena.php');
+}, ['get','post']);
+
 
 // Add a 404 not found route
 Route::pathNotFound(function($path) {
