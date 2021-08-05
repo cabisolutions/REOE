@@ -91,8 +91,8 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        <label for="costo-renta-por-dia" class="form-label">Costo de renta (por día)</label>
-                                        <input type="text" name="costo-renta-por-dia" required class="form-control form-control-sm" id="costo-renta-por-dia">
+                                        <label for="costo_renta_dia" class="form-label">Costo de renta (por día)</label>
+                                        <input type="text" name="costo_renta_dia" required class="form-control form-control-sm" id="costo_renta_dia">
                                         <div class="invalid-feedback">
                                             Ingresa el costo de la renta
                                         </div>
