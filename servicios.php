@@ -30,19 +30,18 @@
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="bi-ui-checks"></i> Servicios
-                    </div>
+           
+            <h1>  <i class="bi bi-stack"></i> Servicios
+                    </div>  </h1>
                     <div class="card-body">
-                        <a class="float-end btn btn-primary btn-sm" href="servicio.php" title="Crear servicio">
-                            <i class="bi-plus-circle-fill"></i> crear
+                        <a class="float-end btn btn-primary " href="<?= BASEPATH . 'servicio' ?>" title="Crear servicio">
+                            <i class="bi-plus-circle-fill"></i> Crear
                         </a>
                         <table class="table-striped table table-hover table-sm">
                             <thead>
                                 <tr>
-                                    <th style="width:80%;">servicio</th>
-                                    <th style="width:20%;">&nbsp;</th>
+                                    <th style="width:80%;"><h3>Servicio</h3></th>
+                                    <th style="width:20%;"><h3> &nbsp; </h3></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,16 +52,16 @@
                                 $sentencia->execute();
                                 foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $servicio) {
                                     $servicio['servicio'] = htmlentities($servicio['servicio']);
-                                    echo <<<fin
+                                   ?>
                             <tr>
-                                <td>{$servicio['servicio']}</td>
+                                <td><?= $servicio['servicio']?></td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="<?=BASEPATH . 'servicio'?>" title="Clic para editar servicio">
+                                    <a class="btn btn-primary btn-sm" href="<?= BASEPATH . 'servicio' ?>" title="Clic para editar servicio">
                                         <i class="bi-pencil-square"></i>
                                     </a>
                                 </td>
                             </tr>
-fin;
+<?php
                                 }
                                 ?>
                             </tbody>
