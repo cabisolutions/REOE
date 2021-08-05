@@ -1,7 +1,9 @@
 <?php
 //require_once './checa-sesion.php';
 require('vendor/autoload.php');
+
 use Rakit\Validation\Validator;
+
 if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GET['id'])) {
     require_once './conexion.php';
     $sql = 'select id, servicio from servicios where id = :id';
@@ -18,25 +20,25 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear servicio</title>
-    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
+    <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/bootstrap.min.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/estilosGlobales.css'?>">
+    <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/estilosGlobales.css' ?>">
 </head>
-<body>
-<?php
-require_once './menu.php';
-?>
-<br>
-<br>
 
-<div class="d-flex">
+<body>
+    <?php
+    require_once './menu.php';
+    ?>
+
+    <div class="d-flex mt-5">
         <?php
-        $opcion = 'usuarios';
+        $opcion = 'servicios';
         include_once('menu_admin.php');
         ?>
 <div class="container mt-3">
@@ -74,7 +76,19 @@ require_once './menu.php';
                         <button type="submit" class="btn btn-primary">Enviar</button>
                         <a href="<?= BASEPATH . 'servicios' ?>" class="btn btn-secondary ">Cancelar</a>
                     </form>
-                    <?php
+                <?php
+                } else {
+
+                    require_once './conexion.php';
+                    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+
+                        $sql = 'update servicios set servicio = :servicio where id = :id';
+                        $sentencia = $conexion->prepare($sql);
+                        $sentencia->bindValue(':servicio', $_POST['servicio'], PDO::PARAM_STR);
+                        $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+                        $sentencia->execute();
+                        echo '<h6>Servicio actualizado</h6>';
+                        echo '<div><a href="servicio.php" class="btn btn-secondary btn-sm">servicios</a></div>';
                     } else {
                     
                         require_once './conexion.php';
@@ -97,18 +111,16 @@ require_once './menu.php';
                             echo '<div><a href=' . BASEPATH . 'servicios class="btn btn-secondary btn-sm">Servicios</a></div>';
                         }
                     }
-                    ?>
-                </div>
+                }
+                ?>
             </div>
         </div>
-        <div class="col-3"></div>
     </div>
-</div>
 
-</div>
-    <script src="<?=BASEPATH.'resources/js/bootstrap.min.js'?>"></script>
-    <script src="<?=BASEPATH.'resources/js/validacion_bootstrap.js'?>"></script>
-    <script src="<?=BASEPATH.'resources/js/jquery-3.6.0.min.js'?>"></script>
-    <script src="<?=BASEPATH.'resources/js/estilosGlobales.js'?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/bootstrap.min.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/validacion_bootstrap.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/jquery-3.6.0.min.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/estilosGlobales.js' ?>"></script>
 </body>
+
 </html>

@@ -9,7 +9,7 @@ if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['correo_electronico']) 
     $sentencia->execute();
     $usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
     if (null == $usuario) {
-        require_once './error-no-encontrado.php';
+        header('Location: sesion?mensaje=El usuario no existe');
         exit;
     }
     // ¿contraseña válida?

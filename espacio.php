@@ -52,13 +52,13 @@
                             <div class="mb-3">
                                 <label for="disponible_para" class="form-label">Disponible para</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="disponible_para" id="disponible_para" >
+                                    <input class="form-check-input" type="checkbox" name="disponible_para" id="disponible_para" value="Renta">
                                     <label class="form-check-label" for="disponible_para">
                                         Renta
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="disponible_para" id="disponible_para" >
+                                    <input class="form-check-input" type="checkbox" name="disponible_para" id="disponible_para" value="Intercambio">
                                     <label class="form-check-label" for="disponible_para">
                                         Intercambio
                                     </label>
@@ -68,15 +68,15 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="estatus">Estatus del espacio</label>
+                                <label class="form-label" for="estatus">estatus del espacio</label>
                                 <select class="form-select" name="estatus" id="estatus" required class="form-control form-control-sm">
                                     <option selected value="">...</option>
-                                    <option value="1">Disponible</option>
-                                    <option value="2">Rentado</option>
-                                    <option value="3">Fuera de servicio</option>
+                                    <option value="Disponible">Disponible</option>
+                                    <option value="Rentado">Rentado</option>
+                                    <option value="Fuera de servicio">Fuera de servicio</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Selecciona el status del espacio
+                                    Selecciona el estatus del espacio
                                 </div>
                             </div>
                             <div class="row">
@@ -105,7 +105,7 @@
                             <div class="col-sm-6">
                                     <label for="fotografia" class="form-label">Seleccione las fotografías del espacio</label>
                                     <div class="mb-3">
-                                        <input type="file" name="fotografia" class="form-control form-control-sm" id="fotografia">
+                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia">
                                         <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio 
                                         </div>
@@ -114,7 +114,7 @@
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                     <label for="fotografia" class="form-label">(.jpg)</label>
-                                        <input type="file" name="fotografia" class="form-control form-control-sm" id="fotografia">
+                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia">
                                         <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio 
                                         </div>
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        <input type="file" name="fotografia" class="form-control form-control-sm" id="fotografia">
+                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia">
                                         <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio 
                                         </div>
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        <input type="file" name="fotografia" class="form-control form-control-sm" id="fotografia">
+                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia">
                                         <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio 
                                         </div>

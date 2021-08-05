@@ -1,4 +1,3 @@
-
 <?php
 require('vendor/autoload.php');
 use Rakit\Validation\Validator;
@@ -28,7 +27,12 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
 </head>
 <body>
 <?php
-?>
+    include_once './menu.php';
+    ?>
+    <div class="d-flex mt-5">
+        <?php
+        include_once('menu_admin.php');
+        ?>
 <div class="container mt-3">
     <div class="row">
         <div class="col-3"></div>

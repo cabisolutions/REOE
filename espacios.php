@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espacios</title>
-    <link rel="stylesheet" href="<?=BASEPATH.'resources/css/bootstrap.min.css'?>">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
@@ -63,6 +63,8 @@
                             <a href="<?=BASEPATH.'espacio?id='.$row['id'] ?>" class="btn btn-outline-primary btn-sm">
                                     <i class="bi-pencil-square"></i>
                                 </a>
+                                <a href="detalle_espacio.php?id=<?php echo $row['id'] ?>" class="btn btn-primary">Detalles</a>
+
                             </td>
                         </tr>
                     <?php
