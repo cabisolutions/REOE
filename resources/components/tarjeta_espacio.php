@@ -1,17 +1,41 @@
+<<<<<<< HEAD
 
+=======
+<?php
+$sql = <<<fin
+select
+    f.id,
+    f.espacio_id,
+    f.fotografia
+from
+    fotografias f
+where 
+    espacio_id = :espacio_id
+fin;
+
+$sentencia = $conexion->prepare($sql);
+$sentencia->bindValue(':espacio_id', $row['id'], PDO::PARAM_INT);
+$sentencia->execute();
+?>
+>>>>>>> 03b8a2ef8fde0c514ffcbfa31cce90b44f30ab6e
 <div class="col-sm mb-5">
     <div class="card">
+        
+
         <div id="carouselControls<?= $row['id'] ?>" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item ">
-                    <img src="img/espacio.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item active">
-                    <img src="img/espacio2.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/espacio3.jpg" class="d-block w-100" alt="...">
-                </div>
+                <?php
+                $i = 'active';
+                foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $fotografia) {
+                    //echo BASEPATH . 'uploads/espacios/fotografias/' . $fotografia['fotografia'];
+                    echo
+                    '<div class="catalogo-img carousel-item ' . $i .'">
+                        <img src="' . BASEPATH . 'uploads/espacios/fotografias/' . $fotografia['fotografia']. '"' . 'class="d-block w-100" alt="...">
+                    </div>';
+                
+                $i = '';
+                }
+                ?>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls<?= $row['id'] ?>" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -40,7 +64,11 @@
             <p class="card-text">​<i class="fas fa-star-of-life"></i> <?php echo htmlentities($row['nombre']) ?></p>
             <p class="card-text">​<strong> <i class="fas fa-dollar-sign"></i> <?php echo htmlentities($row['costo_renta_dia']) ?></strong></p>
             <p class="card-text"><i class="fas fa-arrows-alt"></i> <?php echo htmlentities($row['metros_cuadrados']) ?>​</p>
+<<<<<<< HEAD
             <a class="btn btn-primary w-100" href="detalle_espacio.php?id=<?php echo $row['id'] ?>">
+=======
+            <a class="btn btn-primary w-100" href="<?= BASEPATH . 'detalle_espacio?id=' . $row['id'] ?>">
+>>>>>>> 03b8a2ef8fde0c514ffcbfa31cce90b44f30ab6e
                 Ver detalles
             </a>
         </div>

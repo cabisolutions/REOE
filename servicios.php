@@ -23,40 +23,48 @@
         $opcion = 'servicios';
         include_once('menu_admin.php');
         ?>
-        <div class="container pt-3">
-            <h1 class="mb-0">Servicios</h1>
-            <div class="table-responsive">
-                <table class="table-striped table table-hover table-sm">
-                    <thead>
-                        <tr>
-                            <th>Servicio</th>
-                            <th>
-                                <a class="float-end btn btn-primary btn-sm" href="<?= BASEPATH . 'servicio' ?>" title="Crear servicio">
-                                    <i class="bi-plus-circle-fill"></i>
-                                </a>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        require_once './conexion.php';
-                        require_once('src/controllers/servicios.php');
-                        foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $servicio) {
-                            $servicio['servicio'] = htmlentities($servicio['servicio']);
-                        ?>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+           
+            <h1>  <i class="bi bi-stack"></i> Servicios
+                    </div>  </h1>
+                    <div class="card-body">
+                        <a class="float-end btn btn-primary " href="<?= BASEPATH . 'servicio' ?>" title="Crear servicio">
+                            <i class="bi-plus-circle-fill"></i> Crear
+                        </a>
+                        <table class="table-striped table table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th style="width:80%;"><h3>Servicio</h3></th>
+                                    <th style="width:20%;"><h3> &nbsp; </h3></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                require_once './conexion.php';
+                                $sql = 'select id, servicio from servicios order by servicio asc';
+                                $sentencia = $conexion->prepare($sql);
+                                $sentencia->execute();
+                                foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $servicio) {
+                                    $servicio['servicio'] = htmlentities($servicio['servicio']);
+                                   ?>
                             <tr>
-                                <td><?= $servicio['servicio']; ?></td>
+                                <td><?= $servicio['servicio']?></td>
                                 <td>
-                                    <a class="float-end btn btn-primary btn-sm" href="<?= BASEPATH . 'servicio?id=' . $servicio['id'] ?>" title="Clic para editar servicio">
-                                        <i class="bi-pencil-square"></i>
+                                    <a class="btn btn-primary btn-sm" href="<?= BASEPATH . 'servicio?id=' . $servicio['id']?>" title="Editar servicio">
+                                        <i class="bi-pencil-square"></i>Editar
                                     </a>
                                 </td>
                             </tr>
-                        <?php
-                        }
-                        ?>
-                    </tbody>
-                </table>
+<?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

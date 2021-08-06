@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es-MX">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,14 +10,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
+
 <body>
     <?php
     include_once('menu.php');
     ?>
     <div class="container mt-4 pt-5">
-        <p><?=$segment->get('nombre')?></p>
-        <p><?=$segment->get('perfil')?></p>
-        <p><?=$segment->get('estatus')?></p>
+        <h1>Mi cuenta</h1>
+        <p class="fst-normal"><?= $segment->get('nombre') ?></p >
+        <p class="fst-normal"><?= $segment->get('perfil') ?></p >
+        <p class="fst-normal"><?= $segment->get('estatus') ?></p >
     </div>
 </body>
+
 </html>

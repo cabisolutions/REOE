@@ -15,7 +15,7 @@
     <?php
     include_once('menu.php');
     ?>
-    <div class="row v-center">
+    <div class="row v-center p-0 m-0 addsf">
         <div class="col-sm-6 d-flex">
             <img src="svg/sesion.svg" alt="Inicia sesión">
         </div>
@@ -47,7 +47,7 @@
                 </form>
                 <a class="btn btn-secondary w-100 mt-1" href="<?=BASEPATH . 'usuario'?>">Deseo registrarme</a>
                 <div class="text-center mt-1 fs-6">
-                    <a class="w-100 btn text-decoration-underline " href="<?=BASEPATH . 'olvidé_contraseña'?>">Olvidé mi contraseña</a>
+                    <a class="w-100 btn text-decoration-underline " href="<?=BASEPATH . 'olvide_contrasena'?>">Olvidé mi contraseña</a>
                 </div>
             </div>
         </div>

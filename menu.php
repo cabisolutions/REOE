@@ -10,15 +10,10 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="<?= BASEPATH ?>">Inicio</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="<?= BASEPATH . 'catalogo' ?>" id="navbarScrollingDropdown" role="button" aria-expanded="false">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= BASEPATH . 'catalogo' ?>" role="button">
                         Catálogo
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" href="catalogo">Ver todo</a></li>
-                        <li><a class="dropdown-item" href="catalogo">Eventos</a></li>
-                        <li><a class="dropdown-item" href="#">Oficinas</a></li>
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="<?= BASEPATH . '#contacto'?>">Contacto</a>

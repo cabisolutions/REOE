@@ -15,14 +15,14 @@
     <?php
     include_once('menu.php');
     ?>
-    <div class="row v-center">
+    <div class="row v-center p-0 m-0">
         <div class="col-sm-6 d-flex">
             <img src="svg/sesion.svg" alt="Inicia sesión">
         </div>
         <div class="col-sm-6 d-flex">
             <div class="justify-content-start">
                 <h1>Olvidé mi contraseña</h1>
-                <form action="olvidé_contraseña" method="POST" class="needs-validation" novalidate>
+                <form action="<?= BASEPATH . 'olvide_contrasena'?>" method="POST" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="correo_electronico" class="form-label">Correo electrónico</label>
                         <input type="email" placeholder="correo@dominio.com" required class="form-control" name="correo_electronico" id="correo_electronico" required>

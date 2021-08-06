@@ -23,26 +23,25 @@
 
     <div class="d-flex">
         <?php
-        $opcion = 'usuarios';
+        $opcion = 'rentas';
         include_once('menu_admin.php');
         ?>
     <div class="container mt-3">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="bi bi-cash-coin"></i> Rentas
-                    </div>
-                    <div class="card-body">
-                        <a class="float-end btn btn-primary btn-sm" href="renta.php" title="Crear servicio">
-                            <i class="bi-plus-circle-fill"></i> Añadir renta
+                          
+            <h1> <i class="bi bi-cash-coin"></i> Rentas</div>  </h1>
+                    
+            <div class="card-body">
+                        <a class="float-end btn btn-primary" href="<?= BASEPATH . 'renta' ?>" title="Crear renta">
+                            <i class="bi bi-bag-plus"></i> Añadir renta
                         </a>
                         <table class="table-striped table table-hover table-sm">
                             <thead>
                                 <tr>
-                                    <th style="width:80%;">servicio</th>
-                                    <th style="width:20%;">&nbsp;</th>
+                                    <th style="width:80%;"><h3>Rentas</h3></th>
+                                    <th style="width:20%;"><h3>&nbsp;</h3></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +56,7 @@
                             <tr>
                                 <td>{$espacio_id['espacio_id']}</td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="renta.php?id={$espacio_id['id']}" title="Clic para editar espacio_id">
+                                    <a class="btn btn-primary btn-sm"  href=' . BASEPATH . 'renta={$espacio_id['id']}" title="Clic para editar espacio">
                                         <i class="bi-pencil-square"></i>
                                     </a>
                                 </td>
@@ -67,7 +66,7 @@ fin;
                                 ?>
                             </tbody>
                         </table>
-                    </div>
+                    
                 </div>
             </div>
         </div>

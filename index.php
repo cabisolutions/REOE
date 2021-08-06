@@ -47,7 +47,6 @@ Route::add('/rentas', function() {
 });
 
 Route::add('/renta', function() {
-    $usuario = 'Administrador';
     include('checa_sesion.php');
     include('renta.php');
     $usuario = '';
@@ -114,14 +113,19 @@ Route::add('/usuario', function() {
     include('src/controllers/usuario.php');
 }, ['get','post']);
 
-Route::add('/olvidé_contraseña', function() {
+Route::add('/olvide_contrasena', function() {
     include('checa_sesion.php');
     include('src/controllers/contrasena_olvidada.php');
 }, ['get','post']);
 
-Route::add('/restaurar_contraseña', function() {
+Route::add('/restaurar_contrasena', function() {
     include('checa_sesion.php');
     include('src/controllers/restaurar_contrasena.php');
+}, ['get','post']);
+
+Route::add('/detalle_espacio', function() {
+    include('checa_sesion.php');
+    include('detalle_espacio.php');
 }, ['get','post']);
 
 
