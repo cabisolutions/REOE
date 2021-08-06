@@ -61,7 +61,7 @@ $sentencia->bindValue(':metros_cuadrados', $_POST['metros_cuadrados'], PDO::PARA
 $sentencia->bindValue(':disponible_para', $_POST['disponible_para'], PDO::PARAM_STR);
 $sentencia->bindValue(':estatus', $_POST['estatus'], PDO::PARAM_STR);
 $sentencia->bindValue(':costo', $_POST['costo'], PDO::PARAM_STR);
-$sentencia->bindValue(':costo_renta_dia', $_POST['costo'], PDO::PARAM_STR);
+$sentencia->bindValue(':costo_renta_dia', $_POST['costo_renta_dia'], PDO::PARAM_STR);
 $sentencia->execute();
 
 $espacio_id = $conexion->lastInsertId();
