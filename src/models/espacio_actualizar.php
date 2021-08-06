@@ -1,5 +1,5 @@
 <?php
-$sql= <<<fin
+$sql = <<<fin
     update direcciones set 
         estado_id = :estado_id, 
         municipio_id = :municipio_id, 
@@ -23,7 +23,7 @@ $sentencia->bindValue(':codigo_postal', $_POST['codigo_postal'], PDO::PARAM_STR)
 $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 $sentencia->execute();
 
-$sql= <<<fin
+$sql = <<<fin
     update espacios set
         direccion_id = :direccion_id,
         nombre = :nombre,

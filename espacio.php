@@ -30,21 +30,21 @@
                         <div class="col-lg-6">
                             <div class="mb-3"> 
                                 <label for="descripcion" class="form-label">Nombre del espacio</label>
-                                <input type="text" name="nombre" required class="form-control form-control-sm" id="nombre" >
+                                <input type="text" name="nombre" required class="form-control form-control-sm" id="nombre" value="<?php echo htmlentities($_POST['nombre'] ?? '') ?>" >
                                 <div class="invalid-feedback">
                                     Ingresa el nombre del espacio
                                 </div>
                                 </div>
                                 <div class="mb-3"> 
                                     <label for="descripcion" class="form-label">Descripción</label>
-                                    <input type="text" name="descripcion" required class="form-control form-control-sm" id="descripción">
+                                    <input type="text" name="descripcion" required class="form-control form-control-sm" id="descripción" value="<?php echo htmlentities($_POST['descripcion'] ?? '') ?>">
                                     <div class="invalid-feedback">
                                         Ingresa la descripción
                                     </div>
                                 </div>
                             <div class="mb-3">
                                 <label for="metros_cuadrados" class="form-label">Metros (cuadrados)</label>
-                                <input type="text" name="metros_cuadrados" required class="form-control form-control-sm" id="metros_cuadrados">
+                                <input type="text" name="metros_cuadrados" required class="form-control form-control-sm" id="metros_cuadrados" value="<?php echo htmlentities($_POST['metros_cuadrados'] ?? '') ?>">
                                 <div class="invalid-feedback">
                                     Ingresa los metros
                                 </div>
@@ -52,13 +52,13 @@
                             <div class="mb-3">
                                 <label for="disponible_para" class="form-label">Disponible para</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="disponible_para" id="disponible_para" value="Renta">
+                                    <input class="form-check-input" type="checkbox" name="disponible_para" id="disponible_para" value="Renta" <?php echo 'Renta' == ($_POST['disponible_para'] ?? '') ? 'checked' : '' ?>>
                                     <label class="form-check-label" for="disponible_para">
                                         Renta
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="disponible_para" id="disponible_para" value="Intercambio">
+                                    <input class="form-check-input" type="checkbox" name="disponible_para" id="disponible_para" value="Intercambio" <?php echo 'Intercambio' == ($_POST['disponible_para'] ?? '') ? 'checked' : '' ?>>
                                     <label class="form-check-label" for="disponible_para">
                                         Intercambio
                                     </label>
@@ -69,11 +69,11 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="estatus">estatus del espacio</label>
-                                <select class="form-select" name="estatus" id="estatus" required class="form-control form-control-sm">
+                                <select class="form-select" name="estatus" id="estatus" required class="form-control form-control-sm" >
                                     <option selected value="">...</option>
-                                    <option value="Disponible">Disponible</option>
-                                    <option value="Rentado">Rentado</option>
-                                    <option value="Fuera de servicio">Fuera de servicio</option>
+                                    <option value="Disponible" <?php echo 'Disponible' == ($_POST['estatus'] ?? '') ? 'selected' : '' ?>>Disponible</option>
+                                    <option value="Rentado" <?php echo 'Rentado' == ($_POST['estatus'] ?? '') ? 'selected' : '' ?>>Rentado</option>
+                                    <option value="Fuera de servicio" <?php echo 'Fuera de servicio' == ($_POST['estatus'] ?? '') ? 'selected' : '' ?>>Fuera de servicio</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Selecciona el estatus del espacio
@@ -83,7 +83,7 @@
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                         <label for="costo" class="form-label">Costo</label>
-                                        <input type="text" name="costo" required class="form-control form-control-sm" id="costo">
+                                        <input type="text" name="costo" required class="form-control form-control-sm" id="costo" value="<?php echo htmlentities($_POST['costo'] ?? '') ?>">
                                         <div class="invalid-feedback">
                                             Ingresa el costo
                                         </div>
@@ -92,7 +92,7 @@
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                         <label for="costo_renta_dia" class="form-label">Costo de renta (por día)</label>
-                                        <input type="text" name="costo_renta_dia" required class="form-control form-control-sm" id="costo_renta_dia">
+                                        <input type="text" name="costo_renta_dia" required class="form-control form-control-sm" id="costo_renta_dia" value="<?php echo htmlentities($_POST['costo_renta_dia'] ?? '') ?>">
                                         <div class="invalid-feedback">
                                             Ingresa el costo de la renta
                                         </div>
@@ -105,7 +105,7 @@
                             <div class="col-sm-6">
                                     <label for="fotografia" class="form-label">Seleccione las fotografías del espacio</label>
                                     <div class="mb-3">
-                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia">
+                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia" value="<?php echo htmlentities($_POST['fotografia'] ?? '') ?>">
                                         <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio 
                                         </div>
@@ -114,7 +114,7 @@
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                     <label for="fotografia" class="form-label">(.jpg)</label>
-                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia">
+                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia" value="<?php echo htmlentities($_POST['fotografia'] ?? '') ?>">
                                         <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio 
                                         </div>
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia">
+                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia" <?php echo htmlentities($_POST['fotografia'] ?? '') ?>>
                                         <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio 
                                         </div>
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia">
+                                        <input type="file" name="fotografia[]" class="form-control form-control-sm" id="fotografia" value="<?php echo htmlentities($_POST['fotografia'] ?? '') ?>">
                                         <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio 
                                         </div>
@@ -178,14 +178,14 @@
                                 <div class="row">
                                     <div class="mb-3">
                                         <label for="calle" class="form-label">Calle</label>
-                                        <input type="text" name="calle" required class="form-control form-control-sm" id="calle">
+                                        <input type="text" name="calle" required class="form-control form-control-sm" id="calle" value="<?php echo htmlentities($_POST['calle'] ?? '') ?>">
                                         <div class="invalid-feedback">
                                             Ingresa tu calle
                                         </div>
                                     </div> 
                                     <div class="mb-3">
                                         <label for="colonia" class="form-label">Colonia</label>
-                                        <input type="text" name="colonia" required class="form-control form-control-sm" id="colonia">
+                                        <input type="text" name="colonia" required class="form-control form-control-sm" id="colonia" value="<?php echo htmlentities($_POST['colonia'] ?? '') ?>">
                                         <div class="invalid-feedback">
                                             Ingresa tu calonia
                                         </div>
@@ -196,7 +196,7 @@
                             <div class="col-sm-4">
                                 <div class="mb-3">
                                     <label for="numero_exterior" class="form-label">Número exterior</label>
-                                    <input type="text" name="numero_exterior" required class="form-control form-control-sm" id="numero_exterior">
+                                    <input type="text" name="numero_exterior" required class="form-control form-control-sm" id="numero_exterior" value="<?php echo htmlentities($_POST['numero_exterior'] ?? '') ?>">
                                     <div class="invalid-feedback">
                                         Escribe tu número exterior
                                     </div>
@@ -205,7 +205,7 @@
                             <div class="col-sm-4">
                                 <div class="mb-3">
                                     <label for="numero_interior" class="form-label">Numero interior</label>
-                                    <input type="text" name="numero_interior" class="form-control form-control-sm" id="numero_interior" aria-describedby="numero_interiorHelp">
+                                    <input type="text" name="numero_interior" class="form-control form-control-sm" id="numero_interior" aria-describedby="numero_interiorHelp" value="<?php echo htmlentities($_POST['numero_interior'] ?? '') ?>">
                                     <div id="numero_interiorHelp" class="form-text">Opcional</div>
                                     <div class="valid-feedback">
                                          Opcional
@@ -215,7 +215,7 @@
                             <div class="col-sm-4">
                                 <div class="mb-3">
                                     <label for="codigo_postal" class="form-label">Cóigo postal</label>
-                                    <input type="text" name="codigo_postal" required class="form-control form-control-sm" id="codigo_postal">
+                                    <input type="text" name="codigo_postal" required class="form-control form-control-sm" id="codigo_postal" value="<?php echo htmlentities($_POST['codigo_postal'] ?? '') ?>">
                                     <div class="invalid-feedback">
                                         Escribe tu código postal
                                     </div>
