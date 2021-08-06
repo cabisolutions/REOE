@@ -9,13 +9,13 @@ else
 if(!isset($pagina_inicio) || $pagina_inicio == false){
     $sql = <<<fin
     select
-        e.id,
-        e.disponible_para,
-        e.nombre,
-        e.costo_renta_dia,
-        e.metros_cuadrados
+        id,
+        disponible_para,
+        nombre,
+        costo_renta_dia,
+        metros_cuadrados
     from
-        espacios e
+        espacios
     fin;
 
 $sentencia = $conexion->prepare($sql);

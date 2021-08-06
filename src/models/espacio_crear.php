@@ -61,7 +61,7 @@ $sentencia->bindValue(':metros_cuadrados', $_POST['metros_cuadrados'], PDO::PARA
 $sentencia->bindValue(':disponible_para', $_POST['disponible_para'], PDO::PARAM_STR);
 $sentencia->bindValue(':estatus', $_POST['estatus'], PDO::PARAM_STR);
 $sentencia->bindValue(':costo', $_POST['costo'], PDO::PARAM_STR);
-$sentencia->bindValue(':costo_renta_dia', $_POST['costo'], PDO::PARAM_STR);
+$sentencia->bindValue(':costo_renta_dia', $_POST['costo_renta_dia'], PDO::PARAM_STR);
 $sentencia->execute();
 
 $espacio_id = $conexion->lastInsertId();
@@ -83,7 +83,7 @@ for ($numero = 0; $numero < 4; $numero ++){
     if (is_uploaded_file($_FILES['fotografia']['tmp_name'][$numero])){
         $nombre_fotografia = uniqid ('ei-', true) . '.jpg'; //se supone sólo admite .jpg
         //mover el archivo a su ubicación final 
-        move_uploaded_file($_FILES['fotografia']['tmp_name'][$numero], 'uploads/espacios/fotografias' . $nombre_fotografia);
+        move_uploaded_file($_FILES['fotografia']['tmp_name'][$numero], 'uploads/espacios/fotografias/' . $nombre_fotografia);
         $sentencia->bindValue(':espacio_id', $espacio_id, PDO::PARAM_INT);
         $sentencia->bindValue(':fotografia', $nombre_fotografia, PDO::PARAM_STR);
         $sentencia->execute();

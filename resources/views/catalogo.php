@@ -20,68 +20,48 @@
         <h1>Catálogo</h1>
     </div>
     <div class="container pt-4">
-        <form action="<?=BASEPATH . 'catalogo'?>" method="GET" class="d-flex flex-row">
-            <input class="form-control" name="busqueda" id="busqueda" type="search" placeholder="¿Qué estás buscando?"
-            value="<?=$_GET['busqueda'] ?? ''?>">
+        <form action="<?= BASEPATH . 'catalogo' ?>" method="GET" class="d-flex flex-row">
+            <input class="form-control" name="busqueda" id="busqueda" type="search" placeholder="¿Qué estás buscando?" value="<?= $_GET['busqueda'] ?? '' ?>">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle p-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     Filtrar
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <div class="dropdown-item">
-                        <div class="form-check">
-                            <input class="form-check-input" name="tipo_espacio[]" type="checkbox" value="Oficina" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Oficina
-                            </label>
-                        </div>
-                    </div>
-                    <div class="dropdown-item">
-                        <div class="form-check">
-                            <input class="form-check-input" name="tipo_espacio[]" type="checkbox" value="Salon" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Salón de eventos
-                            </label>
-                        </div>
-                    </div>
-                    <div class="dropdown-item">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Carpa
-                            </label>
-                        </div>
-                    </div>
-                    <div class="dropdown-item">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Disponible
-                            </label>
-                        </div>
-                    </div>
-                    <div class="dropdown-item">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Rentado
-                            </label>
-                        </div>
-                    </div>
+                    <?php
+                    require_once './conexion.php';
+                    $sql = 'select id, tipo from tipos_espacio order by tipo asc';
+                    $tipos_espacios = $conexion->prepare($sql);
+                    $tipos_espacios->execute();
+                    foreach ($tipos_espacios->fetchAll(PDO::FETCH_ASSOC) as $tipo) {
+                        $tipo['tipo'] = htmlentities($tipo['tipo']);
+                        $isChecked = '';
+                        if(isset($_GET['tipo_espacio']) && in_array($tipo['id'] ,$_GET['tipo_espacio'])){
+                            $isChecked = 'checked';
+                        }
+                        echo'
+                        <div class="dropdown-item">
+                            <div class="form-check">
+                                <input class="form-check-input" name="tipo_espacio[]" type="checkbox"' . $isChecked   .' value="' . $tipo['id'] .'" id="' . $tipo['id'] .'">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    ' . $tipo['tipo'] . '
+                                </label>
+                            </div>
+                        </div>';
+                    }
+                    ?>  
                 </ul>
             </div>
             <button class="btn btn-success" type="submit">Buscar</button>
         </form>
         <div class="pt-5 row align-items-start">
             <?php
-            if ($sentencia->rowCount() < 1){
-                ?>
+            if ($sentencia->rowCount() < 1) {
+            ?>
                 <div class="container text-center">
                     <h3>Lo sentimos, no hay espacios que coincidan con la búsqueda.</h3>
                 </div>
-                <?php
-            }
-            else{
+            <?php
+            } else {
                 foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $row) {
                     include('resources/components/tarjeta_espacio.php');
                 }
