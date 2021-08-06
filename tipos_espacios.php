@@ -54,9 +54,7 @@
                                 <td>{$tipo['tipo']}</td>
                                 <td>
                                     <a class="btn btn-primary btn-sm" href="agregar_tipo_espacio.php?id={$tipo['id']}" title="Clic para editar el tipo de espacio">
-                                        <i class="bi-pencil-square"> </i>
-                                        
-                    
+                                        <i class="bi-pencil-square"> </i>                    
                                     </a>
                                      <a class="btn btn-danger btn-sm"onclick="return confirmardelete()" href="borrar_tipo_espacio.php?id={$tipo['id']}" title="Clic para eliminar el tipo de espacio">
                                      <i class="bi-trash-fill"></i>
@@ -70,8 +68,7 @@
                                        }else {
                                            return false;
                                        }
-           
-                                           }
+                                       }
                                       </script>
                                         
                                     </a>

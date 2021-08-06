@@ -1,3 +1,4 @@
+
 <div class="col-sm mb-5">
     <div class="card">
         <div id="carouselControls<?= $row['id'] ?>" class="carousel slide" data-bs-ride="carousel">
@@ -39,7 +40,7 @@
             <p class="card-text">​<i class="fas fa-star-of-life"></i> <?php echo htmlentities($row['nombre']) ?></p>
             <p class="card-text">​<strong> <i class="fas fa-dollar-sign"></i> <?php echo htmlentities($row['costo_renta_dia']) ?></strong></p>
             <p class="card-text"><i class="fas fa-arrows-alt"></i> <?php echo htmlentities($row['metros_cuadrados']) ?>​</p>
-            <a class="btn btn-primary w-100" href="/espacio?id=<?php echo $row['id'] ?>">
+            <a class="btn btn-primary w-100" href="detalle_espacio.php?id=<?php echo $row['id'] ?>">
                 Ver detalles
             </a>
         </div>

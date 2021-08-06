@@ -63,8 +63,6 @@
                             <a href="<?=BASEPATH.'espacio?id='.$row['id'] ?>" class="btn btn-outline-primary btn-sm">
                                     <i class="bi-pencil-square"></i>
                                 </a>
-                                <a href="detalle_espacio.php?id=<?php echo $row['id'] ?>" class="btn btn-primary">Detalles</a>
-
                             </td>
                         </tr>
                     <?php

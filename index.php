@@ -81,6 +81,13 @@ Route::add('/tipo_espacio', function() {
     $usuario = '';
 }, ['get','post']);
 
+Route::add('/detalle_espacio', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
+    include('detalle_espacio.php');
+    $usuario = '';
+}, ['get','post']);
+
 Route::add('/servicios', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
