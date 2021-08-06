@@ -36,7 +36,7 @@ $mail->Password   = "{$_ENV['CORREO_CONTRASENA']}";                             
         <h2>Hola ' . $nombre . ', restaura tu contraseña</h2>
         <p>Recibimos una petición para restaurar tu contraseña, haz click solo sin fuiste tu.
         <br>
-        <a href="https://rentadeespacios.herokuapp.com/restaurar_contraseña?key=' . $key.'&correo_electronico='.$correo_electronico  . '">Restaurar contraseña</a>
+        <a href="https://rentadeespacios.herokuapp.com/restaurar_contrasena?key=' . $key.'&correo_electronico='.$correo_electronico  . '">Restaurar contraseña</a>
         </p>';
 
     $mail->send();

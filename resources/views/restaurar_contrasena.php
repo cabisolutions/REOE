@@ -22,7 +22,7 @@
         <div class="col-sm-6 d-flex">
             <div class="justify-content-start">
                 <h1>Restaurar contraseña</h1>
-                <form action="restaurar_contraseña" method="POST" class="needs-validation" novalidate>
+                <form action="<?= BASEPATH . 'restaurar_contrasena'?>" method="POST" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <input type="text" class="d-none" name="correo_electronico" id="correo_electronico" value="<?=$_GET['correo_electronico'] ?? ''?>">
                         <input type="text" class="d-none" name="key" id="key" value="<?=$_GET['key'] ?? ''?>">
