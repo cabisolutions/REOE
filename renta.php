@@ -41,12 +41,9 @@ require_once './menu.php';
         include_once('menu_admin.php');
         ?>
 <div class="container pt-4">
-    <div class="card">
-        <div class="card-header">
+  
 <h4> Titulo espacio</h4>
-            </div>
-                <div class="card-body">
-
+           
                 <?php
                     if ('POST' == $_SERVER['REQUEST_METHOD']) {
                       
@@ -137,7 +134,7 @@ require_once './menu.php';
                                 </div>
                             </div>                
                     <button type="submit" class="btn btn btn-primary">Reservar</button>
-                    <a href="renta.php" class="btn btn-secondary btn-sm">cancelar</a>
+                    <a href="<?= BASEPATH . 'renta' ?>" class="btn btn-secondary btn-sm">cancelar</a>
                     </form>
                     <?php
                     } else {
@@ -150,7 +147,7 @@ require_once './menu.php';
                             $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
                             $sentencia->execute();
                             echo '<h6>Renta actualizada</h6>';
-                            echo '<div><a href="renta.php" class="btn btn-secondary btn-sm">Rentas</a></div>';
+                            echo '<div><a href=' . BASEPATH . 'renta class="btn btn-secondary btn-sm">Rentas</a></div>';
                         } else {
 
                             $sql = 'insert into rentas (espacio_id) values (:espacio_id)';
@@ -158,7 +155,7 @@ require_once './menu.php';
                             $sentencia->bindValue(':espacio_id', $_POST['espacio_id'], PDO::PARAM_STR);
                             $sentencia->execute();
                             echo '<h6>Renta creada</h6>';
-                            echo '<div><a href="rentas.php" class="btn btn-secondary btn-sm">Rentas</a></div>';
+                            echo '<div><a href=' . BASEPATH . 'rentas class="btn btn-secondary btn-sm">Rentas</a></div>';
                         }
                     }
                     ?>
