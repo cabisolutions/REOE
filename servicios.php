@@ -53,8 +53,8 @@
                             <tr>
                                 <td><?= $servicio['servicio']?></td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="<?= BASEPATH . 'servicio' ?>" title="Clic para editar servicio">
-                                        <i class="bi-pencil-square"></i>
+                                    <a class="btn btn-primary btn-sm" href="<?= BASEPATH . 'servicio?id=' . $servicio['id']?>" title="Editar servicio">
+                                        <i class="bi-pencil-square"></i>Editar
                                     </a>
                                 </td>
                             </tr>

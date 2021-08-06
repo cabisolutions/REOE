@@ -23,7 +23,7 @@
 
     <div class="d-flex">
         <?php
-        $opcion = 'usuarios';
+        $opcion = 'rentas';
         include_once('menu_admin.php');
         ?>
     <div class="container mt-3">
