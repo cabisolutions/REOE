@@ -1,9 +1,11 @@
 <?php
 
 $consulta_tipo_espacio = '';
-if (isset($_GET['tipo_espacio'])) {
+if (isset($_GET['tipo_espacio']) && is_array($_GET['tipo_espacio'])) {
+    $andOr = 'and';
     foreach ($_GET['tipo_espacio'] as $tipo_espacio) {
-        $consulta_tipo_espacio = $consulta_tipo_espacio . ' and t.tipo_espacio_id = ' . $tipo_espacio;
+        $consulta_tipo_espacio = $consulta_tipo_espacio . ' ' . $andOr . ' t.tipo_espacio_id = ' . $tipo_espacio ;
+        $andOr = 'or';
     }
 }
 
@@ -22,8 +24,8 @@ $sql = "
         espacios e
     inner join espacios_tipo_espacio t on e.id  = t.espacio_id 
     where 
-        e.nombre like :busqueda" . $consulta_tipo_espacio;
-
+        e.nombre like :busqueda " . $consulta_tipo_espacio;
+echo $sql;
 $sentencia = $conexion->prepare($sql);
 $sentencia->bindValue(':busqueda', '%' . $_GET['busqueda'] . '%', PDO::PARAM_INT);
 $sentencia->execute();

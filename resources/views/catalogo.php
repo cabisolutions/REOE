@@ -39,9 +39,9 @@
                             $isChecked = 'checked';
                         }
                         echo'
-                        <div class="dropdown-item">
+                        <div class="dropdown-item" onclick="dropdown_item_check(' . $tipo['id']. ')">
                             <div class="form-check">
-                                <input class="form-check-input" name="tipo_espacio[]" type="checkbox"' . $isChecked   .' value="' . $tipo['id'] .'" id="' . $tipo['id'] .'">
+                                <input class="form-check-input" onclick="dropdown_item_check(' . $tipo['id']. ')" name="tipo_espacio[]"  type="checkbox"' . $isChecked   .' value="' . $tipo['id'] .'" id="' . $tipo['id'] .'">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     ' . $tipo['tipo'] . '
                                 </label>
@@ -283,6 +283,7 @@
     <?php
     include_once('footer.php');
     ?>
+    <script src="<?= BASEPATH . 'resources/js/catalogo.js' ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
