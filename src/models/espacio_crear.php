@@ -64,7 +64,24 @@ $sentencia->bindValue(':costo', $_POST['costo'], PDO::PARAM_STR);
 $sentencia->bindValue(':costo_renta_dia', $_POST['costo_renta_dia'], PDO::PARAM_STR);
 $sentencia->execute();
 
-$espacio_id = $conexion->lastInsertId();
+$espacio_id = $conexion->lastInsertId(); 
+
+$sql = <<<fin
+    insert into espacios_tipo_espacio (
+    espacio_id,
+    tipo_espacio_id
+    ) values (
+    :espacio_id,
+    :tipo_espacio_id
+    )
+    fin;
+
+$sentencia = $conexion->prepare($sql);
+foreach($_POST['tipo_espacio_id'] as $tipo_espacio_id) {
+    $sentencia->bindValue(':espacio_id', $espacio_id, PDO::PARAM_INT);
+    $sentencia->bindValue(':tipo_espacio_id', $tipo_espacio_id, PDO::PARAM_INT);
+    $sentencia->execute();
+}
 
 $sql = <<<fin
     insert into fotografias (
