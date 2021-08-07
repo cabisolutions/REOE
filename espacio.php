@@ -27,6 +27,7 @@
             <h1>Espacios</h1>
             <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
                 <!-- <form action="espacios_guarda.php" method="POST" class="needs-validation" novalidate> -->
+                <input type="number" name="direccion_id" class="d-none" id="direccion_id" value="<?php echo htmlentities($_POST['direccion_id'] ?? '') ?>">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="mb-3">
@@ -136,7 +137,7 @@
                             <div class="col-sm-6">
                                 <label for="fotografia" class="form-label">Seleccione las fotografías del espacio</label>
                                 <div class="mb-3">
-                                    <input type="file" <?= $requerido ?> name="fotografia[]" class="form-control form-control-sm" id="fotografia" value="<?php echo htmlentities($_POST['fotografia'] ?? '') ?>">
+                                    <input type="file" <?= $requerido ?> name="fotografia[]" class="form-control form-control-sm" id="fotografia" accept=".jpg" value="<?php echo htmlentities($_POST['fotografia'] ?? '') ?>">
                                     <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio
                                     </div>
@@ -145,7 +146,7 @@
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label for="fotografia" class="form-label">(.jpg)</label>
-                                    <input type="file" <?= $requerido ?> name="fotografia[]" class="form-control form-control-sm" id="fotografia" value="<?php echo htmlentities($_POST['fotografia'] ?? '') ?>">
+                                    <input type="file" <?= $requerido ?> name="fotografia[]" class="form-control form-control-sm" id="fotografia" accpet=".jpg" value="<?php echo htmlentities($_POST['fotografia'] ?? '') ?>">
                                     <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio
                                     </div>
@@ -153,7 +154,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <input type="file" <?= $requerido ?> name="fotografia[]" class="form-control form-control-sm" id="fotografia" <?php echo htmlentities($_POST['fotografia'] ?? '') ?>>
+                                    <input type="file" <?= $requerido ?> name="fotografia[]" class="form-control form-control-sm" id="fotografia" accept=".jpg" <?php echo htmlentities($_POST['fotografia'] ?? '') ?>>
                                     <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio
                                     </div>
@@ -161,7 +162,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <input type="file" <?= $requerido ?> name="fotografia[]" class="form-control form-control-sm" id="fotografia" value="<?php echo htmlentities($_POST['fotografia'] ?? '') ?>">
+                                    <input type="file" <?= $requerido ?> name="fotografia[]" class="form-control form-control-sm" id="fotografia" accept=".jpg" value="<?php echo htmlentities($_POST['fotografia'] ?? '') ?>">
                                     <div class="invalid-feedback">
                                         Selecciona una fotografía del espacio
                                     </div>
