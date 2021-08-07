@@ -28,6 +28,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
         exit;
     }
     $_POST = array_merge($_POST, $espacio);
+    $requerido = '';
 }
 
 if ('POST' == $_SERVER['REQUEST_METHOD']) {
@@ -55,6 +56,7 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
     // then validate
     $validation->validate();
     $errors = $validation->errors();
+    $requerido = 'required';
 }
 if ('GET' == $_SERVER['REQUEST_METHOD']) {
     include_once('./espacio.php');
