@@ -7,6 +7,7 @@
                                     $sentencia = $conexion->prepare($sql);
                                     $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
                                     $sentencia->execute();
+                                    $espacio_id= $_GET['id'];
                                     $id = $sentencia->fetch(PDO::FETCH_ASSOC);
                                     if (null == $id) {
                                         require_once './error-no-encontrado.php';
@@ -147,12 +148,14 @@ $direccion_completa=($espacio['numero_exterior']).','.
 
 
 
+
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlentities($accion) ?></title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
@@ -194,7 +197,7 @@ require_once './menu.php';
                     <div class="mb-3">
                     <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST">
                     <div class="mb-3">
-                    <h1> <i class="bi bi-cash-coin"></i> Renta este espacio</div>  </h1>
+                    <h1> <i class="bi bi-cash-coin"></i> Rentalo <p class="fst-normal"><?= $segment->get('nombre') ?></p ></div>  </h1>
                     <label for="fecha_renta" class="form-label">Fecha de solicitud</label>
                             <input type="date" name="fecha_renta" required class="form-control form-control-sm" id="fecha_renta" value="<?php echo htmlentities($_POST['fecha_renta'] ?? '') ?>">
                             <div class="invalid-feedback">
@@ -242,29 +245,29 @@ require_once './menu.php';
 
       
                         <div class="mb-3">
-                            <label for="perfil1" class="form-label">Estatus</label>
+                            <label for="estatus1" class="form-label">Estatus</label>
                             <div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="perfil" id="perfil1" value="Reservado" <?php echo 'Reservado' == ($_POST['perfil'] ?? '') ? 'checked' : '' ?>>
-                                    <label class="form-check-label" for="perfil1">
+                                    <input class="form-check-input" type="radio" name="estatus" id="estatus1" value="Reservado" <?php echo 'Reservado' == ($_POST['estatus'] ?? '') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="estatus1">
                                         Reservado
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="perfil" id="perfil2" value="Finalizado" <?php echo 'Finalizado' == ($_POST['perfil'] ?? '') ? 'checked' : '' ?>>
-                                    <label class="form-check-label" for="perfil2">
+                                    <input class="form-check-input" type="radio" name="estatus" id="estatus2" value="Finalizado" <?php echo 'Finalizado' == ($_POST['estatus'] ?? '') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="estatus2">
                                        Disponible
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="perfil" id="perfil2" value="Cancelado" <?php echo 'Cancelado' == ($_POST['perfil'] ?? '') ? 'checked' : '' ?>>
-                                    <label class="form-check-label" for="perfil2">
+                                    <input class="form-check-input" type="radio" name="estatus" id="estatus3" value="Cancelado" <?php echo 'Cancelado' == ($_POST['estatus'] ?? '') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="estatus3">
                                         Cancelado
                                     </label>
                                     </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="perfil" id="perfil2" value="Cancelado" <?php echo 'Cancelado' == ($_POST['perfil'] ?? '') ? 'checked' : '' ?>>
-                                    <label class="form-check-label" for="perfil2">
+                                    <input class="form-check-input" type="radio" name="estatus" id="estatus4" value="Cancelado" <?php echo 'Cancelado' == ($_POST['estatus'] ?? '') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="estatus4">
                                         Finalizado
                                     </label>
                                 </div>
@@ -277,11 +280,11 @@ require_once './menu.php';
                     } else {
                         // es post y todo está bien
                         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-                          
+                            
                             //creamos
                             $sql = <<<fin
-                    
-                            
+                            $segment->get('id')=$usuario_id
+                          
 insert into rentas (
     usuario_id
     , espacio_id
@@ -293,7 +296,9 @@ insert into rentas (
     , estatus
     
 ) values (
-    :costo
+    : $usuario_id
+    , : $espacio_id 
+    , : costo
     , :costo
     , :fecha_renta
     , :fecha_entrega
@@ -303,18 +308,16 @@ insert into rentas (
     , :estatus
 )
 fin;
-                            // Encriptamos la contraseña
                            
                             $sentencia = $conexion->prepare($sql);
-                            $sentencia->bindValue(':costo', $_POST['costo'], PDO::PARAM_INT);
-                            $sentencia->bindValue(':costo', $_POST['costo'], PDO::PARAM_INT);
+                            $sentencia->bindValue(':usuario_id',$segment->get('id'), PDO::PARAM_INT);
+                            $sentencia->bindValue(':espacio_id',  $espacio_id, PDO::PARAM_INT);
                             $sentencia->bindValue(':fecha_renta', $_POST['fecha_renta'], PDO::PARAM_STR);
                             $sentencia->bindValue(':fecha_entrega', $_POST['fecha_entrega'], PDO::PARAM_STR);
                             $sentencia->bindValue(':fecha_devolucion', $_POST['fecha_devolucion'], PDO::PARAM_STR);
                             $sentencia->bindValue(':costo', $_POST['costo'], PDO::PARAM_INT);
                             $sentencia->bindValue(':costo_penalizacion', $_POST['costo_penalizacion'], PDO::PARAM_INT);
                             $sentencia->bindValue(':estatus', $_POST['estatus'], PDO::PARAM_STR);
-                
                             $sentencia->execute();
                             echo '<h6>Gracias por su eleccion</h6>';
                             echo '<div><a href="catalogo.php" class="btn btn-secondary btn-sm">usuarios</a></div>';

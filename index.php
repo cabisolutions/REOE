@@ -26,7 +26,16 @@ Route::add('/sesion', function() {
 Route::add('/cuenta', function() {
     include('checa_sesion.php');
     include('resources/views/cuenta.php');
+    
 });
+
+
+Route::add('/detalle_espacio', function() {
+    include('checa_sesion.php');
+    include('detalle_espacio.php');
+
+});
+
 
 Route::add('/salir', function() {
     include('salir.php');
@@ -66,14 +75,14 @@ Route::add('/espacio', function() {
     include('src/controllers/espacio.php');
 }, ['get','post']);
 
-Route::add('/tipo_espacios', function() {
+Route::add('/tiposÑ_espacios', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
     $usuario = 'Administrador';
     include('tipos_espacios.php');
 });
 
-Route::add('/tipo_espacio', function() {
+Route::add('/agregar_tipo_espacio', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
     include('agregar_tipo_espacio.php');
