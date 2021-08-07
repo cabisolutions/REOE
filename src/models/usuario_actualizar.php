@@ -20,7 +20,7 @@ $sentencia->bindValue(':colonia', $_POST['colonia'], PDO::PARAM_STR);
 $sentencia->bindValue(':numero_exterior', $_POST['numero_exterior'], PDO::PARAM_STR);
 $sentencia->bindValue(':numero_interior', $_POST['numero_interior'], PDO::PARAM_STR);
 $sentencia->bindValue(':codigo_postal', $_POST['codigo_postal'], PDO::PARAM_STR);
-$sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+$sentencia->bindValue(':id', $_POST['direccion_id'], PDO::PARAM_INT);
 $sentencia->execute();
 
 

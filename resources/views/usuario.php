@@ -30,6 +30,7 @@
             <h1><?=$accion?></h1>
             <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
                 <!-- <form action="valores_recibidos.php" method="POST" class="needs-validation" novalidate> -->
+                <input type="number" name="direccion_id" class="d-none" id="direccion_id" value="<?php echo htmlentities($_POST['direccion_id'] ?? '') ?>">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="mb-3">
