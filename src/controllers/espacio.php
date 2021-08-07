@@ -29,6 +29,23 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     }
     $_POST = array_merge($_POST, $espacio);
     $requerido = '';
+    $sql = '
+        select 
+            espacio_id, 
+            tipo_espacio_id
+        from 
+            espacios_tipo_espacio
+        where 
+        espacio_id = :espacio_id';
+    $tipos_espacios = $conexion->prepare($sql);
+    $tipos_espacios->bindValue(':espacio_id', $_GET['id'], PDO::PARAM_INT);
+    $tipos_espacios->execute();
+    $tipos_espacios = $tipos_espacios->fetch(PDO::FETCH_ASSOC);
+    if (null == $tipos_espacios) {
+        require_once './error-no-encontrado.php';
+        exit();
+    }
+    $_POST = array_merge($_POST, $tipos_espacios);
 }
 
 if ('POST' == $_SERVER['REQUEST_METHOD']) {

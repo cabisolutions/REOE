@@ -61,12 +61,14 @@
                             foreach ($tipos_espacios->fetchAll(PDO::FETCH_ASSOC) as $tipo) {
                                 $tipo['tipo'] = htmlentities($tipo['tipo']);
                                 $isChecked = '';
-                                if (isset($_GET['tipo_espacio']) && in_array($tipo['id'], $_GET['tipo_espacio'])) {
+                                if (isset($_POST['tipo_espacio_id']) && in_array($tipo['id'], explode('.', $_POST['tipo_espacio_id']))) {
                                     $isChecked = 'checked';
                                 }
+                                //$checked = in_array($tipo['id'], $_POST['tipo_espacio_id']) ? 'checked' : '';
                                 echo '
                                 <div class="form-check">
-                                    <input class="form-check-input" required onchange="attRequired(`tipo_espacio[]`)" type="checkbox" name="tipo_espacio[]" id="tipo_espacio' . $tipo['id'] . '">
+                                    <input class="form-check-input" required onchange="attRequired(`tipo_espacio[]`)" type="checkbox" name="tipo_espacio[]" value="' . $tipo['id'] . '" id="tipo_espacio' . $tipo['id'] . '"
+                                    ' . $isChecked . '>
                                     <label class="form-check-label" for="tipo_espacio' . $tipo['id'] . '">
                                     ' . $tipo['tipo'] . '
                                     </label>

@@ -1,4 +1,5 @@
 <?php
+
 $sql = <<<fin
     insert into direcciones (
     estado_id, 
@@ -58,7 +59,7 @@ $sentencia->bindValue(':direccion_id', $direccion_id, PDO::PARAM_STR);
 $sentencia->bindValue(':nombre', $_POST['nombre'], PDO::PARAM_STR);
 $sentencia->bindValue(':descripcion', $_POST['descripcion'], PDO::PARAM_STR);
 $sentencia->bindValue(':metros_cuadrados', $_POST['metros_cuadrados'], PDO::PARAM_INT);
-$sentencia->bindValue(':disponible_para', $_POST['disponible_para'], PDO::PARAM_STR);
+$sentencia->bindValue(':disponible_para', implode(",", $_POST['disponible_para']) , PDO::PARAM_STR);
 $sentencia->bindValue(':estatus', $_POST['estatus'], PDO::PARAM_STR);
 $sentencia->bindValue(':costo', $_POST['costo'], PDO::PARAM_STR);
 $sentencia->bindValue(':costo_renta_dia', $_POST['costo_renta_dia'], PDO::PARAM_STR);
@@ -84,6 +85,23 @@ foreach($_POST['tipo_espacio_id'] as $tipo_espacio_id) {
 }
 
 $sql = <<<fin
+    insert into espacios_tipo_espacio (
+    espacio_id, 
+    tipo_espacio_id
+    ) values (
+    :espacio_id, 
+    :tipo_espacio_id
+    )
+    fin;
+
+$sentencia = $conexion->prepare($sql);
+foreach ($_POST['tipo_espacio'] as $tipo_espacio) {
+    $sentencia->bindValue(':espacio_id', $espacio_id, PDO::PARAM_INT);
+    $sentencia->bindValue(':tipo_espacio_id', $tipo_espacio, PDO::PARAM_INT);
+    $sentencia->execute();
+}
+
+$sql = <<<fin
     insert into fotografias (
     espacio_id,
     fotografia
@@ -95,10 +113,10 @@ $sql = <<<fin
 
 $sentencia = $conexion->prepare($sql);
 // print_r($_FILES);
-for ($numero = 0; $numero < 4; $numero ++){
+for ($numero = 0; $numero < 4; $numero++) {
     // ¿se ha cargado el archivo?
-    if (is_uploaded_file($_FILES['fotografia']['tmp_name'][$numero])){
-        $nombre_fotografia = uniqid ('ei-', true) . '.jpg'; //se supone sólo admite .jpg
+    if (is_uploaded_file($_FILES['fotografia']['tmp_name'][$numero])) {
+        $nombre_fotografia = uniqid('ei-', true) . '.jpg'; //se supone sólo admite .jpg
         //mover el archivo a su ubicación final 
         move_uploaded_file($_FILES['fotografia']['tmp_name'][$numero], 'uploads/espacios/fotografias/' . $nombre_fotografia);
         $sentencia->bindValue(':espacio_id', $espacio_id, PDO::PARAM_INT);

@@ -69,7 +69,15 @@ $tipo_espacio->execute();
                 }
                 ?>
             </div>
-            <h6 class="card-title pt-3"><?php foreach ($tipo_espacio->fetchAll(PDO::FETCH_ASSOC) as $tipo){echo $tipo['tipo'] . " ";}?></h6>
+            <h6 class="card-title pt-3">
+                <?php
+                $stringTipo_espacio = '';
+
+                foreach ($tipo_espacio->fetchAll(PDO::FETCH_ASSOC) as $tipo) {
+                    $stringTipo_espacio = $stringTipo_espacio . $tipo['tipo'] . ', ';
+                }
+                echo implode(',', array_unique(explode(',', substr_replace($stringTipo_espacio, '', -2))));
+                ?></h6>
             <p class="card-text">​<i class="fas fa-star-of-life"></i> <?php echo htmlentities($row['nombre']) ?></p>
             <p class="card-text">​<strong> <i class="fas fa-dollar-sign"></i> <?php echo htmlentities($row['costo_renta_dia']) ?></strong></p>
             <p class="card-text"><i class="fas fa-arrows-alt"></i> <?php echo htmlentities($row['metros_cuadrados']) ?>​</p>
