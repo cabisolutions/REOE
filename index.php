@@ -29,13 +29,10 @@ Route::add('/cuenta', function() {
     
 });
 
-
 Route::add('/detalle_espacio', function() {
     include('checa_sesion.php');
     include('detalle_espacio.php');
-
 });
-
 
 Route::add('/salir', function() {
     include('salir.php');
@@ -75,26 +72,20 @@ Route::add('/espacio', function() {
     include('src/controllers/espacio.php');
 }, ['get','post']);
 
-Route::add('/tiposÑ_espacios', function() {
+Route::add('/tipo_espacios', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
     $usuario = 'Administrador';
     include('tipos_espacios.php');
 });
 
-Route::add('/agregar_tipo_espacio', function() {
+Route::add('/tipo_espacio', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
     include('agregar_tipo_espacio.php');
     $usuario = '';
 }, ['get','post']);
 
-Route::add('/detalle_espacio', function() {
-    $usuario = 'Administrador';
-    include('checa_sesion.php');
-    include('detalle_espacio.php');
-    $usuario = '';
-}, ['get','post']);
 
 Route::add('/servicios', function() {
     $usuario = 'Administrador';
@@ -131,12 +122,6 @@ Route::add('/restaurar_contrasena', function() {
     include('checa_sesion.php');
     include('src/controllers/restaurar_contrasena.php');
 }, ['get','post']);
-
-Route::add('/detalle_espacio', function() {
-    include('checa_sesion.php');
-    include('detalle_espacio.php');
-}, ['get','post']);
-
 
 // Add a 404 not found route
 Route::pathNotFound(function($path) {

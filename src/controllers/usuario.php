@@ -1,9 +1,10 @@
 <?php
 require('vendor/autoload.php');
+require_once './conexion.php';
 
 use Rakit\Validation\Validator;
 
-require_once './conexion.php';
+$errors = null;
 $accion = 'Crear usuario';
 $requerido = 'required';
 if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -32,7 +33,8 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
 }
 
 if ('POST' == $_SERVER['REQUEST_METHOD']) {
-    if (!isset($segment) || empty($segment->get('id')) || 'Cliente' == $segment->get('perfil') ) {
+    
+    if (!isset($segment) || empty($segment->get('id')) || 'Cliente' == $segment->get('perfil')) {
         $_POST['perfil'] = 'Cliente';
         $_POST['estatus'] = 'Activo';
     }
@@ -64,8 +66,9 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
     // then validate
     $validation->validate();
     $errors = $validation->errors();
+    //include_once('resources/views/usuario.php');
 }
-if ('GET' == $_SERVER['REQUEST_METHOD']) {
+if ('GET' == $_SERVER['REQUEST_METHOD']  || $validation->fails()) {
     include_once('resources/views/usuario.php');
 } else {
     // es post y todo está bien

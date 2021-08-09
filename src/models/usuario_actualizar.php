@@ -69,6 +69,7 @@ else {
     $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $sentencia->execute();
     $nombre_identificacion= $sentencia->fetchColumn(0);
+    $_POST['identificacion'] = $nombre_identificacion;
 }
 if (is_uploaded_file($_FILES['comprobante_domicilio']['tmp_name'])) {
     $nombre_comprobante_domicilio = uniqid('cd-', true) . '.jpg'; 
@@ -79,6 +80,7 @@ else {
     $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $sentencia->execute();
     $nombre_comprobante_domicilio = $sentencia->fetchColumn(0);
+    $_POST['comprobante_domicilio'] = $nombre_comprobante_domicilio;
 }
 
 
@@ -99,5 +101,10 @@ $sentencia->bindValue(':identificacion', $nombre_identificacion, PDO::PARAM_STR)
 $sentencia->bindValue(':comprobante_domicilio', $nombre_comprobante_domicilio, PDO::PARAM_STR);
 $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 $sentencia->execute();
-echo '<h6>Usuario actualizado</h6>';
-echo '<div><a href="usuarios.php" class="btn btn-secondary btn-sm">usuarios</a></div>';
+
+$statusOk = true;
+include('resources/views/usuario.php');
+echo "
+<script>
+    Swal.fire('Usuario guardado', 'Aceptar', 'success')
+</script>";

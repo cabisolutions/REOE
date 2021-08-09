@@ -14,8 +14,6 @@ $(function() {
     });
 });
 
-
-
 function mostrarImagen(evt, id) {
     var tgt = evt.target || window.event.srcElement,
         files = tgt.files;
@@ -36,3 +34,21 @@ function mostrarImagen(evt, id) {
     }
 }
 
+document.getElementById("btn-send").addEventListener("click", function(event){
+    event.preventDefault()
+    updateConfirm()
+});
+
+function updateConfirm(){
+    Swal.fire({
+        title: 'Confirma para continuar',
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: `Continuar`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          document.getElementById('formulario-usuario').submit();
+        }
+      })
+}

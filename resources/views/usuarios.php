@@ -21,7 +21,7 @@
         include_once('menu_admin.php');
         ?>
         <div class="container pt-3">
-            <h1 class="mb-0">Usuarios</h1>
+            <h1 class="mb-0"><i class="bi bi-people-fill"></i> Usuarios</h1>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-sm">
                     <thead>
