@@ -1,4 +1,9 @@
 <?php
+
+if(isset($_POST['mapa']) && $_POST['mapa'] != '' && $_POST['mapa'] != null ){
+    $_POST['mapa'] = str_replace('width="600"', 'width="100%"', $_POST['mapa']);
+}
+
 $sql = <<<fin
     update direcciones set 
         estado_id = :estado_id, 
@@ -7,7 +12,8 @@ $sql = <<<fin
         colonia = :colonia, 
         numero_exterior = :numero_exterior, 
         numero_interior = :numero_interior, 
-        codigo_postal = :codigo_postal
+        codigo_postal = :codigo_postal,
+        mapa = :mapa
     where
         id = :id
     fin;
@@ -20,6 +26,7 @@ $sentencia->bindValue(':colonia', $_POST['colonia'], PDO::PARAM_STR);
 $sentencia->bindValue(':numero_exterior', $_POST['numero_exterior'], PDO::PARAM_STR);
 $sentencia->bindValue(':numero_interior', $_POST['numero_interior'], PDO::PARAM_STR);
 $sentencia->bindValue(':codigo_postal', $_POST['codigo_postal'], PDO::PARAM_STR);
+$sentencia->bindValue(':mapa', $_POST['mapa'], PDO::PARAM_STR);
 $sentencia->bindValue(':id', $_POST['direccion_id'], PDO::PARAM_INT);
 $sentencia->execute();
 

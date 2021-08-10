@@ -1,5 +1,9 @@
 <?php
 
+if(isset($_POST['mapa']) && $_POST['mapa'] != '' && $_POST['mapa'] != null ){
+    $_POST['mapa'] = str_replace('width="600"', 'width="100%"', $_POST['mapa']);
+}
+
 $sql = <<<fin
     insert into direcciones (
     estado_id, 
@@ -16,7 +20,8 @@ $sql = <<<fin
     :colonia, 
     :numero_exterior, 
     :numero_interior, 
-    :codigo_postal
+    :codigo_postal,
+    :mapa
     )
     fin;
 
@@ -28,6 +33,7 @@ $sentencia->bindValue(':colonia', $_POST['colonia'], PDO::PARAM_STR);
 $sentencia->bindValue(':numero_exterior', $_POST['numero_exterior'], PDO::PARAM_STR);
 $sentencia->bindValue(':numero_interior', $_POST['numero_interior'], PDO::PARAM_STR);
 $sentencia->bindValue(':codigo_postal', $_POST['codigo_postal'], PDO::PARAM_STR);
+$sentencia->bindValue(':mapa', $_POST['mapa'], PDO::PARAM_STR);
 $sentencia->execute();
 
 $direccion_id = $conexion->lastInsertId();

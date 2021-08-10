@@ -82,7 +82,7 @@ $tipo_espacio->execute();
             <p class="card-text">​<i class="fas fa-star-of-life"></i> <?php echo htmlentities($row['nombre']) ?></p>
             <p class="card-text">​<strong> <i class="fas fa-dollar-sign"></i> <?php echo htmlentities($row['costo_renta_dia']) ?></strong></p>
             <p class="card-text"><i class="fas fa-arrows-alt"></i> <?php echo htmlentities($row['metros_cuadrados']) ?>​</p>
-            <a class="btn btn-primary w-100" href="<?= BASEPATH . 'detalle_espacio?id=' . $row['id'] ?>">
+            <a class="btn btn-primary w-100" href="<?= BASEPATH . 'detalle_espacio?espacio=' . $row['id'] ?>">
                 Ver detalles
             </a>
         </div>

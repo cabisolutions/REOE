@@ -13,7 +13,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     e.id, e.direccion_id, e.nombre, e.descripcion,
     e.metros_cuadrados, e.disponible_para, e.estatus, e.costo, 
     e.costo_renta_dia, d.id, d.estado_id, d.municipio_id, d.calle, d.colonia, d.numero_exterior,
-    d.numero_interior, d.codigo_postal
+    d.numero_interior, d.codigo_postal, d.mapa
     from 
     espacios e
     inner join direcciones d on e.direccion_id = d.id 

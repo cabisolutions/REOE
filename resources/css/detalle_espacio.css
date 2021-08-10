@@ -1,0 +1,5 @@
+.catalogo-img img {
+    height: 65vh;
+    max-height: 65vh;
+    object-fit: cover;
+}

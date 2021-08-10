@@ -308,6 +308,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="mapa" class="form-label">Mapa</label>
+                                    <input type="text" name="mapa" class="form-control form-control-sm"
+                                    id="codigo_postal" value="<?php echo htmlentities($_POST['mapa'] ?? '') ?>">
+                                </div>
+                            </div>
                         </div>
                         <button id="btn-send" type="submit" class="btn btn-primary">Enviar</button>
                         <a href="<?= BASEPATH . 'espacios'?>" class="btn btn-secondary">Volver atrás</a>
