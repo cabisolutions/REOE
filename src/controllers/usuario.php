@@ -4,10 +4,11 @@ require_once './conexion.php';
 
 use Rakit\Validation\Validator;
 
-$accion = 'Editar usuario';
+$accion = 'Crear usuario';
 $errors = null;
 $requerido = 'required';
 if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $accion = 'Editar usuario';
     $requerido = '';
     $sql = 'select 
     u.id, u.direccion_id, u.nombre, u.primer_apellido,
@@ -79,7 +80,6 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
     //include_once('resources/views/usuario.php');
 }
 if ('GET' == $_SERVER['REQUEST_METHOD']  || $validation->fails()) {
-    $accion = 'Crear usuario';
     include_once('resources/views/usuario.php');
 } else {
     // es post y todo está bien

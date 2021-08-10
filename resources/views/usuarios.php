@@ -20,8 +20,8 @@
         $opcion = 'usuarios';
         include_once('menu_admin.php');
         ?>
-        <div class="container pt-3">
-            <h1 class="mb-0"><i class="bi bi-people-fill"></i> Usuarios</h1>
+        <div class="container mt-4">
+            <h1><i class="bi bi-people-fill"></i> Usuarios</h1>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-sm">
                     <thead>
@@ -31,8 +31,8 @@
                             <th>Perfil</th>
                             <th>Estatus</th>
                             <th>
-                                <a href="<?=BASEPATH.'usuario'?>" class="btn btn-primary btn-hover btn-sm w-100" alt='crear'>
-                                    <i class="bi-plus-circle-fill"></i>
+                                <a href="<?=BASEPATH.'usuario'?>" class="float-end btn btn-primary btn-hover" title='Crear usuario'>
+                                    <i class="bi-plus-circle-fill"></i> Añadir 
                                 </a>
                             </th>
                         </tr>
@@ -72,7 +72,7 @@
                                                             ?>">
                                         <?php echo htmlentities($row['estatus']) ?></span></td>
                                 <td>
-                                    <a href="<?=BASEPATH.'usuario?id='.$row['id'] ?>" class="btn btn-outline-primary btn-sm">
+                                    <a href="<?=BASEPATH.'usuario?id='.$row['id'] ?>" class="float-end btn btn-outline-primary btn-sm">
                                         <i class="bi-pencil-square"></i>
                                     </a>
                                 </td>

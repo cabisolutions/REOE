@@ -125,9 +125,19 @@ for ($numero = 0; $numero < 4; $numero++) {
     }
 }
 
-//$fotografia_id = $conexion->lastInsertId();
-//$espacio_id = $conexion->lastInsertId();
+include('espacio.php');
+echo "
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Espacio creado',
+        showDenyButton: false,
+        showCancelButton: false,
+        confirmButtonText: `Continuar`
+      }).then((result) => {
+        if (result.isConfirmed) {
+            location.reload();
+        }
+      })
+</script>";
 
-
-echo '<h6>Espacio creado</h6>';
-echo '<div><a href="espacio.php" class="btn btn-secondary btn-sm">espacios</a></div>';

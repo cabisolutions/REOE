@@ -11,36 +11,36 @@
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
-<body> 
+<body>
     <?php
-        include_once('menu.php');
-        ?>
+    include_once('menu.php');
+    ?>
     <div class="d-flex mt-5">
         <?php
         $opcion = 'espacios';
         include_once('menu_admin.php');
         ?>
-        <div class="container pt-3">
-            <h1 class="mb-0">Espacios</h1>
+        <div class="container mt-4">
+            <h1><i class="bi bi-house-door-fill"></i> Espacios</h1>
             <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Disponible para</th>
-                        <th>Estatus</th>
-                        <th>
-                        <a href="<?=BASEPATH.'espacio'?>" class="btn btn-primary btn-hover btn-sm w-100" alt='crear'>
-                                <i class="bi-plus-circle-fill"></i> 
-                            </a>                        
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    require_once './conexion.php';
-                    $sql = <<<fin
+                <table class="table table-striped table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Disponible para</th>
+                            <th>Estatus</th>
+                            <th>
+                                <a href="<?= BASEPATH . 'espacio' ?>" class="float-end btn btn-primary btn-hover" title='Crear espacio'>
+                                    <i class="bi-plus-circle-fill"></i> Añadir
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        require_once './conexion.php';
+                        $sql = <<<fin
                                 select
                                     e.id
                                     , e.nombre
@@ -50,26 +50,26 @@
                                 from
                                     espacios e
                             fin;
-                    $sentencia = $conexion->prepare($sql);
-                    $sentencia->execute();
-                    foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $row) {
-                    ?>
-                        <tr>
-                            <td><?php echo htmlentities($row['nombre']) ?></td>
-                            <td><?php echo htmlentities($row['descripcion']) ?></td>
-                            <td><?php echo htmlentities($row['disponible_para']) ?></td>
-                            <td><?php echo htmlentities($row['estatus']) ?></td>
-                            <td>
-                            <a href="<?=BASEPATH.'espacio?id='.$row['id'] ?>" class="btn btn-outline-primary btn-sm">
-                                    <i class="bi-pencil-square"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+                        $sentencia = $conexion->prepare($sql);
+                        $sentencia->execute();
+                        foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $row) {
+                        ?>
+                            <tr>
+                                <td><?php echo htmlentities($row['nombre']) ?></td>
+                                <td><?php echo htmlentities($row['descripcion']) ?></td>
+                                <td><?php echo htmlentities($row['disponible_para']) ?></td>
+                                <td><?php echo htmlentities($row['estatus']) ?></td>
+                                <td>
+                                    <a href="<?= BASEPATH . 'espacio?id=' . $row['id'] ?>" class="float-end btn btn-outline-primary btn-sm">
+                                        <i class="bi-pencil-square"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

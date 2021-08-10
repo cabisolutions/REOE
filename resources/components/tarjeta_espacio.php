@@ -8,6 +8,7 @@ from
     fotografias f
 where 
     espacio_id = :espacio_id
+order by f.id desc limit 4
 fin;
 
 $sentencia = $conexion->prepare($sql);

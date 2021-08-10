@@ -1,7 +1,3 @@
-.img-fluid {
-    height: 10rem;
-}
-
 body.swal2-shown > [aria-hidden="true"] {
     filter: blur(6px);
   }

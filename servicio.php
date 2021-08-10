@@ -1,11 +1,14 @@
 <?php
 //require_once './checa-sesion.php';
 require('vendor/autoload.php');
+require_once './conexion.php';
+
+$accion = 'Crear servicio';
 
 use Rakit\Validation\Validator;
 
 if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GET['id'])) {
-    require_once './conexion.php';
+    $accion = 'Editar servicio';
     $sql = 'select id, servicio from servicios where id = :id';
     $sentencia = $conexion->prepare($sql);
     $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
@@ -25,10 +28,12 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear servicio</title>
+    <title><?= $accion?></title>
     <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/bootstrap.min.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/estilosGlobales.css' ?>">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
 </head>
 
 <body>
@@ -41,14 +46,12 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
         $opcion = 'servicios';
         include_once('menu_admin.php');
         ?>
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
-
-                    <h1> <i class="bi bi-bag-plus-fill"></i> Crear servicio
+        <div class="container mt-4">
+            <div class="row">   
+                <div class="col-12">
+                    <h1><i class="bi bi-stack"></i> Servicios</h1>
                 </div>
-                </h1>
+                <div>
 
                 <?php
                 if ('POST' == $_SERVER['REQUEST_METHOD']) {
@@ -66,13 +69,13 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                 }
                 if ('GET' == $_SERVER['REQUEST_METHOD'] || $validation->fails()) {
                 ?>
-                    <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST">
+                    <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" novalidate class="needs-validation" method="POST">
                         <div class="mb-3">
                             <label for="servicio" class="form-label">
-                                <h3> Servicio </h3>
+                                <h4 class="m-1"> Servicio </h4>
                             </label>
                             <input type="text" name="servicio" class="form-control form-control-sm<?php echo isset($errors) && $errors->has('servicio') ? ' is-invalid' : 'is-valid' ?>" id="servicio" aria-describedby="servicioHelp" value="<?php echo $_POST['servicio'] ?? '' ?>">
-                            <div id="servicioHelp" class="invalid-feedback"><?php echo isset($errors) && $errors->first('servicio') ?></div>
+                            <div id="servicioHelp" class="invalid-feedback"><?= isset($errors) ? $errors->first('servicio') : '' ?></div>
                         </div>
                         <button type="submit" class="btn btn-primary">Enviar</button>
                         <a href="<?= BASEPATH . 'servicios' ?>" class="btn btn-secondary ">Cancelar</a>
@@ -89,7 +92,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                         $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
                         $sentencia->execute();
                         echo '<h6>Servicio actualizado</h6>';
-                        echo '<div><a href=' . BASEPATH . 'servicios class="btn btn-secondary btn-sm">Servicios</a></div>';
+                        echo '<div><a href=' . BASEPATH . 'servicios class="btn btn-primary btn">Servicios</a></div>';
                     } else {
 
                         $sql = 'insert into servicios (servicio) values (:servicio)';
@@ -97,7 +100,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                         $sentencia->bindValue(':servicio', $_POST['servicio'], PDO::PARAM_STR);
                         $sentencia->execute();
                         echo '<h6>Servicio creado</h6>';
-                        echo '<div><a href=' . BASEPATH . 'servicios class="btn btn-secondary btn-sm">Servicios</a></div>';
+                        echo '<div><a href=' . BASEPATH . 'servicios class="btn btn-primary btn">Servicios</a></div>';
                     }
                 }
 

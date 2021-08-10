@@ -30,7 +30,7 @@ function classValid($name) {
             include_once('menu_admin.php');
         }
         ?>
-        <div class="container mt-3 mb-4">
+        <div class="container mt-4 mb-4">
             <h1><i class="bi bi-person-plus-fill"></i> <?=$accion?></h1>
             <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" id="formulario-usuario" method="POST" enctype="multipart/form-data">
                 <!-- <form action="valores_recibidos.php" method="POST" class="needs-validation" novalidate> -->
@@ -366,7 +366,14 @@ function classValid($name) {
                             </div>
                         </div>
                         <button id="btn-send" type="submit" class="btn btn-primary">Enviar</button>
-                        <a onclick="history.back()" class="btn btn-secondary">Volver atras</a>
+                        <?php
+                        if (isset($segment) && !empty($segment->get('id')) && 'Administrador' == $segment->get('perfil')) {
+                            echo '<a href="' . BASEPATH . 'usuarios' . '" class="btn btn-secondary">Volver atrás</a>';
+                        }
+                        else {
+                            echo '<a href="' . BASEPATH . 'sesion' . '" class="btn btn-secondary">Cancelar</a>';
+                        }
+                        ?>
                     </div>
                 </div>
             </form>
