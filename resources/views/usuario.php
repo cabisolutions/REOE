@@ -32,7 +32,7 @@ function classValid($name) {
         ?>
         <div class="container mt-3 mb-4">
             <h1><i class="bi bi-person-plus-fill"></i> <?=$accion?></h1>
-            <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" id="formulario-usuario" novalidate class="needs-validation" method="POST" enctype="multipart/form-data">
+            <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" id="formulario-usuario" method="POST" enctype="multipart/form-data">
                 <!-- <form action="valores_recibidos.php" method="POST" class="needs-validation" novalidate> -->
                 <input type="number" name="direccion_id" class="d-none" id="direccion_id" value="<?php echo htmlentities($_POST['direccion_id'] ?? '') ?>">
                 <div class="row">
@@ -224,11 +224,14 @@ function classValid($name) {
                                                                                         else
                                                                                             echo "d-none";
                                                                                         ?> mb-3">
-                                    <input type="file" name="identificacion" <?php
-                                                                                
-                                                                                ?> class="form-control form-control-sm" id="identificacion" accept=".jpg" onchange="mostrarImagen(event,'identificacion')">
+                                    <input type="file" name="identificacion" class="form-control form-control-sm
+                                    <?php
+                                    if ($accion === 'Crear usuario') {
+                                        echo (isset($errors) && $errors->has('identificacion')) ? ' is-invalid' : '';
+                                    }?>"
+                                    id="identificacion" accept=".jpg" onchange="mostrarImagen(event,'identificacion')">
                                     <div class="invalid-feedback">
-                                        Selecciona una imagen .jpg de tu identificación
+                                    <?= isset($errors) ? $errors->first('identificacion') : '' ?>
                                     </div>
                                 </div>
                             </div>
@@ -245,11 +248,14 @@ function classValid($name) {
                                                                                         else
                                                                                             echo "d-none";
                                                                                         ?> mb-3">
-                                    <input type="file" name="comprobante_domicilio" <?php
-                                                                                    
-                                                                                    ?> class="form-control form-control-sm" id="comprobante_domicilio" accept=".jpg" onchange="mostrarImagen(event,'comprobante_domicilio')">
+                                    <input type="file" name="comprobante_domicilio" class="form-control form-control-sm
+                                    <?php
+                                    if ($accion === 'Crear usuario') {
+                                        echo (isset($errors) && $errors->has('comprobante_domicilio')) ? ' is-invalid' : '';
+                                    }?>"
+                                    id="comprobante_domicilio" accept=".jpg" onchange="mostrarImagen(event,'comprobante_domicilio')">
                                     <div class="invalid-feedback">
-                                        Selecciona una imagen .jpg de tu comrpobante de domicilio
+                                    <?= isset($errors) ? $errors->first('comprobante_domicilio') : '' ?>
                                     </div>
                                 </div>
                             </div>
@@ -316,7 +322,8 @@ function classValid($name) {
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="estado_id" class="form-label">Estado</label>
-                                    <select name="estado_id" id="estado_id"  class="form-select form-select-sm">
+                                    <select required name="estado_id" id="estado_id" class="form-select form-select-sm
+                                    <?= (isset($errors) && $errors->has('estado_id')) ? ' is-invalid' : ''?>">
                                         <option selected value="">Selecciona</option>
                                         <?php
                                         $sql = 'select id, estado from estados order by estado asc';
@@ -329,14 +336,15 @@ function classValid($name) {
                                         ?>
                                     </select>
                                     <div class="invalid-feedback">
-                                        Selecciona un estado
+                                    <?= isset($errors) ? $errors->first('estado_id') : '' ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="municipio_id" class="form-label">Municipio</label>
-                                    <select name="municipio_id" id="municipio_id"  class="form-select form-select-sm">
+                                    <select required name="municipio_id" id="municipio_id"  class="form-select form-select-sm
+                                    <?= (isset($errors) && $errors->has('municipio_id')) ? ' is-invalid' : ''?>">
                                         <option selected value="">Selecciona primero un estado</option>
                                         <?php
                                         $sql = 'select id, municipio from municipios where estado_id = :estado_id order by municipio asc';
@@ -352,13 +360,13 @@ function classValid($name) {
                                         ?>
                                     </select>
                                     <div class="invalid-feedback">
-                                        Selecciona un municipio
+                                    <?= isset($errors) ? $errors->first('municipio_id') : '' ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <button id="btn-send" type="submit" class="btn btn-primary">Enviar</button>
-                        <a href="<?= BASEPATH . 'usuarios'?>" class="btn btn-secondary">Cancelar</a>
+                        <a onclick="history.back()" class="btn btn-secondary">Volver atras</a>
                     </div>
                 </div>
             </form>

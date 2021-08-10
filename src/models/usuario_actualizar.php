@@ -102,9 +102,8 @@ $sentencia->bindValue(':comprobante_domicilio', $nombre_comprobante_domicilio, P
 $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 $sentencia->execute();
 
-$statusOk = true;
 include('resources/views/usuario.php');
 echo "
 <script>
-    Swal.fire('Usuario guardado', 'Aceptar', 'success')
+    Swal.fire('Usuario actualizado', 'Aceptar', 'success')
 </script>";

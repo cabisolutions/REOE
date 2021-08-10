@@ -4,11 +4,10 @@ require_once './conexion.php';
 
 use Rakit\Validation\Validator;
 
+$accion = 'Editar usuario';
 $errors = null;
-$accion = 'Crear usuario';
 $requerido = 'required';
 if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $accion = 'Editar usuario';
     $requerido = '';
     $sql = 'select 
     u.id, u.direccion_id, u.nombre, u.primer_apellido,
@@ -38,12 +37,19 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
         $_POST['perfil'] = 'Cliente';
         $_POST['estatus'] = 'Activo';
     }
+
+    //$fotosRequerido = 'required|uploaded_file:jpg';
+    $fotosRequerido = 'required|uploaded_file:jpg';
+    if($_GET['id']){
+        $fotosRequerido = 'nullable';
+    }
+    
     // validamos los datos
     $validator = new Validator;
-    $validation = $validator->make($_POST, [
+    $validation = $validator->make($_POST + $_FILES, [
         'nombre' => 'required|min:4|max:45',
         'primer_apellido' => 'required|min:4|max:45',
-        'segundo_apellido' => 'nullable|max:45',
+        'segundo_apellido' => 'required|min:4|max:45',
         'sexo' => 'required|in:Femenino,Masculino',
         'fecha_nacimiento' => 'required|date:Y-m-d|before:yesterday',
         'numero_celular' => 'required|min:10|max:45',
@@ -52,12 +58,16 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
         'contrasena_confirma' => 'nullable|same:contrasena',
         'perfil' => 'required|in:Administrador,Cliente',
         'estatus' => 'required|in:Activo,Inactivo',
+        'identificacion' =>  $fotosRequerido,
+        'comprobante_domicilio' => $fotosRequerido,
         'calle' => 'required|min:2',
         'colonia' => 'required|min:3',
         'numero_exterior' => 'required|min:1',
-        'codigo_postal' => 'required|min:2'
+        'codigo_postal' => 'required|min:2',
+        'estado_id' => 'required',
+        'municipio_id' => 'required'
     ]);
-
+    
     $validation->setMessages([
         'required' => ':attribute es requerido',
         'min' => ':attribute longitud mínima no se cumple',
@@ -69,6 +79,7 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
     //include_once('resources/views/usuario.php');
 }
 if ('GET' == $_SERVER['REQUEST_METHOD']  || $validation->fails()) {
+    $accion = 'Crear usuario';
     include_once('resources/views/usuario.php');
 } else {
     // es post y todo está bien

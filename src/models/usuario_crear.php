@@ -95,5 +95,9 @@ $sentencia->bindValue(':estatus', $_POST['estatus'], PDO::PARAM_STR);
 $sentencia->bindValue(':identificacion', $nombre_identificacion, PDO::PARAM_STR);
 $sentencia->bindValue(':comprobante_domicilio', $nombre_comprobante_domicilio, PDO::PARAM_STR);
 $sentencia->execute();
-echo '<h6>Usuario creado</h6>';
-echo '<div><a href="usuario.php" class="btn btn-secondary btn-sm">usuarios</a></div>';
+
+include('resources/views/usuario.php');
+echo "
+<script>
+    Swal.fire('Usuario creado', 'Aceptar', 'success')
+</script>";
