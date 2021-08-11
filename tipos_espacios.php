@@ -25,20 +25,18 @@
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="bi bi-building"></i> tipos de espacios
-                    </div>
+           
+            <h1>  <i class="bi bi-stack"></i> Tipos de espacios
+                    </div>  </h1>
                     <div class="card-body">
-                        <a class="float-end btn btn-primary btn-sm" href="agregar_tipo_espacio.php" title="Agregar tipo de espacio">
-                            <i class="bi-plus-circle-fill"></i> Añadir un nuevo tipo de espacio
+                        <a class="float-end btn btn-primary " href="<?= BASEPATH . 'agregar_tipo_espacio' ?>" title="Crear tipo de espacio">
+                            <i class="bi-plus-circle-fill"></i> Crear
                         </a>
                         <table class="table-striped table table-hover table-sm">
                             <thead>
                                 <tr>
-                                    <th style="width:80%;">Listado
-                                    </th>
-                                    <th style="width:20%;">&nbsp;</th>
+                                    <th style="width:80%;"><h3>Tipo de espacio</h3></th>
+                                    <th style="width:20%;"><h3> &nbsp; </h3></th>
                                 </tr>
                             </thead>
                             <tbody>

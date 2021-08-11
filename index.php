@@ -75,7 +75,7 @@ Route::add('/espacio', function() {
     include('src/controllers/espacio.php');
 }, ['get','post']);
 
-Route::add('/tiposÑ_espacios', function() {
+Route::add('/tipos_espacios', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
     $usuario = 'Administrador';

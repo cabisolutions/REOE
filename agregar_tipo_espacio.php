@@ -17,32 +17,37 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear espacio</title>
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <title>Crear servicio</title>
+    <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/bootstrap.min.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/estilosGlobales.css' ?>">
 </head>
+
 <body>
-<?php
-    include_once './menu.php';
+    <?php
+    require_once './menu.php';
     ?>
+
     <div class="d-flex mt-5">
         <?php
+        $opcion = 'servicios';
         include_once('menu_admin.php');
         ?>
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <div class="card">
-                <div class="card-header">
-                <i class="bi bi-building"></i> tipo de  espacio
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+
+                    <h1> <i class="bi bi-bag-plus-fill"></i> Crear tipo de espacio
                 </div>
-                <div class="card-body">
-                    <?php
+                </h1>
+
+                <?php
                     if ('POST' == $_SERVER['REQUEST_METHOD']) {
                         // validamos los datos
                         $validator = new Validator;
@@ -61,13 +66,15 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                     if ('GET' == $_SERVER['REQUEST_METHOD'] || $validation->fails()) {
                     ?>
                     <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST">
-                        <div class="mb-3">
-                            <label for="espacio" class="form-label">Agregar un nuevo tipo de espacio</label>
+                    <div class="mb-3">
+                            <label for="servicio" class="form-label">
+                                <h3> Tipo de espacio </h3>
+                            </label>
                             <input type="text" name="espacio" class="form-control form-control-sm<?php echo isset($errors) && $errors->has('espacio') ? ' is-invalid' : 'is-valid' ?>" id="espacio" aria-describedby="espacioHelp" value="<?php echo $_POST['espacio'] ?? '' ?>">
                             <div id="espacioaHelp" class="invalid-feedback"><?php echo isset($errors) && $errors->first('espacio') ?></div>
                         </div>
-                        <button type="submit" class="btn btn-outline-primary btn-sm"> <i class="bi bi-plus-lg"></i> Cargar espacio</button>    
-                      <a href="tipos_espacios.php" class="btn btn-secondary btn-sm">cancelar</a>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <a href="<?= BASEPATH . 'tipos_espacios' ?>" class="btn btn-secondary ">Cancelar</a>
                     </form>
                     <?php
                     } else {
@@ -99,6 +106,8 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
         <div class="col-3"></div>
     </div>
 </div>
-<script src="js/validacion_bootstrap.js"></script>
-</body>
+<script src="<?= BASEPATH . 'resources/js/bootstrap.min.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/validacion_bootstrap.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/jquery-3.6.0.min.js' ?>"></script>
+    <script src="<?= BASEPATH . 'resources/js/espacio.js' ?>"></script></body>
 </html>
