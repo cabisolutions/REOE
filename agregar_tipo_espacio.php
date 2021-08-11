@@ -26,6 +26,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/bootstrap.min.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/estilosGlobales.css' ?>">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -35,18 +36,12 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
 
     <div class="d-flex mt-5">
         <?php
-        $opcion = 'servicios';
+        $opcion = 'tipo_espacios';
         include_once('menu_admin.php');
         ?>
-        <div class="container mt-3">
+        <div class="container mt-4">
             <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
-
-                    <h1> <i class="bi bi-bag-plus-fill"></i> Crear tipo de espacio
-                </div>
-                </h1>
-
+                <h1> <i class="bi bi-bag-plus-fill"></i> Crear tipo de espacio</h1>
                 <?php
                     if ('POST' == $_SERVER['REQUEST_METHOD']) {
                         // validamos los datos
