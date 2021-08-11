@@ -20,6 +20,7 @@ if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['correo_electronico']) 
         $segment = $session->getSegment('renta_espacios');
         $segment->set('id', $usuario['id']);
         $segment->set('nombre', $usuario['nombre'] . ' ' . $usuario['primer_apellido'] . ' ' . $usuario['segundo_apellido']);
+        $segment->set('nombre1', $usuario['nombre']);
         $segment->set('correo_electronico', $usuario['correo_electronico']);
         $segment->set('perfil', $usuario['perfil']);
         $segment->set('estatus', $usuario['estatus']);

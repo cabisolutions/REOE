@@ -72,11 +72,8 @@ Route::add('/espacio', function() {
     include('src/controllers/espacio.php');
 }, ['get','post']);
 
-<<<<<<< HEAD
-Route::add('/tipos_espacios', function() {
-=======
-Route::add('/tipo_espacios', function() {
->>>>>>> 3174eb4dadd4128b9856adde250488d0221545ab
+
+    Route::add('/tipo_espacios', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
     $usuario = 'Administrador';
@@ -104,6 +101,27 @@ Route::add('/servicio', function() {
     include('servicio.php');
     $usuario = '';
 }, ['get','post']);
+
+Route::add('/renta', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
+    include('renta.php');
+    $usuario = '';
+}, ['get','post']);
+
+Route::add('/agregar_tipo_espacio', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
+    include('agregar_tipo_espacio.php');
+    $usuario = '';
+}, ['get','post']);
+
+Route::add('/tipos_espacios', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
+    $usuario = 'Administrador';
+    include('tipos_espacios.php');
+});
 
 Route::add('/usuarios', function() {
     $usuario = 'Administrador';

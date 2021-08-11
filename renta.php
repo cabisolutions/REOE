@@ -199,7 +199,7 @@ fin;
                             $sentencia->bindValue(':estatus',$_POST['estatus'],PDO::PARAM_STR);
                             $sentencia->execute();
                             echo '<h6>Gracias por su eleccion</h6>';
-                            echo '<div><a href="catalogo.php" class="btn btn-secondary btn-sm">catalogo</a></div>';
+                            echo '<div><a href="catalogo" class="btn btn-secondary btn-sm">catalogo</a></div>';
                         }
                     }
                     ?>
