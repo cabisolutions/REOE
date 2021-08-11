@@ -113,6 +113,11 @@ Route::add('/usuario', function() {
     include('src/controllers/usuario.php');
 }, ['get','post']);
 
+Route::add('/renta', function() {
+    include('checa_sesion.php');
+    include('renta.php');
+}, ['get','post']);
+
 Route::add('/olvide_contrasena', function() {
     include('checa_sesion.php');
     include('src/controllers/contrasena_olvidada.php');

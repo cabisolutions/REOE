@@ -34,5 +34,5 @@ $sql = "
         e.nombre like :busqueda {$consulta_tipo_espacio} ) T";
 
 $sentencia = $conexion->prepare($sql);
-$sentencia->bindValue(':busqueda', '%' . $_GET['busqueda'] . '%', PDO::PARAM_INT);
+$sentencia->bindValue(':busqueda', '%' . $_GET['busqueda'] . '%', PDO::PARAM_STR);
 $sentencia->execute();
