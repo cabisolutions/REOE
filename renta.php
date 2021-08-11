@@ -94,7 +94,6 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                                 <option value="Terminada">Terminada</option>
                             </select>
                         </div>
-<<<<<<< HEAD
                     </div>
 
                     <button type="submit" class="btn btn-primary">Enviar</button>
@@ -114,68 +113,6 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
             $usuario_id =  1;
             $espacio_id = 5;
             //$espacio_id = ($_GET['id']);
-=======
-                        
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </form>
-                   
-   
-                    <?php 
-
-
-
-                    } else {
-                        // es post y todo está bien
-                        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-                            
-                            //creamos
-                            $usuario_id =  $segment->get('id');
-                            $espacio_id=($_GET['id']);
-                           
-                            
- 
-                            $sql = <<<fin
-                                          
-insert into rentas (
-    usuario_id
-    , espacio_id
-    , fecha_renta
-    , fecha_entrega
-    , fecha_devolucion
-    , costo
-    , costo_penalizacion
-    , estatus
-    
-) values (
-    :usuario_id
-    , :espacio_id 
-    , :fecha_renta
-    , :fecha_entrega
-    , :fecha_devolucion
-    , :costo
-    , :costo_penalizacion
-    , :estatus
-)
-fin;
-                           
-                            $sentencia = $conexion->prepare($sql);
-                            $sentencia->bindValue(':usuario_id',$usuario_id,PDO::PARAM_STR);
-                            $sentencia->bindValue(':espacio_id',$espacio_id,PDO::PARAM_STR);
-                            $sentencia->bindValue(':fecha_renta',$_POST['fecha_renta'],PDO::PARAM_STR);
-                            $sentencia->bindValue(':fecha_entrega',$_POST['fecha_entrega'],PDO::PARAM_STR);
-                            $sentencia->bindValue(':fecha_devolucion',$_POST['fecha_devolucion'],PDO::PARAM_STR);
-                            $sentencia->bindValue(':costo',$_POST['costo'],PDO::PARAM_STR);
-                            $sentencia->bindValue(':costo_penalizacion',$_POST['costo_penalizacion'],PDO::PARAM_STR);
-                            $sentencia->bindValue(':estatus',$_POST['estatus'],PDO::PARAM_STR);
-                            $sentencia->execute();
-                            echo '<h6>Gracias por su eleccion</h6>';
-                            echo '<div><a href="catalogo" class="btn btn-secondary btn-sm">catalogo</a></div>';
-                        }
-                    }
-                    ?>
-            
->>>>>>> ce66bb055fecf09373fec8581c86d0d9026a9d4f
-
 
             //print($_POST['estatus']);
 
