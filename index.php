@@ -101,6 +101,27 @@ Route::add('/servicio', function() {
     $usuario = '';
 }, ['get','post']);
 
+Route::add('/renta', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
+    include('renta.php');
+    $usuario = '';
+}, ['get','post']);
+
+Route::add('/agregar_tipo_espacio', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
+    include('agregar_tipo_espacio.php');
+    $usuario = '';
+}, ['get','post']);
+
+Route::add('/tipos_espacios', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
+    $usuario = 'Administrador';
+    include('tipos_espacios.php');
+});
+
 Route::add('/usuarios', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
