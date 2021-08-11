@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/bootstrap.min.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/estilosGlobales.css' ?>">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -23,50 +24,49 @@
         $opcion = 'servicios';
         include_once('menu_admin.php');
         ?>
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-           
-            <h1>  <i class="bi bi-stack"></i> Servicios
-                    </div>  </h1>
-                    <div class="card-body">
-                        <a class="float-end btn btn-primary " href="<?= BASEPATH . 'servicio' ?>" title="Crear servicio">
-                            <i class="bi-plus-circle-fill"></i> Crear
-                        </a>
-                        <table class="table-striped table table-hover table-sm">
-                            <thead>
-                                <tr>
-                                    <th style="width:80%;"><h3>Servicio</h3></th>
-                                    <th style="width:20%;"><h3> &nbsp; </h3></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                require_once './conexion.php';
-                                $sql = 'select id, servicio from servicios order by servicio asc';
-                                $sentencia = $conexion->prepare($sql);
-                                $sentencia->execute();
-                                foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $servicio) {
-                                    $servicio['servicio'] = htmlentities($servicio['servicio']);
-                                   ?>
+        <div class="container mt-4">
+            <div>
+                <h1><i class="bi bi-stack"></i> Servicios</h1>
+                <div>
+                    <table class="table-striped table table-hover table-sm">
+                        <thead>
                             <tr>
-                                <td><?= $servicio['servicio']?></td>
-                                <td>
-                                    <a class="btn btn-primary btn-sm" href="<?= BASEPATH . 'servicio?id=' . $servicio['id']?>" title="Editar servicio">
-                                        <i class="bi-pencil-square"></i>Editar
+                                <th style="width:80%;">
+                                    Servicio
+                                </th>
+                                <th style="width:20%;">
+                                    <a class="float-end btn btn-primary" href="<?= BASEPATH . 'servicio' ?>" title="Crear servicio">
+                                        <i class="bi-plus-circle-fill"></i> Añadir
                                     </a>
-                                </td>
+                                </th>
                             </tr>
-<?php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
+                        </thead>
+                        <tbody>
+                            <?php
+                            require_once './conexion.php';
+                            $sql = 'select id, servicio from servicios order by servicio asc';
+                            $sentencia = $conexion->prepare($sql);
+                            $sentencia->execute();
+                            foreach ($sentencia->fetchAll(PDO::FETCH_ASSOC) as $servicio) {
+                                $servicio['servicio'] = htmlentities($servicio['servicio']);
+                            ?>
+                                <tr>
+                                    <td><?= $servicio['servicio'] ?></td>
+                                    <td>
+                                        <a class="float-end btn btn-sm btn-outline-primary" href="<?= BASEPATH . 'servicio?id=' . $servicio['id'] ?>" title="Editar servicio">
+                                            <i class="bi-pencil-square"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <script src="<?= BASEPATH . 'resources/js/bootstrap.min.js' ?>"></script>
     <script src="<?= BASEPATH . 'resources/js/validacion_bootstrap.js' ?>"></script>

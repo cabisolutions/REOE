@@ -83,8 +83,8 @@ $numero_espacios_disponibles = $resultado['COUNT(id)'];
         $opcion = 'resumen';
         include_once('menu_admin.php');
         ?>
-        <div class="container pt-3">
-            <h1>Resumen</h1>
+        <div class="container mt-4">
+            <h1><i class="bi bi-info-circle-fill"></i> Resumen</h1>
             <div class="row">
                 <?php
                 // tarjeta de infoamción con total de usuarios

@@ -20,7 +20,7 @@ $sentencia->bindValue(':colonia', $_POST['colonia'], PDO::PARAM_STR);
 $sentencia->bindValue(':numero_exterior', $_POST['numero_exterior'], PDO::PARAM_STR);
 $sentencia->bindValue(':numero_interior', $_POST['numero_interior'], PDO::PARAM_STR);
 $sentencia->bindValue(':codigo_postal', $_POST['codigo_postal'], PDO::PARAM_STR);
-$sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+$sentencia->bindValue(':id', $_POST['direccion_id'], PDO::PARAM_INT);
 $sentencia->execute();
 
 
@@ -69,6 +69,7 @@ else {
     $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $sentencia->execute();
     $nombre_identificacion= $sentencia->fetchColumn(0);
+    $_POST['identificacion'] = $nombre_identificacion;
 }
 if (is_uploaded_file($_FILES['comprobante_domicilio']['tmp_name'])) {
     $nombre_comprobante_domicilio = uniqid('cd-', true) . '.jpg'; 
@@ -79,6 +80,7 @@ else {
     $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $sentencia->execute();
     $nombre_comprobante_domicilio = $sentencia->fetchColumn(0);
+    $_POST['comprobante_domicilio'] = $nombre_comprobante_domicilio;
 }
 
 
@@ -99,5 +101,9 @@ $sentencia->bindValue(':identificacion', $nombre_identificacion, PDO::PARAM_STR)
 $sentencia->bindValue(':comprobante_domicilio', $nombre_comprobante_domicilio, PDO::PARAM_STR);
 $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 $sentencia->execute();
-echo '<h6>Usuario actualizado</h6>';
-echo '<div><a href="usuarios.php" class="btn btn-secondary btn-sm">usuarios</a></div>';
+
+include('resources/views/usuario.php');
+echo "
+<script>
+    Swal.fire('Usuario actualizado', 'Aceptar', 'success')
+</script>";

@@ -14,11 +14,14 @@ $(function () {
     });
 });
 
+attRequired('tipo_espacio[]');
+attRequired('disponible_para[]');
 
 function attRequired(name) {
+
     var inputs = document.getElementsByName(name)    
     
-    if (contieneChecked(inputs,true)) {
+    if (containsChecked(inputs,true)) {
         inputs.forEach(element => {
             element.required = false            
         });
@@ -30,13 +33,31 @@ function attRequired(name) {
     }
 }
 
-function contieneChecked(a, obj) {
+function containsChecked(a, obj) {
     var i = a.length;
     while (i--) {
         if (a[i].checked === obj) {
-            console.log('mmm')
             return true;
         }
     }
     return false;
+}
+
+document.getElementById("btn-send").addEventListener("click", function(event){
+    event.preventDefault()
+    updateConfirm()
+});
+
+function updateConfirm(){
+    Swal.fire({
+        title: 'Confirma para continuar',
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: `Continuar`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          document.getElementById('formulario-espacio').submit();
+        }
+      })
 }
