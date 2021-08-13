@@ -3,7 +3,7 @@ require_once('vendor/autoload.php');
 // ¿se intenta iniciar sesión y los parámetros se han proporcionado?
 if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['correo_electronico']) && isset($_POST['contrasena'])) {
     require_once './conexion.php';
-    $sql = 'select id, nombre, primer_apellido, segundo_apellido, correo_electronico, perfil, estatus, contrasena from usuarios where correo_electronico = :correo_electronico and estatus = \'Activo\'';
+    $sql = 'select id, nombre, primer_apellido, segundo_apellido, correo_electronico, perfil, contrasena from vista_usuarios where correo_electronico = :correo_electronico';
     $sentencia = $conexion->prepare($sql);
     $sentencia->bindValue(':correo_electronico', $_POST['correo_electronico'], PDO::PARAM_STR);
     $sentencia->execute();
