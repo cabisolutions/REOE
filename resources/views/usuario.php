@@ -132,9 +132,7 @@ function classValid($name) {
                                 ?>
                                 <div class="mb-3">
                                     <label for="contrasena" class="form-label">Contraseña</label>
-                                    <input type="password" name="contrasena" <?php
-                                                                                
-                                                                                ?> class="form-control form-control-sm" id="contrasena">
+                                    <input type="password" name="contrasena" class="form-control form-control-sm" id="contrasena">
                                     <div class="invalid-feedback">
                                         Escribe una contraseña
                                     </div>
