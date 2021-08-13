@@ -3,12 +3,10 @@
 
 eliminartipo($_GET['id']);
 function eliminartipo($id)
-{
-  require_once './conexion.php';
-  $sentencia = "DELETE FROM tipos_espacio WHERE id='" . $id . "' ";
-  $conexion->query($sentencia) or die("Error al eliminar" );
-}
-
+  {  
+    require './conexion.php';
+    $conexion->query("CALL tipo($id)") or die ("Error al eliminar");
+  }
 
 
 ?>
