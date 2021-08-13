@@ -52,12 +52,6 @@ Route::add('/rentas', function() {
     $usuario = '';
 });
 
-Route::add('/renta', function() {
-    include('checa_sesion.php');
-    include('renta.php');
-    $usuario = '';
-}, ['get','post']);
-
 Route::add('/espacios', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
@@ -101,13 +95,6 @@ Route::add('/servicio', function() {
     $usuario = '';
 }, ['get','post']);
 
-Route::add('/renta', function() {
-    $usuario = 'Administrador';
-    include('checa_sesion.php');
-    include('renta.php');
-    $usuario = '';
-}, ['get','post']);
-
 Route::add('/agregar_tipo_espacio', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
@@ -132,11 +119,6 @@ Route::add('/usuarios', function() {
 Route::add('/usuario', function() {
     include('checa_sesion.php');
     include('src/controllers/usuario.php');
-}, ['get','post']);
-
-Route::add('/renta', function() {
-    include('checa_sesion.php');
-    include('renta.php');
 }, ['get','post']);
 
 Route::add('/olvide_contrasena', function() {

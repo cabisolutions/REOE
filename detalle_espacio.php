@@ -95,6 +95,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['espacio']) && is_numeric
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/estilosGlobales.css' ?>">
     <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/detalle_espacio.css' ?>">
+    <link rel="stylesheet" href="<?= BASEPATH . 'resources/css/renta.css' ?>">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 

@@ -1,5 +1,5 @@
 <?php
-require_once './conexion.php';
+//require_once './conexion.php';
 
 eliminartipo($_GET['id']);
 function eliminartipo($id)

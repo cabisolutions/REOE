@@ -1,6 +1,7 @@
 <?php
 require('vendor/autoload.php');
 require_once './conexion.php';
+include('checa_sesion.php');
 
 use Rakit\Validation\Validator;
 
@@ -10,18 +11,14 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
     $sentencia->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $sentencia->execute();
     $id = $sentencia->fetch(PDO::FETCH_ASSOC);
-    if (null == $id) {
-        require_once './error-no-encontrado.php';
-        exit;
-    }
     $_POST = array_merge($_POST, $id);
 }
 
 ?>
-<link rel="stylesheet" href="<?= BASEPATH . 'resources/css/renta.css' ?>">
 <div class="card">
     <div class="card-body">
         <?php
+        echo "ok";
         if ('POST' == $_SERVER['REQUEST_METHOD']) {
             // validamos los datos
             $validator = new Validator;
@@ -77,7 +74,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                             </div>
                             <label for="costo" class="form-label">Costo total</label>
                             MXN $
-                            <input type="number" required class="form-control form-control-sm disable" id="costo" value="<?php echo htmlentities($_POST['costo_renta_dia'] ?? '') ?>">
+                            <input type="number" name="costo" required class="form-control form-control-sm disable" id="costo" value="<?php echo htmlentities($_POST['costo_renta_dia'] ?? '') ?>">
                         </div>
                         <input type="number" name="costo_penalizacion" class="form-control form-control-sm d-none" id="costo_penalizacion" value="0.0">
                     </div>
@@ -123,7 +120,6 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                 , espacio_id
                 , fecha_renta
                 , fecha_entrega
-                , fecha_devolucion
                 , costo
                 , costo_penalizacion
                 , estatus
@@ -133,7 +129,6 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                 , :espacio_id 
                 , :fecha_renta
                 , :fecha_entrega
-                , :fecha_devolucion
                 , :costo
                 , :costo_penalizacion
                 , :estatus
@@ -145,7 +140,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
             $sentencia->bindValue(':espacio_id', $espacio_id, PDO::PARAM_STR);
             $sentencia->bindValue(':fecha_renta', $_POST['fecha_renta'], PDO::PARAM_STR);
             $sentencia->bindValue(':fecha_entrega', $_POST['fecha_entrega'], PDO::PARAM_STR);
-            $sentencia->bindValue(':fecha_devolucion', $_POST['fecha_devolucion'], PDO::PARAM_STR);
+            //$sentencia->bindValue(':fecha_devolucion', $_POST['fecha_devolucion'], PDO::PARAM_STR);
             $sentencia->bindValue(':costo', $_POST['costo'] + 0.0, PDO::PARAM_STR);
             $sentencia->bindValue(':costo_penalizacion', $_POST['costo_penalizacion'] + 0.0, PDO::PARAM_STR);
             $sentencia->bindValue(':estatus', $_POST['estatus'], PDO::PARAM_STR);
@@ -172,5 +167,5 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
         ?>
     </div>
 </div>
-</div>
+    </div>
 <script src="<?= BASEPATH . 'resources/js/renta.js' ?>"></script>
