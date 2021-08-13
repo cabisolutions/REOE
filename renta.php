@@ -18,7 +18,6 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
 <div class="card">
     <div class="card-body">
         <?php
-        echo "ok";
         if ('POST' == $_SERVER['REQUEST_METHOD']) {
             // validamos los datos
             $validator = new Validator;
@@ -38,7 +37,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
             // then validate
             $validation->validate();
             $errors = $validation->errors();
-            print_r($errors);
+            //print_r($errors);
         }
         if ('GET' == $_SERVER['REQUEST_METHOD'] || $validation->fails()) {
             //$username = $segment->get('nombre');
@@ -80,12 +79,12 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                     </div>
 
 
-                    <div class="mb-3">
+                    <div class="mb-3 d-none">
                         <label for="estatus1" class="form-label">Estatus</label>
                         <div>
                             <select class="form-select" name="estatus" aria-label="Default select example">
-                                <option selected>Selecciona una opción</option>
-                                <option value="Reserva">Reserva</option>
+                                <option>Selecciona una opción</option>
+                                <option selected value="Reserva">Reserva</option>
                                 <option value="Activa">Activa</option>
                                 <option value="Cancelada">Cancelada</option>
                                 <option value="Terminada">Terminada</option>
@@ -100,7 +99,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
             else {
                 ?>
                 <h4>Inicia sesión para rentar</h4>
-                <a class="btn btn-primary" href="<?= BASEPATH . 'sesion' ?>">Iniciar</a>
+                <a class="btn btn-primary" href="sesion">Iniciar</a>
                 <?php
             }
         } else {
@@ -147,7 +146,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
             $sentencia->execute();
             
             echo "
-            <script src='" . BASEPATH . 'resources/js/sweetalert2.all.min.js' . "'></script>
+            <script src='" . 'resources/js/sweetalert2.all.min.js' . "'></script>
             <script>
                 Swal.fire({
                     icon: 'success',
@@ -157,7 +156,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD'] && isset($_GET['id']) && is_numeric($_GE
                     confirmButtonText: `Continuar`
                   }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href = '" . BASEPATH . "detalle_espacio?espacio=" . $usuario_id . "'
+                        location.href = '". "detalle_espacio?espacio=" . $usuario_id . "'
                         location.assign()
                     }
                   })</script>

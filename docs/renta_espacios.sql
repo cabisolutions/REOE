@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 11, 2021 at 01:21 AM
+-- Generation Time: Aug 13, 2021 at 07:07 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -21,6 +21,70 @@ SET time_zone = "+00:00";
 -- Database: `renta_espacios`
 --
 
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `tipo` (IN `_id` INT)  BEGIN
+        SET FOREIGN_KEY_CHECKS=0;
+        DELETE FROM tipos_espacio  WHERE id=_id;
+        SET FOREIGN_KEY_CHECKS=1;
+    END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `actualizacion_direcciones`
+--
+
+CREATE TABLE `actualizacion_direcciones` (
+  `id` int(11) NOT NULL,
+  `id_direccion` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `estado_antes` int(11) NOT NULL,
+  `estado_nuevo` int(11) NOT NULL,
+  `municipio_antes` int(11) NOT NULL,
+  `municipio_nuevo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `actualizacion_direcciones`
+--
+
+INSERT INTO `actualizacion_direcciones` (`id`, `id_direccion`, `fecha`, `estado_antes`, `estado_nuevo`, `municipio_antes`, `municipio_nuevo`) VALUES
+(1, 0, '2021-08-13 11:35:01', 15, 15, 762, 781);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contrasena_olvidada`
+--
+
+CREATE TABLE `contrasena_olvidada` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `correo_electronico` varchar(200) NOT NULL,
+  `temp_key` varchar(200) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contrasena_olvidada`
+--
+
+INSERT INTO `contrasena_olvidada` (`id`, `correo_electronico`, `temp_key`, `created`) VALUES
+(8, 'angelfc.contact@gmail.com', '2758e3f49ddf82faa5cfb79c3d66f4b9', '2021-08-05 23:30:02'),
+(9, 'angelfc.contact@gmail.com', '2fb89620f4b33cfd8b7f4aa4d19df973', '2021-08-05 23:32:15'),
+(10, 'angelfc.contact@gmail.com', '836fa2b109bb604c04f589dded2681c1', '2021-08-05 23:33:42'),
+(11, 'angelfc.contact@gmail.com', '3fe2f3195a6b8d07a7388ae88b415be5', '2021-08-05 23:34:51'),
+(12, 'angelfc.contact@gmail.com', '9fa6659381b786f1325f3602cb856e2c', '2021-08-05 23:34:55'),
+(13, 'angelfc.contact@gmail.com', '47b331b02fab3a8dbf47ef511d210041', '2021-08-05 23:35:04'),
+(14, 'angelfc.contact@gmail.com', '8ccbbbb5209ede35df0359463e414e7f', '2021-08-05 23:36:32'),
+(15, 'angelfc.contact@gmail.com', '33a0aa68643a6b08fe88a91c43f7e855', '2021-08-05 23:37:15'),
+(16, 'angelfc.contact@gmail.com', 'b1a820a92562c4790fc290e7bbf2cd22', '2021-08-05 23:37:55'),
+(17, 'angelfc.contact@gmail.com', '25051f7960511f558a9715576f626453', '2021-08-05 23:39:25');
+
 -- --------------------------------------------------------
 
 --
@@ -35,15 +99,66 @@ CREATE TABLE `direcciones` (
   `colonia` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `numero_exterior` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `numero_interior` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `codigo_postal` varchar(10) COLLATE utf8_spanish_ci NOT NULL
+  `codigo_postal` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `mapa` text COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Dumping data for table `direcciones`
 --
 
-INSERT INTO `direcciones` (`id`, `estado_id`, `municipio_id`, `calle`, `colonia`, `numero_exterior`, `numero_interior`, `codigo_postal`) VALUES
-(1, 15, 723, 'Benito Juarez', 'Puente San Pedro', '207', '', '52084');
+INSERT INTO `direcciones` (`id`, `estado_id`, `municipio_id`, `calle`, `colonia`, `numero_exterior`, `numero_interior`, `codigo_postal`, `mapa`) VALUES
+(1, 15, 723, 'Benito Juarez', 'Puente San Pedro', '207', '', '52084', NULL),
+(2, 2, 16, 'Los martiress', 'Temoaya', 'SNsss', '', '52083', NULL),
+(39, 2, 13, 'Benito Juarez', 'Puente San Pedro', '207', '0', '52080', NULL),
+(40, 7, 230, 'Independencia', 'Puente San Pedro', '207', '10', '52084', NULL),
+(41, 7, 230, 'Independencia', 'Puente San Pedro', '207', '10', '52084', NULL),
+(42, 7, 230, 'Independencia', 'Puente San Pedro', '207', '10', '52084', NULL),
+(43, 7, 230, 'Independencia', 'Puente San Pedro', '207', '10', '52084', NULL),
+(44, 7, 230, 'Independencia', 'Puente San Pedro', '207', '10', '52084', NULL),
+(45, 7, 230, 'Independencia', 'Puente San Pedro', '207', '10', '52084', NULL),
+(46, 7, 230, 'Independencia', 'Puente San Pedro', '207', '10', '52084', NULL),
+(47, 7, 230, 'Independencia', 'Puente San Pedro', '207', '10', '52084', NULL),
+(48, 15, 781, 'Benito Juarez', 'Puente San Pedross', '302', '1', '520803', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15051.280211308565!2d-99.57887745!3d19.42017945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2748279208da1%3A0x6164e4684e079b64!2sHacienda%20San%20Jos%C3%A9%20de%20Buenavista%20el%20Grande!5e0!3m2!1ses-419!2smx!4v1628618394017!5m2!1ses-419!2smx\" width=\"100%\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
+(49, 15, 666, 'El rio', 'Santa Maria', '20', '01', '51080', NULL),
+(50, 15, 666, 'El rio', 'Santa Maria', '20', '01', '51080', NULL),
+(51, 15, 666, 'El rio', 'Santa Maria', '20', '01', '51080', NULL),
+(52, 15, 666, 'El rio', 'Santa Maria', '20', '01', '51080', NULL),
+(53, 15, 666, 'El rio', 'Santa Maria', '20', '01', '51080', NULL),
+(54, 15, 666, 'El rio', 'Santa Maria', '20', '01', '51080', NULL),
+(55, 15, 666, 'El rio', 'Santa Maria', '20', '01', '51080', NULL),
+(56, 15, 666, 'El rio', 'Santa Maria', '20', '01', '51080', NULL),
+(57, 15, 666, 'El rio', 'Santa Maria', '20', '01', '51080', NULL),
+(58, 15, 666, 'El rio', 'Santa Maria', '20', '01', '51080', NULL),
+(59, 15, 682, 'El rio', 'Santa Maria', '20', '01', '51091', NULL),
+(60, 3, 21, 'independencia', 'Temoaya', '100', '', '51080', NULL),
+(61, 5, 38, 'La manzana', 'San Juan', '308', '03', '56898', NULL),
+(62, 2, 16, 'Benito Juarezs', 'San Juan', '30', '', '520803', '');
+
+--
+-- Triggers `direcciones`
+--
+DELIMITER $$
+CREATE TRIGGER `modificar_direccion` BEFORE UPDATE ON `direcciones` FOR EACH ROW BEGIN 
+INSERT INTO actualizacion_direcciones(
+id_direccion, 
+fecha, 
+estado_antes,
+estado_nuevo,
+municipio_antes,
+municipio_nuevo
+)
+VALUES(
+id,
+NOW(),
+old.estado_id,
+new.estado_id,
+old.municipio_id,
+new.municipio_id
+); 
+end
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -55,13 +170,23 @@ CREATE TABLE `espacios` (
   `id` int(10) UNSIGNED NOT NULL,
   `direccion_id` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `descripcion` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` longtext COLLATE utf8_spanish_ci NOT NULL,
   `metros_cuadrados` int(10) NOT NULL,
   `disponible_para` set('Renta','Intercambio') COLLATE utf8_spanish_ci NOT NULL,
   `estatus` enum('Disponible','Rentado','Fuera de servicio') COLLATE utf8_spanish_ci NOT NULL,
   `costo` decimal(10,2) UNSIGNED NOT NULL,
   `costo_renta_dia` decimal(10,2) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `espacios`
+--
+
+INSERT INTO `espacios` (`id`, `direccion_id`, `nombre`, `descripcion`, `metros_cuadrados`, `disponible_para`, `estatus`, `costo`, `costo_renta_dia`) VALUES
+(1, 48, 'El portón', 'El mejor lugar del estado de mx', 112, 'Renta,Intercambio', 'Disponible', '300000.00', '5000.00'),
+(5, 59, 'Carpa Becerril', 'Elegante lugar para tu evento', 350, 'Intercambio', 'Disponible', '190000.00', '4000.00'),
+(6, 61, 'Kame house', 'La famosa casa del maestro roshi', 30, 'Renta,Intercambio', 'Disponible', '100000.00', '4000.00'),
+(7, 62, 'Kiosco', 'Disfruta la vibra de un pueblo mágico ', 40, 'Renta,Intercambio', 'Fuera de servicio', '4567.00', '3470.00');
 
 -- --------------------------------------------------------
 
@@ -84,6 +209,17 @@ CREATE TABLE `espacios_tipo_espacio` (
   `espacio_id` int(10) UNSIGNED NOT NULL,
   `tipo_espacio_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `espacios_tipo_espacio`
+--
+
+INSERT INTO `espacios_tipo_espacio` (`espacio_id`, `tipo_espacio_id`) VALUES
+(5, 3),
+(6, 5),
+(6, 4),
+(7, 5),
+(1, 4);
 
 -- --------------------------------------------------------
 
@@ -143,9 +279,34 @@ INSERT INTO `estados` (`id`, `estado`) VALUES
 CREATE TABLE `fotografias` (
   `id` int(10) UNSIGNED NOT NULL,
   `espacio_id` int(10) UNSIGNED NOT NULL,
-  `fotografia` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `titulo` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+  `fotografia` varchar(45) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `fotografias`
+--
+
+INSERT INTO `fotografias` (`id`, `espacio_id`, `fotografia`) VALUES
+(1, 1, 'ei-610c9a488e7e79.63230688.jpg'),
+(2, 1, 'ei-610c9a488f1aa8.82088516.jpg'),
+(3, 1, 'ei-610c9a488f6909.70437769.jpg'),
+(4, 1, 'ei-610c9a488ff873.65421924.jpg'),
+(5, 5, 'ei-610e12de1e9b24.61201361.jpg'),
+(6, 5, 'ei-610e12de1f4dc4.29897512.jpg'),
+(7, 5, 'ei-610e12de200344.46213380.jpg'),
+(8, 5, 'ei-610e12de206a17.68324742.jpg'),
+(31, 1, 'ei-6111da21227e41.46563097.jpg'),
+(32, 6, 'ei-61120434d880a0.73159574.jpg'),
+(33, 6, 'ei-61120434d8fb18.22418570.jpg'),
+(34, 6, 'ei-61120434d93e30.57264470.jpg'),
+(35, 6, 'ei-61120434d97d77.22231582.jpg'),
+(36, 7, 'ei-61120ff2789eb6.05015553.jpg'),
+(37, 7, 'ei-61120ff2797fa4.08162085.jpg'),
+(38, 7, 'ei-61120ff27a2d80.16412482.jpg'),
+(39, 7, 'ei-61120ff27a7af5.95135219.jpg'),
+(40, 1, 'ei-6113cb22ed5413.72812423.jpg'),
+(41, 1, 'ei-6113cb22f21912.93959843.jpg'),
+(42, 7, 'ei-6113cb631fed40.49106200.jpg');
 
 -- --------------------------------------------------------
 
@@ -2635,12 +2796,32 @@ CREATE TABLE `rentas` (
   `usuario_id` int(10) UNSIGNED NOT NULL,
   `espacio_id` int(10) UNSIGNED NOT NULL,
   `fecha_renta` datetime NOT NULL,
-  `fecha_entrega` datetime NOT NULL,
-  `fecha_devolucion` datetime NOT NULL,
+  `fecha_entrega` datetime DEFAULT NULL,
+  `fecha_devolucion` datetime DEFAULT NULL,
   `costo` decimal(10,2) NOT NULL,
-  `costo_penalizacion` decimal(10,2) NOT NULL,
-  `estatus` enum('Procede','Cancelada') COLLATE utf8_spanish_ci NOT NULL
+  `costo_penalizacion` decimal(10,2) DEFAULT NULL,
+  `estatus` set('Reserva','Activa','Terminada','Cancelada') COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `rentas`
+--
+
+INSERT INTO `rentas` (`id`, `usuario_id`, `espacio_id`, `fecha_renta`, `fecha_entrega`, `fecha_devolucion`, `costo`, `costo_penalizacion`, `estatus`) VALUES
+(1, 1, 5, '2021-08-11 00:00:00', '2021-08-13 00:00:00', '2021-08-14 00:00:00', '100000.00', '12.00', 'Reserva'),
+(2, 1, 5, '2021-08-11 00:00:00', '2021-08-13 00:00:00', '2021-08-13 00:00:00', '300000.00', '0.00', 'Reserva'),
+(3, 1, 5, '2021-08-13 00:00:00', '2021-08-14 00:00:00', '2021-08-13 00:00:00', '300000.00', '0.00', 'Activa'),
+(4, 1, 5, '2021-08-13 00:00:00', '2021-08-14 00:00:00', '2021-08-13 00:00:00', '300000.00', '0.00', 'Activa'),
+(5, 1, 5, '2021-08-11 00:00:00', '2021-08-12 00:00:00', '2021-08-13 00:00:00', '300000.00', '0.00', 'Cancelada'),
+(6, 1, 5, '2021-08-11 00:00:00', '2021-08-12 00:00:00', '2021-08-13 00:00:00', '300000.00', '0.00', 'Cancelada'),
+(7, 1, 5, '2021-08-11 00:00:00', '2021-08-12 00:00:00', '2021-08-13 00:00:00', '300000.00', '0.00', 'Cancelada'),
+(8, 1, 5, '2021-08-12 00:00:00', '2021-08-14 00:00:00', '2021-08-14 00:00:00', '300000.00', '0.00', 'Reserva'),
+(9, 1, 5, '2021-08-12 00:00:00', '2021-08-14 00:00:00', '2021-08-14 00:00:00', '300000.00', '0.00', 'Reserva'),
+(10, 1, 5, '2021-08-12 00:00:00', '2021-08-14 00:00:00', '2021-08-14 00:00:00', '300000.00', '0.00', 'Reserva'),
+(11, 1, 5, '2021-08-12 00:00:00', '2021-08-14 00:00:00', '2021-08-14 00:00:00', '300000.00', '0.00', 'Reserva'),
+(12, 1, 5, '2021-08-11 00:00:00', '2021-08-13 00:00:00', NULL, '10000.00', '0.00', 'Reserva'),
+(13, 1, 5, '2021-08-11 00:00:00', '2021-08-13 00:00:00', NULL, '10000.00', '0.00', 'Activa'),
+(14, 1, 5, '2021-08-12 00:00:00', '2021-08-14 00:00:00', NULL, '10000.00', '0.00', 'Reserva');
 
 -- --------------------------------------------------------
 
@@ -2650,8 +2831,20 @@ CREATE TABLE `rentas` (
 
 CREATE TABLE `servicios` (
   `id` int(11) NOT NULL,
-  `servicio` enum('Luz','Electricidad','Agua','Drenaje','Internet') COLLATE utf8_spanish_ci NOT NULL
+  `servicio` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `servicios`
+--
+
+INSERT INTO `servicios` (`id`, `servicio`) VALUES
+(1, 'Energia eléctrica'),
+(2, 'Café y té'),
+(3, 'Internet dedicado'),
+(4, 'Recepción'),
+(5, 'Limpieza'),
+(6, 'Centro de impresión');
 
 -- --------------------------------------------------------
 
@@ -2661,8 +2854,16 @@ CREATE TABLE `servicios` (
 
 CREATE TABLE `tipos_espacio` (
   `id` int(11) NOT NULL,
-  `tipo` enum('Oficina','Salón','Auditorio') COLLATE utf8_spanish_ci NOT NULL
+  `tipo` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `tipos_espacio`
+--
+
+INSERT INTO `tipos_espacio` (`id`, `tipo`) VALUES
+(3, 'Oficina'),
+(4, 'Salón');
 
 -- --------------------------------------------------------
 
@@ -2692,11 +2893,58 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `direccion_id`, `nombre`, `primer_apellido`, `segundo_apellido`, `sexo`, `fecha_nacimiento`, `numero_celular`, `correo_electronico`, `contrasena`, `perfil`, `estatus`, `identificacion`, `comprobante_domicilio`) VALUES
-(1, 1, 'Angel', 'Flores', 'Carlos', 'Masculino', '2002-06-08', '7223082469', 'angelfc.contact@gmail.com', '$2y$12$gOW4FzGWotdd5UGqyrXIJOxqstMvbpingJRmbUZMEMXl5mwZlC6Aq', 'Administrador', 'Activo', 'id-60ea2a202622c0.43344614.jpg', 'cd-60ea2a20263219.03022569.jpg');
+(1, 1, 'Angel', 'Flores', 'Carlos', 'Masculino', '2002-06-08', '7223082469', 'angelfc.contact@gmail.com', '$2y$12$c8R.ItmfRfQUX9/dJqBEweAZ2LCWJmjphNvzMKauzzbHgI2jcas0W', 'Administrador', 'Activo', 'id-61119effc0b454.70042663.jpg', 'cd-61119effc27f15.13258948.jpg'),
+(2, 2, 'Fatima', 'Garcia', 'Damian', 'Femenino', '2002-09-02', '7222222222', 'fatima@gmail.com', '$2y$12$3x7c6N4vlCyt0sHtR1CvBOqtwXMinaT5fUEO0bXabx4JPoRx0Z/Bu', 'Cliente', 'Inactivo', 'id-60ed0bf299b4b1.22375712.jpg', 'cd-60ecdef39bc914.72439111.jpg'),
+(35, 39, '234356', '56yui', '567yui', 'Masculino', '2021-08-05', '23456789654', 'hola@gmail.com', '$2y$12$p/hi0qFJO5hkkG1zG0lfze02yC2x0r.21NOXJtdXIXrqorZkBLGcO', 'Cliente', 'Activo', 'id-610c4ae42d8ed0.09369193.jpg', 'cd-610c4ae42e19c5.37537126.jpg'),
+(36, 60, 'Prueba', 'Alaaa', 'laaaaa', 'Femenino', '2021-08-02', '7223082468', 'cliente@google.com', '$2y$12$avaqqox14kXERqn.YC/hKeqdPcIBvd8zmllYDRbSQCqnuFbb.s2sO', 'Cliente', 'Activo', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vista_usuarios`
+-- (See below for the actual view)
+--
+CREATE TABLE `vista_usuarios` (
+`id` int(10) unsigned
+,`direccion_id` int(10) unsigned
+,`nombre` varchar(45)
+,`primer_apellido` varchar(45)
+,`segundo_apellido` varchar(45)
+,`sexo` enum('Masculino','Femenino')
+,`fecha_nacimiento` date
+,`numero_celular` varchar(45)
+,`correo_electronico` varchar(45)
+,`contrasena` varchar(100)
+,`perfil` enum('Administrador','Cliente')
+,`estatus` enum('Activo','Inactivo')
+,`identificacion` varchar(100)
+,`comprobante_domicilio` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vista_usuarios`
+--
+DROP TABLE IF EXISTS `vista_usuarios`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_usuarios`  AS SELECT `usuarios`.`id` AS `id`, `usuarios`.`direccion_id` AS `direccion_id`, `usuarios`.`nombre` AS `nombre`, `usuarios`.`primer_apellido` AS `primer_apellido`, `usuarios`.`segundo_apellido` AS `segundo_apellido`, `usuarios`.`sexo` AS `sexo`, `usuarios`.`fecha_nacimiento` AS `fecha_nacimiento`, `usuarios`.`numero_celular` AS `numero_celular`, `usuarios`.`correo_electronico` AS `correo_electronico`, `usuarios`.`contrasena` AS `contrasena`, `usuarios`.`perfil` AS `perfil`, `usuarios`.`estatus` AS `estatus`, `usuarios`.`identificacion` AS `identificacion`, `usuarios`.`comprobante_domicilio` AS `comprobante_domicilio` FROM `usuarios` WHERE `usuarios`.`estatus` = 'Activo' ;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `actualizacion_direcciones`
+--
+ALTER TABLE `actualizacion_direcciones`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contrasena_olvidada`
+--
+ALTER TABLE `contrasena_olvidada`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `direcciones`
@@ -2772,6 +3020,7 @@ ALTER TABLE `tipos_espacio`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `correo_unico` (`correo_electronico`),
   ADD KEY `fk_usuarios_direcciones1_idx` (`direccion_id`);
 
 --
@@ -2779,16 +3028,28 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT for table `actualizacion_direcciones`
+--
+ALTER TABLE `actualizacion_direcciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `contrasena_olvidada`
+--
+ALTER TABLE `contrasena_olvidada`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- AUTO_INCREMENT for table `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `espacios`
 --
 ALTER TABLE `espacios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `estados`
@@ -2800,7 +3061,7 @@ ALTER TABLE `estados`
 -- AUTO_INCREMENT for table `fotografias`
 --
 ALTER TABLE `fotografias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `municipios`
@@ -2812,25 +3073,25 @@ ALTER TABLE `municipios`
 -- AUTO_INCREMENT for table `rentas`
 --
 ALTER TABLE `rentas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tipos_espacio`
 --
 ALTER TABLE `tipos_espacio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables
