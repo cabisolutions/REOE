@@ -95,6 +95,16 @@ Route::add('/servicio', function() {
     $usuario = '';
 }, ['get','post']);
 
+<<<<<<< HEAD
+=======
+Route::add('/renta', function() {
+    $usuario = 'Administrador';
+    include('checa_sesion.php');
+    include('renta.php');
+    $usuario = '';
+}, ['get','post']);
+
+>>>>>>> ce66bb055fecf09373fec8581c86d0d9026a9d4f
 Route::add('/agregar_tipo_espacio', function() {
     $usuario = 'Administrador';
     include('checa_sesion.php');
